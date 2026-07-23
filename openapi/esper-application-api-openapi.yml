@@ -1,0 +1,1108 @@
+swagger: '2.0'
+info:
+  description: "# Introduction\nEsper APIs are a set of REST-based APIs that help you programmatically control and monitor Android-based Dedicated Devices running the Esper agent using Esper Manage. With these APIs, you can orchestrate and manage devices that have been provisioned against your Esper Manage environment. Furthermore, these APIs allows you to manage the Android applications installed on your Dedicated Device fleet. To read more about the various capabilities of Esper APIs and Esper managed devices, please visit [esper.io](https://esper.io). This guide describes all the available APIs in detail, along with code samples for you to quickly ramp up to using them.\\\nTo use these APIs you will need to create a developer account with Esper and get access to the Esper Dev Console and the Esper ManageDashboard. You can find out more about Esper and sign up for free at [esper.io/signup](https://esper.io/signup)\\\nWe've done our best to keep this document up to date, but if you find any issues, please reach out to us at developer@esper.io.\n\n# SDK\n\n  You are welcome to use your favorite HTTP/REST library for your programming language in order to call these APIs, or you can use our SDK (currently supporting [python](https://github.com/esper-io/esper-client-py)) to do so.\n\n\n# Authentication\nThe client needs to send authentication details to access the Esper APIs by generating and applying an API key. Be sure to sign up for your free trial account with Esper Dev to generate your key:\n\n# Errors\nThe APIs use standard HTTP status codes to indicate success or failure. All error responses will have a JSON body in the following format:\n\n```\n{\n  \"errors\": [],\n  \"message\": \"error message\",\n  \"status\": 400\n}\n```\n* `errors` -  List of error details\n* `message` - Error description\n* `status` - HTTP status code\n"
+  version: 1.0.0
+  title: ESPER API REFERENCE Application API
+  termsOfService: https://esper.io/terms-of-service
+  contact:
+    email: developer@esper.io
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+host: foo-api.esper.cloud
+basePath: /api
+schemes:
+- https
+tags:
+- name: Application
+  description: APIs for application management
+  externalDocs:
+    description: Find out more about application management
+    url: https://docs.esper.io/home/console.html#apps
+paths:
+  /enterprise/{enterprise_id}/application/:
+    parameters:
+    - name: enterprise_id
+      description: A UUID string identifying this enterprise.
+      in: path
+      required: true
+      type: string
+    get:
+      operationId: getAllApplications
+      summary: List apps in enterprise
+      description: Returns Application list
+      produces:
+      - application/json
+      parameters:
+      - name: application_name
+        in: query
+        description: filter by application name
+        required: false
+        type: string
+      - name: package_name
+        in: query
+        description: filter by package name
+        required: false
+        type: string
+      - name: package_name_exact
+        in: query
+        description: filter by package name (exact match)
+        required: false
+        type: string
+      - name: has_uploaded_version
+        in: query
+        description: Returns applications having atleast on version uploaded
+        required: false
+        type: boolean
+      - name: category
+        in: query
+        description: filter by category
+        required: false
+        type: string
+      - name: supported_sdk
+        in: query
+        description: filter by supported sdk versions
+        required: false
+        type: integer
+      - name: is_active
+        in: query
+        description: filter by active applications
+        required: false
+        type: boolean
+      - name: is_hidden
+        in: query
+        description: filter default esper apps
+        required: false
+        type: boolean
+        default: false
+      - name: created_on_gt
+        in: query
+        description: filter applications created after a given timestamp
+        required: false
+        type: string
+        format: datetime
+      - name: created_on_lt
+        in: query
+        description: filter applications created before a given timestamp
+        required: false
+        type: string
+        format: datetime
+      - name: updated_on_gt
+        in: query
+        description: filter applications updated after a given timestamp
+        required: false
+        type: string
+        format: datetime
+      - name: updated_on_lt
+        in: query
+        description: filter applications updated before a given timestamp
+        required: false
+        type: string
+        format: datetime
+      - name: limit
+        in: query
+        description: Number of results to return per page.
+        required: false
+        type: integer
+        default: 20
+      - name: offset
+        in: query
+        description: The initial index from which to return the results.
+        required: false
+        type: integer
+        default: 0
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            required:
+            - count
+            - results
+            type: object
+            properties:
+              count:
+                type: integer
+              next:
+                type: string
+                format: url
+                x-nullable: true
+              previous:
+                type: string
+                format: url
+                x-nullable: true
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/Application'
+        '401':
+          description: Authorization information is missing or invalid.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '500':
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      security:
+      - apiKey: []
+      tags:
+      - Application
+  /enterprise/{enterprise_id}/application/upload/:
+    parameters:
+    - name: enterprise_id
+      description: A UUID string identifying this enterprise.
+      in: path
+      required: true
+      type: string
+    post:
+      operationId: upload
+      summary: Upload an application to enterprise
+      description: Returns application
+      produces:
+      - application/json
+      consumes:
+      - multipart/form-data
+      - application/x-www-form-urlencoded
+      parameters:
+      - name: app_file
+        description: Valid APK file
+        in: formData
+        required: true
+        type: file
+      responses:
+        '201':
+          description: successful operation
+          schema:
+            type: object
+            properties:
+              application:
+                $ref: '#/definitions/Application'
+        '400':
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '401':
+          description: Authorization information is missing or invalid.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '403':
+          description: Forbidden, no permission to perform this action.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '415':
+          description: Unsupported media type.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '500':
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      security:
+      - apiKey: []
+      tags:
+      - Application
+  /enterprise/{enterprise_id}/application/{application_id}/:
+    parameters:
+    - name: application_id
+      in: path
+      description: A UUID string identifying this application.
+      required: true
+      type: string
+      format: uuid
+    - name: enterprise_id
+      description: A UUID string identifying enterprise.
+      in: path
+      required: true
+      type: string
+    get:
+      operationId: getApplication
+      summary: Get application information
+      description: Returns Application instance
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Application'
+        '401':
+          description: Authorization information is missing or invalid.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '404':
+          description: Not Found.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '500':
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      security:
+      - apiKey: []
+      tags:
+      - Application
+    delete:
+      operationId: deleteApplication
+      summary: Delete an application
+      description: Empty response
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        '204':
+          description: The resource was deleted successfully.
+        '401':
+          description: Authorization information is missing or invalid.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '403':
+          description: Forbidden, no permission to perform this action.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '404':
+          description: Not Found.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '500':
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      security:
+      - apiKey: []
+      tags:
+      - Application
+  /enterprise/{enterprise_id}/application/{application_id}/version/:
+    parameters:
+    - name: application_id
+      in: path
+      description: A UUID string identifying this application.
+      required: true
+      type: string
+      format: uuid
+    - name: enterprise_id
+      description: A UUID string identifying enterprise.
+      in: path
+      required: true
+      type: string
+    get:
+      operationId: getAppVersions
+      summary: List App versions
+      description: Returns AppVersion list
+      produces:
+      - application/json
+      parameters:
+      - name: version_code
+        in: query
+        description: filter by version code
+        required: false
+        type: string
+      - name: build_number
+        in: query
+        description: filter by build number
+        required: false
+        type: string
+      - name: is_g_play
+        in: query
+        description: filter google play applications
+        required: false
+        type: boolean
+      - name: approval_status
+        in: query
+        description: filter by approval status
+        required: false
+        type: string
+        enum:
+        - AVAILABLE
+        - ACCEPTED
+        - APPROVED
+        - REJECTED
+      - name: is_enabled
+        in: query
+        description: filter by enabled versions
+        required: false
+        type: boolean
+      - name: is_default
+        in: query
+        description: filter by default versions
+        required: false
+        type: boolean
+      - name: created_on_gt
+        in: query
+        description: filter applications created after a given timestamp
+        required: false
+        type: string
+        format: datetime
+      - name: created_on_lt
+        in: query
+        description: filter applications created before a given timestamp
+        required: false
+        type: string
+        format: datetime
+      - name: updated_on_gt
+        in: query
+        description: filter applications updated after a given timestamp
+        required: false
+        type: string
+        format: datetime
+      - name: updated_on_lt
+        in: query
+        description: filter applications updated before a given timestamp
+        required: false
+        type: string
+        format: datetime
+      - name: limit
+        in: query
+        description: Number of results to return per page.
+        required: false
+        type: integer
+        default: 20
+      - name: offset
+        in: query
+        description: The initial index from which to return the results.
+        required: false
+        type: integer
+        default: 0
+      - name: ordering
+        in: query
+        description: 'Order result set by field name.
+
+
+          ```
+
+          * installed_count: order by asc
+
+          * -installed_count: order by desc
+
+          ```
+
+          '
+        required: false
+        type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            required:
+            - count
+            - results
+            type: object
+            properties:
+              count:
+                type: integer
+              next:
+                type: string
+                format: url
+                x-nullable: true
+              previous:
+                type: string
+                format: url
+                x-nullable: true
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/AppVersion'
+        '401':
+          description: Authorization information is missing or invalid.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '500':
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      security:
+      - apiKey: []
+      tags:
+      - Application
+  /enterprise/{enterprise_id}/application/{application_id}/version/{version_id}/:
+    parameters:
+    - name: version_id
+      in: path
+      description: A UUID string identifying this app version.
+      required: true
+      type: string
+      format: uuid
+    - name: application_id
+      in: path
+      description: A UUID string identifying this application.
+      required: true
+      type: string
+      format: uuid
+    - name: enterprise_id
+      description: A UUID string identifying enterprise.
+      in: path
+      required: true
+      type: string
+    get:
+      operationId: getAppVersion
+      summary: Get app version information
+      description: Returns AppVersion instance
+      produces:
+      - application/json
+      parameters:
+      - name: request_id
+        in: query
+        description: If this value exists in cache, delete the application and cache entry.
+        required: false
+        type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/AppVersion'
+        '401':
+          description: Authorization information is missing or invalid.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '404':
+          description: Not Found.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '500':
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      security:
+      - apiKey: []
+      tags:
+      - Application
+    delete:
+      operationId: deleteAppVersion
+      summary: Delete app version
+      description: Empty response
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        '200':
+          description: No request id is provided and the application is linked to one or more templates. Returns a request_id. Call with this request id to delete the resource.
+          schema:
+            $ref: '#/definitions/AppVersionDelete'
+        '204':
+          description: The resource was deleted successfully.
+        '400':
+          description: Invalid request.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '401':
+          description: Authorization information is missing or invalid.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '403':
+          description: Forbidden, no permission to perform this action.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '404':
+          description: Not Found.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '500':
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      security:
+      - apiKey: []
+      tags:
+      - Application
+    patch:
+      operationId: patchAppVersion
+      summary: Patch an App version instance
+      produces:
+      - application/json
+      parameters:
+      - name: data
+        in: body
+        schema:
+          type: object
+          properties:
+            release_name:
+              title: Release name
+              description: Name of the Release
+              type: string
+            release_comments:
+              title: Release comments
+              description: Additional comments about the release
+              type: string
+            release_track:
+              title: Release track
+              description: Description of the content
+              type: string
+              enum:
+              - Alpha
+              - Beta
+              - Production
+            is_enabled:
+              title: Is Enabled
+              description: Is the app version enabled
+              type: boolean
+            min_sdk_version:
+              title: Minimum SDK version
+              description: Version number of minimum SDK version that supports this app version
+              type: string
+            target_sdk_version:
+              title: Target SDK version
+              description: Target SDK version that supports this app version
+              type: string
+            build_number:
+              title: Build Number
+              description: Build number of this app version
+              type: string
+            version_code:
+              title: Version Code
+              description: Verion code of this app version
+              type: string
+            approval_status:
+              title: Approval Status
+              description: Approval status of this app version
+              type: string
+              enum:
+              - AVAILABLE
+              - ACCEPTED
+              - APPROVED
+              - REJECTED
+            is_default:
+              title: Is default
+              description: Is the app version default
+              type: boolean
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/AppVersion'
+        '400':
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '401':
+          description: Authorization information is missing or invalid.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '403':
+          description: Forbidden, no permission to perform this action.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '404':
+          description: Not Found.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '500':
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      security:
+      - apiKey: []
+      tags:
+      - Application
+  /enterprise/{enterprise_id}/application/{application_id}/version/{version_id}/installdevices:
+    parameters:
+    - name: version_id
+      in: path
+      description: A UUID string identifying this app version.
+      required: true
+      type: string
+      format: uuid
+    - name: application_id
+      in: path
+      description: A UUID string identifying this application.
+      required: true
+      type: string
+      format: uuid
+    - name: enterprise_id
+      description: A UUID string identifying enterprise.
+      in: path
+      required: true
+      type: string
+    get:
+      operationId: getInstallDevices
+      summary: List install devices
+      description: Returns list of devices with the specified app version installed
+      produces:
+      - application/json
+      parameters:
+      - name: search
+        in: query
+        description: A search term, search based on device name, device alias_name, group name
+        required: false
+        type: string
+      - name: limit
+        in: query
+        description: Number of results to return per page
+        required: false
+        type: integer
+      - name: offset
+        in: query
+        description: The initial index from which to return the results
+        required: false
+        type: integer
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            required:
+            - count
+            - results
+            type: object
+            properties:
+              count:
+                type: integer
+              next:
+                type: string
+                format: url
+                x-nullable: true
+              previous:
+                type: string
+                format: url
+                x-nullable: true
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/InstallDevices'
+        '401':
+          description: Authorization information is missing or invalid.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '403':
+          description: Forbidden, no permission to perform this action.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '404':
+          description: Not Found.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '500':
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      security:
+      - apiKey: []
+      tags:
+      - Application
+  /v1/enterprise/{enterprise_id}/application/{application_id}/version/{version_id}/installdevices:
+    parameters:
+    - name: version_id
+      in: path
+      description: A UUID string identifying this app version.
+      required: true
+      type: string
+      format: uuid
+    - name: application_id
+      in: path
+      description: A UUID string identifying this application.
+      required: true
+      type: string
+      format: uuid
+    - name: enterprise_id
+      description: A UUID string identifying enterprise.
+      in: path
+      required: true
+      type: string
+    get:
+      operationId: getInstallDevicesV1
+      summary: List install devices
+      description: Returns list of devices with the specified app version installed
+      produces:
+      - application/json
+      parameters:
+      - name: search
+        in: query
+        description: A search term, search based on device name, device alias_name, group name
+        required: false
+        type: string
+      - name: limit
+        in: query
+        description: Number of results to return per page
+        required: false
+        type: integer
+      - name: offset
+        in: query
+        description: The initial index from which to return the results
+        required: false
+        type: integer
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            required:
+            - count
+            - results
+            type: object
+            properties:
+              count:
+                type: integer
+              next:
+                type: string
+                format: url
+                x-nullable: true
+              previous:
+                type: string
+                format: url
+                x-nullable: true
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/InstallDevices'
+        '401':
+          description: Authorization information is missing or invalid.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '403':
+          description: Forbidden, no permission to perform this action.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '404':
+          description: Not Found.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '500':
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      security:
+      - apiKey: []
+      tags:
+      - Application
+definitions:
+  ErrorResponse:
+    type: object
+    properties:
+      errors:
+        title: Messages describing the error
+        type: array
+        items:
+          type: string
+      message:
+        title: Message describing the error
+        type: string
+      status:
+        title: alias name
+        type: integer
+  AppPermission:
+    required:
+    - permission
+    - enterprise
+    type: object
+    properties:
+      id:
+        title: Id
+        type: string
+        format: uuid
+        readOnly: true
+      permission:
+        title: Permission
+        type: string
+        maxLength: 255
+        minLength: 1
+      grant_state:
+        title: Grant state
+        type: string
+        enum:
+        - Default
+        - Denied
+        - Granted
+      created_on:
+        title: Created on
+        type: string
+        format: date-time
+        readOnly: true
+      updated_on:
+        title: Updated on
+        type: string
+        format: date-time
+        readOnly: true
+      is_active:
+        title: Is active
+        type: boolean
+      enterprise:
+        title: Enterprise
+        type: string
+        format: url
+      app_version:
+        title: App version
+        type: string
+        format: url
+  AppVersionDelete:
+    type: object
+    properties:
+      request_id:
+        title: Request id
+        type: string
+        format: uuid
+      templates:
+        description: List of linked templates to an app version
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              title: Id
+              description: Id of the linked template
+              type: integer
+            name:
+              title: Name
+              description: Name of the linked template
+              type: string
+  InstallDevices:
+    required:
+    - id
+    type: object
+    properties:
+      id:
+        title: Id
+        type: string
+        format: uuid
+      device_name:
+        title: Device name
+        type: string
+      alias_name:
+        title: alias name
+        type: string
+        x-nullable: true
+      group_name:
+        title: Group name
+        type: string
+        maxLength: 255
+        minLength: 1
+  Application:
+    required:
+    - application_name
+    - package_name
+    - enterprise
+    type: object
+    properties:
+      id:
+        title: Id
+        type: string
+        format: uuid
+        readOnly: true
+      versions:
+        type: array
+        items:
+          $ref: '#/definitions/ApplicationVersion'
+      application_name:
+        title: Application name
+        type: string
+        maxLength: 255
+        minLength: 1
+      package_name:
+        title: Package name
+        type: string
+        maxLength: 255
+        minLength: 1
+      developer:
+        title: Developer
+        type: string
+        maxLength: 255
+        minLength: 1
+        x-nullable: true
+      category:
+        title: Category
+        type: string
+        maxLength: 255
+        minLength: 1
+        x-nullable: true
+      content_rating:
+        title: Content rating
+        type: string
+        format: decimal
+      compatibility:
+        title: Compatibility
+        type: string
+        minLength: 1
+        x-nullable: true
+      created_on:
+        title: Created on
+        type: string
+        format: date-time
+        readOnly: true
+      updated_on:
+        title: Updated on
+        type: string
+        format: date-time
+        readOnly: true
+      is_active:
+        title: Is active
+        type: boolean
+      is_hidden:
+        title: Is hidden
+        type: boolean
+      enterprise:
+        title: Enterprise
+        type: string
+        format: url
+  ApplicationVersion:
+    title: Version
+    type: object
+    properties:
+      id:
+        title: Id
+        type: string
+        format: uuid
+        readOnly: true
+      version_code:
+        title: Version code
+        type: string
+        maxLength: 50
+        minLength: 1
+      build_number:
+        title: Build number
+        type: string
+        maxLength: 100
+        minLength: 1
+        x-nullable: true
+      hash_string:
+        title: Hash string
+        type: string
+      min_sdk_version:
+        title: Min sdk version
+        type: string
+        maxLength: 10
+        minLength: 1
+        x-nullable: true
+      target_sdk_version:
+        title: Target sdk version
+        type: string
+        maxLength: 10
+        minLength: 1
+        x-nullable: true
+      download_url:
+        title: Url
+        type: string
+        format: url
+      icon_url:
+        title: Url for the icon
+        type: string
+        format: url
+      release_name:
+        title: Name of the release
+        type: string
+  AppVersion:
+    title: Application Version
+    required:
+    - permissions
+    - version_code
+    - enterprise
+    type: object
+    properties:
+      id:
+        title: Id
+        type: string
+        format: uuid
+        readOnly: true
+      installed_count:
+        title: Installed count
+        type: integer
+        readOnly: true
+      permissions:
+        type: array
+        items:
+          $ref: '#/definitions/AppPermission'
+      app_file:
+        title: App file
+        type: string
+        readOnly: true
+        format: url
+      app_icon:
+        title: App icon
+        type: string
+        readOnly: true
+        x-nullable: true
+        format: url
+      version_code:
+        title: Version code
+        type: string
+        maxLength: 50
+        minLength: 1
+      build_number:
+        title: Build number
+        type: string
+        maxLength: 100
+        minLength: 1
+        x-nullable: true
+      size_in_mb:
+        title: Size in mb
+        type: number
+      hash_string:
+        title: Hash string
+        type: string
+      release_name:
+        title: Release name
+        type: string
+        maxLength: 255
+        minLength: 1
+        x-nullable: true
+      release_comments:
+        title: Release comments
+        type: string
+        minLength: 1
+        x-nullable: true
+      release_track:
+        title: Release track
+        type: string
+        enum:
+        - Alpha
+        - Beta
+        - Production
+        x-nullable: true
+      created_on:
+        title: Created on
+        type: string
+        format: date-time
+        readOnly: true
+      updated_on:
+        title: Updated on
+        type: string
+        format: date-time
+        readOnly: true
+      min_sdk_version:
+        title: Min sdk version
+        type: string
+        maxLength: 10
+        minLength: 1
+        x-nullable: true
+      target_sdk_version:
+        title: Target sdk version
+        type: string
+        maxLength: 10
+        minLength: 1
+        x-nullable: true
+      is_enabled:
+        title: Is enabled
+        type: boolean
+      enterprise:
+        title: Enterprise
+        type: string
+        format: url
+      application:
+        title: Application
+        type: string
+        format: url
+      approval_status:
+        title: Application status
+        type: string
+        enum:
+        - AVAILABLE
+        - ACCEPTED
+        - APPROVED
+        - REJECTED
+securityDefinitions:
+  apiKey:
+    description: "#### API KEY - Access Token\nAccess token for APIs passed as authorization header in calls. You need to generate this from your Esper Dev Console at `<domain>-api.esper.cloud` where foo is the sub-domain name you gave for your Esper Dev environment when you signed up for your Esper Dev account. Please follow the instructions [here](https://docs.esper.io/home/module/genapikey.html) to generate an access token.\nOnce you have the access token, you need to send an authorization header as below\n\n```bash\n\n    curl -X GET \\\n      https://<domain>-api.esper.cloud/api/enterprise/<enterprise_id>/device/ \\\n      -H 'Authorization: Bearer <ACCESS_TOKEN>' \\\n      -H 'Content-Type: application/json' \\\n```\n\n> Please note the use of keyword **Bearer** before the token value.\n\n\nYou can read more about api key authentication scheme [here](https://console-docs.esper.io/API/generate.html).\n"
+    name: Authorization
+    type: apiKey
+    in: header
+x-tagGroups:
+- name: API Reference
+  tags:
+  - Enterprise
+  - Application
+  - Application V1
+  - Device
+  - Device Group
+  - Commands
+  - Group Commands
+  - Token
+  - Commands V2
+  - Enterprise Policy
+  - Geofence
+  - Reports
+  - Subscription
+  - Content

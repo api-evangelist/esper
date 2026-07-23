@@ -1,0 +1,389 @@
+swagger: '2.0'
+info:
+  description: "# Introduction\nEsper APIs are a set of REST-based APIs that help you programmatically control and monitor Android-based Dedicated Devices running the Esper agent using Esper Manage. With these APIs, you can orchestrate and manage devices that have been provisioned against your Esper Manage environment. Furthermore, these APIs allows you to manage the Android applications installed on your Dedicated Device fleet. To read more about the various capabilities of Esper APIs and Esper managed devices, please visit [esper.io](https://esper.io). This guide describes all the available APIs in detail, along with code samples for you to quickly ramp up to using them.\\\nTo use these APIs you will need to create a developer account with Esper and get access to the Esper Dev Console and the Esper ManageDashboard. You can find out more about Esper and sign up for free at [esper.io/signup](https://esper.io/signup)\\\nWe've done our best to keep this document up to date, but if you find any issues, please reach out to us at developer@esper.io.\n\n# SDK\n\n  You are welcome to use your favorite HTTP/REST library for your programming language in order to call these APIs, or you can use our SDK (currently supporting [python](https://github.com/esper-io/esper-client-py)) to do so.\n\n\n# Authentication\nThe client needs to send authentication details to access the Esper APIs by generating and applying an API key. Be sure to sign up for your free trial account with Esper Dev to generate your key:\n\n# Errors\nThe APIs use standard HTTP status codes to indicate success or failure. All error responses will have a JSON body in the following format:\n\n```\n{\n  \"errors\": [],\n  \"message\": \"error message\",\n  \"status\": 400\n}\n```\n* `errors` -  List of error details\n* `message` - Error description\n* `status` - HTTP status code\n"
+  version: 1.0.0
+  title: ESPER API REFERENCE Application Content API
+  termsOfService: https://esper.io/terms-of-service
+  contact:
+    email: developer@esper.io
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+host: foo-api.esper.cloud
+basePath: /api
+schemes:
+- https
+tags:
+- name: Content
+  description: APIs for Content management
+  externalDocs:
+    description: Find out more about Content management
+    url: https://docs.esper.io/home/console.html#content
+paths:
+  /v0/enterprise/{enterprise_id}/content/:
+    parameters:
+    - name: enterprise_id
+      description: A UUID string identifying this enterprise.
+      in: path
+      required: true
+      type: string
+    get:
+      operationId: getAllContent
+      summary: List content in the enterprise
+      description: Returns Content list
+      produces:
+      - application/json
+      parameters:
+      - name: search
+        in: query
+        description: Seach by tags, description
+        required: false
+        type: string
+      - name: limit
+        in: query
+        description: Number of results to return per page.
+        required: false
+        type: integer
+        default: 20
+      - name: offset
+        in: query
+        description: The initial index from which to return the results.
+        required: false
+        type: integer
+        default: 0
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            required:
+            - count
+            - results
+            type: object
+            properties:
+              count:
+                type: integer
+              next:
+                type: string
+                format: url
+                x-nullable: true
+              previous:
+                type: string
+                format: url
+                x-nullable: true
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/Content'
+        '401':
+          description: Authorization information is missing or invalid.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '500':
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      security:
+      - apiKey: []
+      tags:
+      - Content
+  /v0/enterprise/{enterprise_id}/content/upload/:
+    parameters:
+    - name: enterprise_id
+      description: A UUID string identifying this enterprise.
+      in: path
+      required: true
+      type: string
+    post:
+      operationId: postContent
+      summary: Upload new content
+      description: Returns Content instance
+      produces:
+      - application/json
+      consumes:
+      - multipart/form-data
+      parameters:
+      - name: key
+        description: Valid file to upload
+        in: formData
+        required: true
+        type: file
+      responses:
+        '200':
+          description: Successful Operation
+          schema:
+            $ref: '#/definitions/Content'
+        '400':
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '401':
+          description: Authorization information is missing or invalid.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '403':
+          description: Forbidden, no permission to perform this action.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '415':
+          description: Unsupported media type.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '500':
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      security:
+      - apiKey: []
+      tags:
+      - Content
+  /v0/enterprise/{enterprise_id}/content/{content_id}/:
+    parameters:
+    - name: content_id
+      in: path
+      description: A UUID string identifying a content instance.
+      required: true
+      type: string
+      format: uuid
+    - name: enterprise_id
+      description: A UUID string identifying enterprise.
+      in: path
+      required: true
+      type: string
+    get:
+      operationId: getContent
+      summary: Get content information
+      description: Returns Content instance
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Content'
+        '401':
+          description: Authorization information is missing or invalid.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '404':
+          description: Not Found.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '500':
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      security:
+      - apiKey: []
+      tags:
+      - Content
+    delete:
+      operationId: deleteContent
+      summary: Delete Content
+      description: Empty response
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        '204':
+          description: The resource was deleted successfully.
+        '401':
+          description: Authorization information is missing or invalid.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '403':
+          description: Forbidden, no permission to perform this action.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '404':
+          description: Not Found.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '500':
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      security:
+      - apiKey: []
+      tags:
+      - Content
+    patch:
+      operationId: patchContent
+      summary: Patch a content instance
+      produces:
+      - application/json
+      parameters:
+      - name: data
+        in: body
+        schema:
+          type: object
+          properties:
+            tags:
+              title: Tags
+              description: Tags for the content
+              type: array
+              items:
+                type: string
+                maxLength: 255
+            description:
+              title: Description
+              description: Description of the content
+              type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Content'
+        '400':
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '401':
+          description: Authorization information is missing or invalid.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '403':
+          description: Forbidden, no permission to perform this action.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '404':
+          description: Not Found.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '415':
+          description: Unsupported media type.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '500':
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      security:
+      - apiKey: []
+      tags:
+      - Content
+definitions:
+  Content:
+    required:
+    - id
+    type: object
+    properties:
+      id:
+        title: Id
+        description: Unique content Identifier
+        type: integer
+        readOnly: true
+      download_url:
+        title: Content download URL
+        description: URL to download the content
+        type: string
+        format: url
+      name:
+        title: Name
+        description: Name of the content
+        type: string
+      key:
+        title: Key
+        type: string
+        maxLength: 255
+        minLength: 1
+      is_dir:
+        title: Is Directory
+        type: boolean
+        default: false
+      kind:
+        title: Content kind
+        description: The mime type of the content
+        type: string
+        maxLength: 255
+        x-nullable: true
+      hash:
+        title: Content Hash
+        description: Hash string of the content
+        type: string
+      size:
+        title: Content Size
+        description: Size of the content in bytes
+        type: string
+        maxLength: 255
+      path:
+        title: Path
+        description: Path to the content
+        type: string
+      permissions:
+        title: Permissions
+        description: The permssion string for the content
+        type: string
+      tags:
+        title: Content tags
+        description: Tags for the content
+        type: array
+        items:
+          type: string
+          maxLength: 255
+      description:
+        title: Content description
+        description: Description for the content
+        type: string
+        x-nullable: true
+      created:
+        title: Created on
+        type: string
+        format: date-time
+        readOnly: true
+      modified:
+        title: Modified on
+        type: string
+        format: date-time
+        readOnly: true
+      enterprise:
+        title: Enterprise
+        description: URL of the enterprise resource
+        type: string
+        format: url
+      owner:
+        title: Owner
+        description: Owner of the content
+        type: object
+        properties:
+          id:
+            type: integer
+          username:
+            type: string
+  ErrorResponse:
+    type: object
+    properties:
+      errors:
+        title: Messages describing the error
+        type: array
+        items:
+          type: string
+      message:
+        title: Message describing the error
+        type: string
+      status:
+        title: alias name
+        type: integer
+securityDefinitions:
+  apiKey:
+    description: "#### API KEY - Access Token\nAccess token for APIs passed as authorization header in calls. You need to generate this from your Esper Dev Console at `<domain>-api.esper.cloud` where foo is the sub-domain name you gave for your Esper Dev environment when you signed up for your Esper Dev account. Please follow the instructions [here](https://docs.esper.io/home/module/genapikey.html) to generate an access token.\nOnce you have the access token, you need to send an authorization header as below\n\n```bash\n\n    curl -X GET \\\n      https://<domain>-api.esper.cloud/api/enterprise/<enterprise_id>/device/ \\\n      -H 'Authorization: Bearer <ACCESS_TOKEN>' \\\n      -H 'Content-Type: application/json' \\\n```\n\n> Please note the use of keyword **Bearer** before the token value.\n\n\nYou can read more about api key authentication scheme [here](https://console-docs.esper.io/API/generate.html).\n"
+    name: Authorization
+    type: apiKey
+    in: header
+x-tagGroups:
+- name: API Reference
+  tags:
+  - Enterprise
+  - Application
+  - Application V1
+  - Device
+  - Device Group
+  - Commands
+  - Group Commands
+  - Token
+  - Commands V2
+  - Enterprise Policy
+  - Geofence
+  - Reports
+  - Subscription
+  - Content

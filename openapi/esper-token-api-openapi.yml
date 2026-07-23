@@ -1,0 +1,215 @@
+swagger: '2.0'
+info:
+  description: "# Introduction\nEsper APIs are a set of REST-based APIs that help you programmatically control and monitor Android-based Dedicated Devices running the Esper agent using Esper Manage. With these APIs, you can orchestrate and manage devices that have been provisioned against your Esper Manage environment. Furthermore, these APIs allows you to manage the Android applications installed on your Dedicated Device fleet. To read more about the various capabilities of Esper APIs and Esper managed devices, please visit [esper.io](https://esper.io). This guide describes all the available APIs in detail, along with code samples for you to quickly ramp up to using them.\\\nTo use these APIs you will need to create a developer account with Esper and get access to the Esper Dev Console and the Esper ManageDashboard. You can find out more about Esper and sign up for free at [esper.io/signup](https://esper.io/signup)\\\nWe've done our best to keep this document up to date, but if you find any issues, please reach out to us at developer@esper.io.\n\n# SDK\n\n  You are welcome to use your favorite HTTP/REST library for your programming language in order to call these APIs, or you can use our SDK (currently supporting [python](https://github.com/esper-io/esper-client-py)) to do so.\n\n\n# Authentication\nThe client needs to send authentication details to access the Esper APIs by generating and applying an API key. Be sure to sign up for your free trial account with Esper Dev to generate your key:\n\n# Errors\nThe APIs use standard HTTP status codes to indicate success or failure. All error responses will have a JSON body in the following format:\n\n```\n{\n  \"errors\": [],\n  \"message\": \"error message\",\n  \"status\": 400\n}\n```\n* `errors` -  List of error details\n* `message` - Error description\n* `status` - HTTP status code\n"
+  version: 1.0.0
+  title: ESPER API REFERENCE Application Token API
+  termsOfService: https://esper.io/terms-of-service
+  contact:
+    email: developer@esper.io
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+host: foo-api.esper.cloud
+basePath: /api
+schemes:
+- https
+tags:
+- name: Token
+  description: Fetch API token information
+  externalDocs:
+    description: Find out more about API get generation
+    url: https://docs.esper.io/home/module/genapikey.html
+paths:
+  /v0/enterprise/{enterprise_id}/developerapp/{developerapp_id}/renew-token/:
+    post:
+      operationId: renewToken
+      summary: Renew Token
+      description: API to renew your token
+      produces:
+      - application/json
+      parameters:
+      - name: enterprise_id
+        in: path
+        description: A UUID string identifying this enterprise.
+        required: true
+        type: string
+        format: uuid
+      - name: developerapp_id
+        in: path
+        description: A UUID string identifying the developerapp
+        required: true
+        type: string
+        format: uuid
+      - name: access_token
+        in: query
+        description: Token to be renewed
+        required: true
+        type: string
+      responses:
+        '201':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/TokenRenewV0'
+      security:
+      - apiKey: []
+      tags:
+      - Token
+  /v1/token-info/:
+    get:
+      operationId: getTokenInfo
+      summary: Token Information
+      description: API to get resource information associated with your token like your enterprise, user etc
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/TokenInfoV1'
+      security:
+      - apiKey: []
+      tags:
+      - Token
+definitions:
+  TokenRenewV0:
+    type: object
+    properties:
+      id:
+        title: Token id
+        description: Id of the token
+        type: string
+        format: integer
+        readOnly: true
+      user:
+        title: User id
+        description: Id of the user resource
+        type: string
+        readOnly: true
+      enterprise:
+        title: Enterprise id
+        description: Id of the enterprise resource
+        type: string
+        format: uuid
+        readOnly: true
+      token:
+        title: API Token
+        description: API token for accessing esper APIs
+        type: string
+        readOnly: true
+      expires_at:
+        title: API token expiry
+        description: Date and time of when your API token will get expired
+        type: string
+        format: date-time
+        readOnly: true
+      developerapp:
+        title: Developer app id
+        description: Id of the developer app resource that you created using the esper dev console
+        type: string
+        format: uuid
+        readOnly: true
+      scope:
+        title: Scope of API token
+        description: This defines what access scopes your API token has
+        type: string
+        readOnly: true
+      created_on:
+        title: Created on
+        description: Date and time of when this resource was created
+        type: string
+        format: date-time
+        readOnly: true
+      updated_on:
+        title: Updated on
+        description: Date and time of when this resource was updated
+        type: string
+        format: date-time
+        readOnly: true
+  TokenInfoV1:
+    required:
+    - id
+    - enterprise
+    type: object
+    properties:
+      id:
+        title: Id
+        description: Token id
+        type: string
+        format: integer
+        readOnly: true
+      enterprise:
+        title: Enterprise id
+        description: Id of the enterprise resource
+        type: string
+        format: uuid
+        readOnly: true
+      user:
+        title: User id
+        description: Id of the user resource
+        type: string
+        readOnly: true
+      developer_app:
+        title: Developer app id
+        description: Id of the developer app resource that you created using the esper dev console
+        type: string
+        format: uuid
+        readOnly: true
+      source_refresh_token:
+        title: Refresh token
+        description: The refresh token is used to refresh your expired API token
+        type: string
+        readOnly: true
+      token:
+        title: API Token
+        description: API token for accessing esper APIs
+        type: string
+        readOnly: true
+      expires_on:
+        title: API token expiry
+        description: Date and time of when your API token will get expired
+        type: string
+        format: date-time
+        readOnly: true
+      scope:
+        title: Scope of API token
+        description: This defines what access scopes does your API token has
+        type: array
+        items:
+          type: string
+        readOnly: true
+      created_on:
+        title: Created on
+        description: Date and time of when this resource was created
+        type: string
+        format: date-time
+        readOnly: true
+      updated_on:
+        title: Updated on
+        description: Date and time of when this resource was updated
+        type: string
+        format: date-time
+        readOnly: true
+securityDefinitions:
+  apiKey:
+    description: "#### API KEY - Access Token\nAccess token for APIs passed as authorization header in calls. You need to generate this from your Esper Dev Console at `<domain>-api.esper.cloud` where foo is the sub-domain name you gave for your Esper Dev environment when you signed up for your Esper Dev account. Please follow the instructions [here](https://docs.esper.io/home/module/genapikey.html) to generate an access token.\nOnce you have the access token, you need to send an authorization header as below\n\n```bash\n\n    curl -X GET \\\n      https://<domain>-api.esper.cloud/api/enterprise/<enterprise_id>/device/ \\\n      -H 'Authorization: Bearer <ACCESS_TOKEN>' \\\n      -H 'Content-Type: application/json' \\\n```\n\n> Please note the use of keyword **Bearer** before the token value.\n\n\nYou can read more about api key authentication scheme [here](https://console-docs.esper.io/API/generate.html).\n"
+    name: Authorization
+    type: apiKey
+    in: header
+x-tagGroups:
+- name: API Reference
+  tags:
+  - Enterprise
+  - Application
+  - Application V1
+  - Device
+  - Device Group
+  - Commands
+  - Group Commands
+  - Token
+  - Commands V2
+  - Enterprise Policy
+  - Geofence
+  - Reports
+  - Subscription
+  - Content

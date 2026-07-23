@@ -1,0 +1,510 @@
+swagger: '2.0'
+info:
+  description: "# Introduction\nEsper APIs are a set of REST-based APIs that help you programmatically control and monitor Android-based Dedicated Devices running the Esper agent using Esper Manage. With these APIs, you can orchestrate and manage devices that have been provisioned against your Esper Manage environment. Furthermore, these APIs allows you to manage the Android applications installed on your Dedicated Device fleet. To read more about the various capabilities of Esper APIs and Esper managed devices, please visit [esper.io](https://esper.io). This guide describes all the available APIs in detail, along with code samples for you to quickly ramp up to using them.\\\nTo use these APIs you will need to create a developer account with Esper and get access to the Esper Dev Console and the Esper ManageDashboard. You can find out more about Esper and sign up for free at [esper.io/signup](https://esper.io/signup)\\\nWe've done our best to keep this document up to date, but if you find any issues, please reach out to us at developer@esper.io.\n\n# SDK\n\n  You are welcome to use your favorite HTTP/REST library for your programming language in order to call these APIs, or you can use our SDK (currently supporting [python](https://github.com/esper-io/esper-client-py)) to do so.\n\n\n# Authentication\nThe client needs to send authentication details to access the Esper APIs by generating and applying an API key. Be sure to sign up for your free trial account with Esper Dev to generate your key:\n\n# Errors\nThe APIs use standard HTTP status codes to indicate success or failure. All error responses will have a JSON body in the following format:\n\n```\n{\n  \"errors\": [],\n  \"message\": \"error message\",\n  \"status\": 400\n}\n```\n* `errors` -  List of error details\n* `message` - Error description\n* `status` - HTTP status code\n"
+  version: 1.0.0
+  title: ESPER API REFERENCE Application Enterprise Policy API
+  termsOfService: https://esper.io/terms-of-service
+  contact:
+    email: developer@esper.io
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+host: foo-api.esper.cloud
+basePath: /api
+schemes:
+- https
+tags:
+- name: Enterprise Policy
+  description: APIs to Esper Compliance Policy
+  externalDocs:
+    description: Find out more about Compliance Policy
+    url: https://docs.esper.io/
+paths:
+  /enterprise/{enterprise_id}/policy/:
+    post:
+      summary: Create a new Enterprise Policy
+      description: API to create a new Enterprise Policy
+      operationId: createPolicy
+      produces:
+      - application/json
+      parameters:
+      - name: enterprise_id
+        in: path
+        description: ID of the enterprise
+        required: true
+        type: string
+        format: uuid
+      - name: request
+        in: body
+        description: The request body to create an Enteprise Policy
+        required: true
+        schema:
+          $ref: '#/definitions/EnterprisePolicy'
+      responses:
+        201:
+          description: command request successfully created
+          schema:
+            $ref: '#/definitions/EnterprisePolicy'
+      security:
+      - apiKey: []
+      tags:
+      - Enterprise Policy
+    get:
+      operationId: listPolicies
+      summary: List all policies in enterprise
+      description: Returns Policies list
+      produces:
+      - application/json
+      parameters:
+      - name: enterprise_id
+        in: path
+        description: ID of the enterprise
+        required: true
+        type: string
+        format: uuid
+      - name: name
+        in: query
+        description: filter by policy name
+        required: false
+        type: string
+      - name: is_active
+        in: query
+        description: filter by Active policies
+        required: false
+        type: boolean
+      - name: limit
+        in: query
+        description: Number of results to return per page.
+        required: false
+        type: integer
+        default: 20
+      - name: offset
+        in: query
+        description: The initial index from which to return the results.
+        required: false
+        type: integer
+        default: 0
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            required:
+            - count
+            - results
+            type: object
+            properties:
+              count:
+                type: integer
+              next:
+                type: string
+                format: url
+                x-nullable: true
+              previous:
+                type: string
+                format: url
+                x-nullable: true
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/EnterprisePolicy'
+      security:
+      - apiKey: []
+      tags:
+      - Enterprise Policy
+  /enterprise/{enterprise_id}/policy/{policy_id}/:
+    parameters:
+    - name: policy_id
+      in: path
+      description: An integer identifying this EnterprisePolicy.
+      required: true
+      type: integer
+    - name: enterprise_id
+      description: A UUID string identifying enterprise.
+      in: path
+      required: true
+      type: string
+    get:
+      operationId: getPolicyById
+      summary: Get Enterprise Policy
+      description: Returns EnterprisePolicy instance
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/EnterprisePolicy'
+      security:
+      - apiKey: []
+      tags:
+      - Enterprise Policy
+    put:
+      operationId: updatePolicy
+      summary: Update Enterprise Policy
+      description: Returns Enterprise Policy instance
+      produces:
+      - application/json
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/EnterprisePolicy'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/EnterprisePolicy'
+      security:
+      - apiKey: []
+      tags:
+      - Enterprise Policy
+    patch:
+      operationId: partialupdatePolicy
+      summary: Partial update EnterprisePolicy
+      description: Returns EnterprisePolicy instance
+      produces:
+      - application/json
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/EnterprisePolicyPartialUpdate'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/EnterprisePolicy'
+      security:
+      - apiKey: []
+      tags:
+      - Enterprise Policy
+    delete:
+      operationId: deleteEnterprisePolicy
+      summary: Delete a Enterprise Policy
+      description: Emtpy response
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        '204':
+          description: successful operation
+      security:
+      - apiKey: []
+      tags:
+      - Enterprise Policy
+definitions:
+  EnterprisePolicyData:
+    title: Policy Data
+    type: object
+    properties:
+      keyguardDisabled:
+        description: Should KeyGuard be disabled?
+        type: boolean
+      safeBootDisabled:
+        description: Should SafeBoot be disabled?
+        type: boolean
+      statusBarDisabled:
+        description: Should Status Bar be disabled?
+        type: boolean
+      factoryResetDisabled:
+        description: Should Factory Reset be disabled?
+        type: boolean
+      screenshotDisabled:
+        description: Should Screenshot capability be disabled?
+        type: boolean
+      usbConnectivityDisabled:
+        description: Should USB connectivity be disabled?
+        type: boolean
+      smsDisabled:
+        description: Should SMS functionality be disabled?
+        type: boolean
+      outgoingCallsDisabled:
+        description: Should Outgoing Calls be disabled?
+        type: boolean
+      cameraDisabled:
+        description: Should Camera be disabled?
+        type: boolean
+      nfcBeamDisabled:
+        description: Should NFC capability be disabled?
+        type: boolean
+      disablePlayStore:
+        description: Should Google Play Store be disabled on the device?
+        type: boolean
+      usbFileTransferDisabled:
+        description: Should USB File transfer capability be disabled?
+        type: boolean
+      tetheringDisabled:
+        description: Should USB Tethering capability be enabled?
+        type: boolean
+      dateTimeConfigDisabled:
+        description: Should Date/Time configuration capability be disabled?
+        type: boolean
+      appUninstallDisabled:
+        description: Should App uninstall capability be disabled?
+        type: boolean
+      googleAssistantDisabled:
+        description: Should Google Assistant feature be disabled?
+        type: boolean
+      disableLocalAppInstall:
+        description: Should Side-loading of Applications be disabled?
+        type: boolean
+      adbDisabled:
+        description: Should Android Debugger be disabled?
+        type: boolean
+      phonePolicy:
+        type: object
+        description: Rules regarding restricting calls from/to phone-numbers
+        properties:
+          incomingNumbers:
+            type: array
+            description: List of permitted incoming phone numbers to recieve calls from
+            items:
+              type: string
+              maxLength: 15
+          outgoingNumbers:
+            type: array
+            description: List of permitted outgoing phone numbers to make calls to
+            items:
+              type: string
+              maxLength: 15
+          dialer:
+            type: string
+            description: Pick a dialer - System default or Esper Dialer
+            enum:
+            - DEFAULT
+            - SHOONYA
+      frpGoogles:
+        description: Details regarding Factory Reset Protection capability. List of permitted Google People IDs, emails and such
+        type: array
+        items:
+          type: object
+          properties:
+            type:
+              description: Type of User account provided - USER or ADMIN
+              type: string
+              enum:
+              - USER
+              - ADMIN
+            email:
+              description: Email id to be used for Factory protection. This will be asked on the Device's UI
+              type: string
+              format: email
+            googleId:
+              description: Google People ID associated with the above email (https://developers.google.com/people/api/rest/v1/people/get)
+              type: string
+      googleAccountPermission:
+        description: Details regarding Google accounts to be associated with the device
+        type: object
+        properties:
+          maxAccount:
+            description: Maximum number of Google accounts to be associated with this device. (Max = 10)
+            type: integer
+          emails:
+            type: array
+            description: List of emails to be associated
+            items:
+              type: string
+              format: email
+          domains:
+            type: array
+            description: List of domains that can be associated
+            items:
+              type: string
+      devicePasswordPolicy:
+        description: Define the Password Policy for the device
+        type: object
+        properties:
+          passwordQuality:
+            description: What is the type of password quality to apply to the device?
+            type: string
+            enum:
+            - PASSWORD_QUALITY_ALPHABETIC
+            - PASSWORD_QUALITY_ALPHANUMERIC
+            - PASSWORD_QUALITY_BIOMETRIC_WEAK
+            - PASSWORD_QUALITY_COMPLEX
+            - PASSWORD_QUALITY_NUMERIC
+            - PASSWORD_QUALITY_NUMERIC_COMPLEX
+            - PASSWORD_QUALITY_SOMETHING
+            - PASSWORD_QUALITY_UNSPECIFIED
+      minimumPasswordLength:
+        description: What is the minimum length for your device's password
+        type: integer
+        minimum: 4
+      permissionPolicy:
+        description: What permission should be applied by default for all apps, henceforth?
+        type: string
+        enum:
+        - PERMISSION_POLICY_PROMPT
+        - PERMISSION_POLICY_AUTO_GRANT
+        - PERMISSION_POLICY_AUTO_DENY
+      deviceUpdatePolicy:
+        description: Configuration regarding Device OS Updates
+        type: object
+        properties:
+          type:
+            description: What type of installation is preferred?
+            enum:
+            - TYPE_INSTALL_AUTOMATIC
+            - TYPE_POSTPONE
+            - TYPE_INSTALL_WINDOWED
+            - TYPE_INSTALL_DISABLED
+            type: string
+          maintenanceStart:
+            type: integer
+            description: If the `type` is `TYPE_INSTALL_WINDOWED`, when should the maintenance start?
+          maintenanceEnd:
+            type: integer
+            description: If the `type` is `TYPE_INSTALL_WINDOWED`, when should the maintenance end?
+      settingsAccessLevel:
+        type: string
+        description: Type of Android settings app to be applied? Default System Settings or ESPER Settings App?
+        enum:
+        - SYSTEM
+        - SHOONYA
+        - NONE
+      settingsAppPassword:
+        type: string
+        description: Lock Password (optional) for the ESPER Settings app
+        format: password
+  EnterprisePolicyPartialUpdate:
+    type: object
+    properties:
+      uuid:
+        title: UUID
+        description: Unique Policy identifier
+        type: string
+        format: uuid
+        readOnly: true
+      enterprise:
+        title: Enterprise url
+        description: Url of the enterprise resource
+        type: string
+        format: url
+      url:
+        title: Policy URL
+        description: URL link to policy
+        type: string
+        format: url
+        readOnly: true
+      name:
+        title: Policy Name
+        description: Name of the Policy
+        type: string
+      description:
+        title: Policy Description
+        description: Details regarding the Policy
+        type: string
+      device_count:
+        title: Number of Devices with this policy applied
+        description: Count of Devices with this policy applied
+        type: integer
+        readOnly: true
+      policy:
+        $ref: '#/definitions/EnterprisePolicyData'
+      updated_on:
+        title: Updated On
+        type: string
+        format: date-time
+        description: Last-Updated Timestamp of Policy
+        readOnly: true
+      created_on:
+        title: Created on
+        description: Creation Timestamp of Policy
+        type: string
+        format: date-time
+        readOnly: true
+      is_active:
+        title: Policy Active status
+        description: Is this policy currently active
+        type: boolean
+      google_policy_id:
+        title: Google policy id
+        description: Id of the Google policy
+        type: string
+        readOnly: true
+  EnterprisePolicy:
+    required:
+    - name
+    - enterprise
+    - policy
+    type: object
+    properties:
+      uuid:
+        title: UUID
+        description: Unique Policy identifier
+        type: string
+        format: uuid
+        readOnly: true
+      enterprise:
+        title: Enterprise url
+        description: Url of the enterprise resource
+        type: string
+        format: url
+      url:
+        title: Policy URL
+        description: URL link to policy
+        type: string
+        format: url
+        readOnly: true
+      name:
+        title: Policy Name
+        description: Name of the Policy
+        type: string
+      description:
+        title: Policy Description
+        description: Details regarding the Policy
+        type: string
+      device_count:
+        title: Number of Devices with this policy applied
+        description: Count of Devices with this policy applied
+        type: integer
+        readOnly: true
+      google_policy_id:
+        title: Google policy id
+        description: Id of the Google policy
+        type: string
+        readOnly: true
+      policy:
+        $ref: '#/definitions/EnterprisePolicyData'
+      updated_on:
+        title: Updated On
+        type: string
+        format: date-time
+        description: Last-Updated Timestamp of Policy
+        readOnly: true
+      created_on:
+        title: Created on
+        description: Creation Timestamp of Policy
+        type: string
+        format: date-time
+        readOnly: true
+      is_active:
+        title: Policy Active status
+        description: Is this policy currently active
+        type: boolean
+securityDefinitions:
+  apiKey:
+    description: "#### API KEY - Access Token\nAccess token for APIs passed as authorization header in calls. You need to generate this from your Esper Dev Console at `<domain>-api.esper.cloud` where foo is the sub-domain name you gave for your Esper Dev environment when you signed up for your Esper Dev account. Please follow the instructions [here](https://docs.esper.io/home/module/genapikey.html) to generate an access token.\nOnce you have the access token, you need to send an authorization header as below\n\n```bash\n\n    curl -X GET \\\n      https://<domain>-api.esper.cloud/api/enterprise/<enterprise_id>/device/ \\\n      -H 'Authorization: Bearer <ACCESS_TOKEN>' \\\n      -H 'Content-Type: application/json' \\\n```\n\n> Please note the use of keyword **Bearer** before the token value.\n\n\nYou can read more about api key authentication scheme [here](https://console-docs.esper.io/API/generate.html).\n"
+    name: Authorization
+    type: apiKey
+    in: header
+x-tagGroups:
+- name: API Reference
+  tags:
+  - Enterprise
+  - Application
+  - Application V1
+  - Device
+  - Device Group
+  - Commands
+  - Group Commands
+  - Token
+  - Commands V2
+  - Enterprise Policy
+  - Geofence
+  - Reports
+  - Subscription
+  - Content
