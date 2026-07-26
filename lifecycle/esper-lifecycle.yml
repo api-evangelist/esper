@@ -1,0 +1,30 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/esper-manage-openapi-original.yml + https://help.esper.io/
+versioning:
+  scheme: resource-suffix
+  notes: >-
+    Per-resource versioning (e.g. Application / Application V1, Commands /
+    Commands V2, Token V1/V0). Commands V2 is the actively developed command
+    surface (queuing, offline devices, dynamic device sets, command history).
+deprecation:
+  policy_url: null
+  sunset_header: false
+  practice: >-
+    Commands (V1) is documented as "being deprecated and documentation will be
+    archived soon", with Commands V2 as the replacement. No formal dated
+    deprecation-policy page or RFC 8594 Sunset/Deprecation header support was
+    found.
+sla:
+  url: null
+  uptime_target: null
+status_page: null
+support:
+  email: developer@esper.io
+  help_center: https://help.esper.io/
+deprecated_operations:
+  note: >-
+    The legacy Commands (V0/V1) tag is slated for deprecation; the spec does not
+    mark individual operations with `deprecated: true`.
+  candidates:
+  - openapi/esper-manage-openapi-original.yml#runCommand

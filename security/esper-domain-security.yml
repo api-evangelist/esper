@@ -1,0 +1,28 @@
+generated: '2026-07-19'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: esper.io
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct 16 04:30:53 2026 GMT
+  hsts: false
+- host: api.esper.io
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 16 23:59:59 2026 GMT
+  hsts: false
+- host: foo-api.esper.cloud
+  https: false
+domains:
+- domain: esper.io
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: none
+- domain: esper.cloud
+  dnssec: false
+  caa: []
+  spf: false
+  dmarc: false

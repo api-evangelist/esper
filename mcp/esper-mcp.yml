@@ -1,0 +1,195 @@
+generated: '2026-07-19'
+method: derived
+status: candidate
+source: openapi/esper-manage-openapi-original.yml
+note: No official hosted/remote Esper MCP server was found. This is a candidate tool list derived one-per-operation from the Esper Manage OpenAPI; not a published server.
+server:
+  name: esper-manage
+  transport: stdio
+tools:
+- name: getAllApplications
+  description: List apps in enterprise
+  source_operation: openapi/esper-manage-openapi-original.yml#getAllApplications
+- name: upload
+  description: Upload an application to enterprise
+  source_operation: openapi/esper-manage-openapi-original.yml#upload
+- name: getApplication
+  description: Get application information
+  source_operation: openapi/esper-manage-openapi-original.yml#getApplication
+- name: deleteApplication
+  description: Delete an application
+  source_operation: openapi/esper-manage-openapi-original.yml#deleteApplication
+- name: getAppVersions
+  description: List App versions
+  source_operation: openapi/esper-manage-openapi-original.yml#getAppVersions
+- name: getAppVersion
+  description: Get app version information
+  source_operation: openapi/esper-manage-openapi-original.yml#getAppVersion
+- name: deleteAppVersion
+  description: Delete app version
+  source_operation: openapi/esper-manage-openapi-original.yml#deleteAppVersion
+- name: patchAppVersion
+  description: Patch an App version instance
+  source_operation: openapi/esper-manage-openapi-original.yml#patchAppVersion
+- name: getInstallDevices
+  description: List install devices
+  source_operation: openapi/esper-manage-openapi-original.yml#getInstallDevices
+- name: getAllDevices
+  description: Fetch all devices in an enterprise
+  source_operation: openapi/esper-manage-openapi-original.yml#getAllDevices
+- name: getDeviceById
+  description: Fetch device details by ID
+  source_operation: openapi/esper-manage-openapi-original.yml#getDeviceById
+- name: getDeviceApps
+  description: List all device apps
+  source_operation: openapi/esper-manage-openapi-original.yml#getDeviceApps
+- name: getDeviceAppById
+  description: Get device app details
+  source_operation: openapi/esper-manage-openapi-original.yml#getDeviceAppById
+- name: runCommand
+  description: Run commands on device
+  source_operation: openapi/esper-manage-openapi-original.yml#runCommand
+- name: getCommand
+  description: Get command status
+  source_operation: openapi/esper-manage-openapi-original.yml#getCommand
+- name: getAppInstalls
+  description: List installed apps
+  source_operation: openapi/esper-manage-openapi-original.yml#getAppInstalls
+- name: getDeviceEvent
+  description: Get latest device event
+  source_operation: openapi/esper-manage-openapi-original.yml#getDeviceEvent
+- name: getAllGroups
+  description: List device groups
+  source_operation: openapi/esper-manage-openapi-original.yml#getAllGroups
+- name: createGroup
+  description: Create a device group
+  source_operation: openapi/esper-manage-openapi-original.yml#createGroup
+- name: getGroupById
+  description: Get device group information
+  source_operation: openapi/esper-manage-openapi-original.yml#getGroupById
+- name: updateGroup
+  description: Update device group
+  source_operation: openapi/esper-manage-openapi-original.yml#updateGroup
+- name: partialUpdateGroup
+  description: Partial update group
+  source_operation: openapi/esper-manage-openapi-original.yml#partialUpdateGroup
+- name: deleteGroup
+  description: Delete a device group
+  source_operation: openapi/esper-manage-openapi-original.yml#deleteGroup
+- name: runGroupCommand
+  description: Run commands on group devices
+  source_operation: openapi/esper-manage-openapi-original.yml#runGroupCommand
+- name: getGroupCommand
+  description: Get group command status
+  source_operation: openapi/esper-manage-openapi-original.yml#getGroupCommand
+- name: createPolicy
+  description: Create a new Enterprise Policy
+  source_operation: openapi/esper-manage-openapi-original.yml#createPolicy
+- name: listPolicies
+  description: List all policies in enterprise
+  source_operation: openapi/esper-manage-openapi-original.yml#listPolicies
+- name: getPolicyById
+  description: Get Enterprise Policy
+  source_operation: openapi/esper-manage-openapi-original.yml#getPolicyById
+- name: updatePolicy
+  description: Update Enterprise Policy
+  source_operation: openapi/esper-manage-openapi-original.yml#updatePolicy
+- name: partialupdatePolicy
+  description: Partial update EnterprisePolicy
+  source_operation: openapi/esper-manage-openapi-original.yml#partialupdatePolicy
+- name: deleteEnterprisePolicy
+  description: Delete a Enterprise Policy
+  source_operation: openapi/esper-manage-openapi-original.yml#deleteEnterprisePolicy
+- name: createCommand
+  description: Create a command request
+  source_operation: openapi/esper-manage-openapi-original.yml#createCommand
+- name: listCommandRequest
+  description: List command requests
+  source_operation: openapi/esper-manage-openapi-original.yml#listCommandRequest
+- name: getCommandRequestStatus
+  description: get status list for command request
+  source_operation: openapi/esper-manage-openapi-original.yml#getCommandRequestStatus
+- name: getAllContent
+  description: List content in the enterprise
+  source_operation: openapi/esper-manage-openapi-original.yml#getAllContent
+- name: postContent
+  description: Upload new content
+  source_operation: openapi/esper-manage-openapi-original.yml#postContent
+- name: getContent
+  description: Get content information
+  source_operation: openapi/esper-manage-openapi-original.yml#getContent
+- name: deleteContent
+  description: Delete Content
+  source_operation: openapi/esper-manage-openapi-original.yml#deleteContent
+- name: patchContent
+  description: Patch a content instance
+  source_operation: openapi/esper-manage-openapi-original.yml#patchContent
+- name: renewToken
+  description: Renew Token
+  source_operation: openapi/esper-manage-openapi-original.yml#renewToken
+- name: getDeviceCommandHistory
+  description: get command history for device
+  source_operation: openapi/esper-manage-openapi-original.yml#getDeviceCommandHistory
+- name: getAllGeofences
+  description: List Geofences in Enterprise
+  source_operation: openapi/esper-manage-openapi-original.yml#getAllGeofences
+- name: createGeofence
+  description: Create a geofence
+  source_operation: openapi/esper-manage-openapi-original.yml#createGeofence
+- name: getGeofence
+  description: Get geofence information
+  source_operation: openapi/esper-manage-openapi-original.yml#getGeofence
+- name: updateGeofence
+  description: Update geofence information
+  source_operation: openapi/esper-manage-openapi-original.yml#updateGeofence
+- name: partialUpdateGeofence
+  description: Partially updates geofence information
+  source_operation: openapi/esper-manage-openapi-original.yml#partialUpdateGeofence
+- name: deleteGeofence
+  description: Delete a geofence
+  source_operation: openapi/esper-manage-openapi-original.yml#deleteGeofence
+- name: getAllSubscriptions
+  description: List Subscriptions in Enterprise
+  source_operation: openapi/esper-manage-openapi-original.yml#getAllSubscriptions
+- name: createSubscription
+  description: Create a Subscription
+  source_operation: openapi/esper-manage-openapi-original.yml#createSubscription
+- name: getSubscription
+  description: Get subscription information
+  source_operation: openapi/esper-manage-openapi-original.yml#getSubscription
+- name: deleteSubscription
+  description: Delete a subscription
+  source_operation: openapi/esper-manage-openapi-original.yml#deleteSubscription
+- name: getEnterprise
+  description: Get your enterprise information
+  source_operation: openapi/esper-manage-openapi-original.yml#getEnterprise
+- name: partialUpdateEnterprise
+  description: Partial update enterprise information
+  source_operation: openapi/esper-manage-openapi-original.yml#partialUpdateEnterprise
+- name: getAllApplicationsV1
+  description: List apps in enterprise
+  source_operation: openapi/esper-manage-openapi-original.yml#getAllApplicationsV1
+- name: getApplicationv1
+  description: Get application information
+  source_operation: openapi/esper-manage-openapi-original.yml#getApplicationv1
+- name: deleteApplicationV1
+  description: Delete an application
+  source_operation: openapi/esper-manage-openapi-original.yml#deleteApplicationV1
+- name: getAppVersionsV1
+  description: List App versions
+  source_operation: openapi/esper-manage-openapi-original.yml#getAppVersionsV1
+- name: getAppVersionV1
+  description: Get app version information
+  source_operation: openapi/esper-manage-openapi-original.yml#getAppVersionV1
+- name: deleteAppVersionV1
+  description: Delete app version
+  source_operation: openapi/esper-manage-openapi-original.yml#deleteAppVersionV1
+- name: patchAppVersionV1
+  description: Patch an App version instance
+  source_operation: openapi/esper-manage-openapi-original.yml#patchAppVersionV1
+- name: getInstallDevicesV1
+  description: List install devices
+  source_operation: openapi/esper-manage-openapi-original.yml#getInstallDevicesV1
+- name: getTokenInfo
+  description: Token Information
+  source_operation: openapi/esper-manage-openapi-original.yml#getTokenInfo

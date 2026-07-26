@@ -1,0 +1,29 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/esper-manage-openapi-original.yml (Subscription tag, EventSubscription) + https://help.esper.io/
+type: Webhooks
+summary: >-
+  Esper Manage exposes a device event subscription surface: clients create event
+  subscriptions that stream device telemetry/state events out of the Esper Cloud
+  environment to an external sink (an AWS account, e.g. via SNS). This is the
+  provider's push/event mechanism; no standalone AsyncAPI document is published.
+delivery:
+  mechanism: event-subscription
+  sink: aws
+  notes: >-
+    An EventSubscription is created with an aws_account_id; device events are
+    delivered to the subscriber's AWS-side endpoint. Configure via the
+    subscription API or the esperclient Python SDK.
+operations:
+- operationId: getDeviceEvent
+  summary: Fetch device event(s)
+  source: openapi/esper-manage-openapi-original.yml
+subscription_model:
+  schema_ref: '#/definitions/EventSubscription'
+  args_ref: '#/definitions/EventSubscriptionArgs'
+  fields:
+    aws_account_id: Target AWS account for event delivery
+    enterprise: Owning enterprise
+docs:
+- https://github.com/esper-io/esper-client-py/blob/master/docs/EventSubscriptionArgs.md
+- https://help.esper.io/hc/en-us/articles/12311453178513-Esper-SDK-for-Python

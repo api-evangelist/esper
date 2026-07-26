@@ -1,0 +1,43 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/esper-manage-openapi-original.yml + https://help.esper.io/hc/en-us/articles/14199291792145-Getting-Started-with-APIs
+authentication:
+  style: api-key-bearer
+  scheme: apiKey
+  location: header
+  header: Authorization
+  format: 'Bearer <ACCESS_TOKEN>'
+  notes: API keys are generated in the Esper Dev Console and are tenant-scoped.
+  ref: authentication/esper-authentication.yml
+base_url:
+  pattern: https://<domain>-api.esper.cloud/api
+  notes: >-
+    Per-tenant base URL; `<domain>` is the subdomain chosen at Esper Dev signup.
+    Enterprise-scoped resources live under /enterprise/<enterprise_id>/.
+pagination:
+  style: limit-offset
+  params:
+    limit: Number of results to return per page (default 20)
+    offset: Initial index from which to return results (default 0)
+  response_fields:
+    count: Total number of results
+    next: URL of the next page (nullable)
+    previous: URL of the previous page (nullable)
+    results: Array of result objects
+idempotency:
+  supported: false
+  notes: No idempotency-key contract is documented in the spec or developer docs.
+versioning:
+  style: resource-suffix
+  notes: >-
+    Versioning is expressed per resource family rather than a global path prefix
+    (e.g. Application vs Application V1; Commands vs Commands V2). Commands V2
+    adds queuing, offline-device support and command history.
+error_envelope:
+  media_type: application/json
+  shape: '{ errors: [], message: string, status: integer }'
+  ref: errors/esper-problem-types.yml
+rate_limiting:
+  documented: false
+  notes: Rate-limit headers/policy are not published in the API reference.
+lifecycle_ref: lifecycle/esper-lifecycle.yml

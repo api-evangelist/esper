@@ -1,0 +1,38 @@
+{
+  "provider": "esper",
+  "sources": [
+    "esper-application-api-openapi.yml",
+    "esper-application-v1-api-openapi.yml",
+    "esper-commands-api-openapi.yml",
+    "esper-commands-v2-api-openapi.yml",
+    "esper-content-api-openapi.yml",
+    "esper-device-api-openapi.yml",
+    "esper-device-group-api-openapi.yml",
+    "esper-enterprise-api-openapi.yml",
+    "esper-enterprise-policy-api-openapi.yml",
+    "esper-geofence-api-openapi.yml",
+    "esper-group-commands-api-openapi.yml",
+    "esper-subscription-api-openapi.yml",
+    "esper-token-api-openapi.yml"
+  ],
+  "outputs": [
+    "esper-application-api-openapi.yml",
+    "esper-application-v1-api-openapi.yml",
+    "esper-commands-api-openapi.yml",
+    "esper-commands-v2-api-openapi.yml",
+    "esper-content-api-openapi.yml",
+    "esper-device-api-openapi.yml",
+    "esper-device-group-api-openapi.yml",
+    "esper-enterprise-api-openapi.yml",
+    "esper-enterprise-policy-api-openapi.yml",
+    "esper-geofence-api-openapi.yml",
+    "esper-group-commands-api-openapi.yml",
+    "esper-subscription-api-openapi.yml",
+    "esper-token-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

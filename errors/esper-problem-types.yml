@@ -1,0 +1,49 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/esper-manage-openapi-original.yml
+format: custom-json
+envelope:
+  description: >-
+    All Esper Manage API error responses return a JSON body with an array of
+    error detail strings, a human-readable message, and the HTTP status code.
+  media_type: application/json
+  schema_ref: '#/definitions/ErrorResponse'
+  fields:
+    errors: List of error detail strings
+    message: Human-readable error description
+    status: HTTP status code (integer)
+  example:
+    errors: []
+    message: error message
+    status: 400
+problems:
+- status: 400
+  title: Bad Request
+  meaning: The request was malformed or contained invalid parameters.
+  remediation: Validate request body and query parameters against the API reference.
+  occurrences: 8
+- status: 401
+  title: Unauthorized
+  meaning: Missing or invalid API key (Authorization Bearer token).
+  remediation: "Generate an API key in the Esper Dev Console and send it as `Authorization: Bearer <ACCESS_TOKEN>`."
+  occurrences: 22
+- status: 403
+  title: Forbidden
+  meaning: The authenticated key lacks permission for this resource or enterprise.
+  remediation: Confirm the key belongs to the target enterprise and has the required access.
+  occurrences: 12
+- status: 404
+  title: Not Found
+  meaning: The requested resource (device, group, application, etc.) does not exist.
+  remediation: Verify the resource id and enterprise id in the request path.
+  occurrences: 15
+- status: 415
+  title: Unsupported Media Type
+  meaning: The request Content-Type is not supported (e.g. non-multipart upload).
+  remediation: Set the correct Content-Type (application/json, or multipart/form-data for uploads).
+  occurrences: 3
+- status: 500
+  title: Internal Server Error
+  meaning: An unexpected error occurred on the Esper Cloud environment.
+  remediation: Retry with backoff; contact developer@esper.io if it persists.
+  occurrences: 22

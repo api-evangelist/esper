@@ -1,0 +1,90 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/esper-manage-openapi-original.yml
+entities:
+- name: Enterprise
+  description: The tenant account; parent of all resources.
+- name: Device
+  description: An Android dedicated device running the Esper agent.
+- name: DeviceGroup
+  description: A named collection of devices for bulk operations and group commands.
+- name: Application
+  description: An app managed in the enterprise; has one or more versions.
+- name: AppVersion
+  description: A specific version/build of an Application.
+- name: AppInstall
+  description: Association of an application/version install state on a device.
+- name: Command
+  description: A device or group command (V0/V1 and V2 command surfaces).
+- name: EnterprisePolicy
+  description: Compliance/enterprise policy applied to devices.
+- name: Geofence
+  description: A location boundary used for location-based device policy.
+- name: Content
+  description: Files/content distributed to devices.
+- name: EventSubscription
+  description: Subscription that streams device events to an external (AWS) sink.
+- name: Token
+  description: API token information for the enterprise.
+relationships:
+- from: Device
+  to: Enterprise
+  type: belongs_to
+  via: enterprise
+- from: DeviceGroup
+  to: Enterprise
+  type: belongs_to
+  via: enterprise
+- from: Device
+  to: DeviceGroup
+  type: belongs_to
+  via: group
+- from: Application
+  to: Enterprise
+  type: belongs_to
+  via: enterprise
+- from: Application
+  to: AppVersion
+  type: has_many
+  via: versions
+- from: AppVersion
+  to: Application
+  type: belongs_to
+  via: application
+- from: AppInstall
+  to: Device
+  type: belongs_to
+  via: device
+- from: AppInstall
+  to: Application
+  type: belongs_to
+  via: application
+- from: Command
+  to: Device
+  type: belongs_to
+  via: device
+- from: GroupCommand
+  to: DeviceGroup
+  type: belongs_to
+  via: group
+- from: EnterprisePolicy
+  to: Enterprise
+  type: belongs_to
+  via: enterprise
+- from: Geofence
+  to: Enterprise
+  type: belongs_to
+  via: enterprise
+- from: Content
+  to: Enterprise
+  type: belongs_to
+  via: enterprise
+- from: EventSubscription
+  to: Enterprise
+  type: belongs_to
+  via: enterprise
+id_fields:
+  enterprise: References the parent Enterprise (uuid).
+  device: References a Device (uuid).
+  group: References a DeviceGroup (uuid).
+  application: References an Application (uuid).

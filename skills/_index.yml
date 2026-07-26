@@ -1,0 +1,20 @@
+generated: '2026-07-19'
+method: generated
+source: openapi/esper-manage-openapi-original.yml
+skills:
+- file: esper-provision-and-command-device.md
+  name: Find a device and run a command on it
+  api: openapi/esper-manage-openapi-original.yml
+  operations: [getAllDevices, getDeviceById, createCommand, getCommandRequestStatus, getDeviceCommandHistory]
+- file: esper-deploy-app-to-group.md
+  name: Upload an app and deploy it to a device group
+  api: openapi/esper-manage-openapi-original.yml
+  operations: [upload, getAppVersions, getAllGroups, createGroup, runGroupCommand, getGroupCommand]
+- file: esper-manage-device-groups.md
+  name: Manage device groups
+  api: openapi/esper-manage-openapi-original.yml
+  operations: [getAllGroups, createGroup, getGroupById, updateGroup, deleteGroup]
+- file: esper-subscribe-device-events.md
+  name: Subscribe to device events
+  api: openapi/esper-manage-openapi-original.yml
+  operations: [createSubscription, getAllSubscriptions, getSubscription, getDeviceEvent, deleteSubscription]

@@ -1,27 +1,502 @@
 aid: esper
 name: Esper
-description: Esper is a company surfaced as a portfolio company of 8vc, insight-partners and added to
-  the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment
-  pipeline.
+description: >-
+  Esper is the DevOps platform for connected devices, providing cloud-based
+  Android (and edge) device management, application deployment, and remote
+  orchestration for dedicated-device fleets. The Esper Manage REST API lets
+  developers programmatically provision, monitor, and control Android-based
+  dedicated devices running the Esper agent: manage devices and device groups,
+  upload and roll out applications and versions, run device and group commands,
+  configure compliance and enterprise policies, set up geofences, manage
+  content, and subscribe to device events via webhooks. APIs are authenticated
+  with a Bearer API key and served per-tenant on a dedicated Esper Cloud
+  environment, with an official Python SDK (esperclient) and CLI.
 url: https://raw.githubusercontent.com/api-evangelist/esper/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
-- 8vc
 - insight-partners
-x-tier: stub
-x-tier-reason: portfolio-lead
+- scale-venture-partners
+- madrona-ventures
+- root-ventures
+x-disambiguation: >-
+  This profile is Esper the DevOps-for-devices company (esper.io, GitHub
+  org esper-io, backed by Insight Partners). It is NOT the similarly named
+  govtech policy/regulatory company at esper.com (backed by 8VC), which the
+  original VC-portfolio stub conflated into the x-backed-by list.
+x-tier: enriched
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://avatars.githubusercontent.com/u/49017159?v=4
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
 tags:
-- Company
-apis: []
+- Device Management
+- Mobile Device Management
+- Android
+- DevOps
+- Internet of Things
+- Fleet Management
+- Enterprise Mobility
+- Edge Computing
+- Kiosk
+apis:
+- aid: esper:esper-application-api
+  name: Esper Application API
+  description: APIs for application management
+  humanURL: https://api.esper.io/openapi
+  baseURL: https://foo-api.esper.cloud/api
+  tags:
+  - Application
+  properties:
+  - type: OpenAPI
+    url: openapi/esper-application-api-openapi.yml
+  - type: Documentation
+    url: https://help.esper.io/hc/en-us/categories/11385054747153-Developer-Documentation
+  - type: APIReference
+    url: https://api.esper.io/openapi
+  - type: GettingStarted
+    url: https://help.esper.io/hc/en-us/articles/14199291792145-Getting-Started-with-APIs
+  - type: Authentication
+    url: authentication/esper-authentication.yml
+  - type: ErrorCatalog
+    url: errors/esper-problem-types.yml
+  - type: Conventions
+    url: conventions/esper-conventions.yml
+  - type: DataModel
+    url: data-model/esper-data-model.yml
+  - type: Conformance
+    url: conformance/esper-conformance.yml
+  - type: Lifecycle
+    url: lifecycle/esper-lifecycle.yml
+  - type: Webhooks
+    url: asyncapi/esper-events-webhooks.yml
+- aid: esper:esper-application-v1-api
+  name: Esper Application V1 API
+  description: APIs for application management
+  humanURL: https://api.esper.io/openapi
+  baseURL: https://foo-api.esper.cloud/api
+  tags:
+  - Application V1
+  properties:
+  - type: OpenAPI
+    url: openapi/esper-application-v1-api-openapi.yml
+  - type: Documentation
+    url: https://help.esper.io/hc/en-us/categories/11385054747153-Developer-Documentation
+  - type: APIReference
+    url: https://api.esper.io/openapi
+  - type: GettingStarted
+    url: https://help.esper.io/hc/en-us/articles/14199291792145-Getting-Started-with-APIs
+  - type: Authentication
+    url: authentication/esper-authentication.yml
+  - type: ErrorCatalog
+    url: errors/esper-problem-types.yml
+  - type: Conventions
+    url: conventions/esper-conventions.yml
+  - type: DataModel
+    url: data-model/esper-data-model.yml
+  - type: Conformance
+    url: conformance/esper-conformance.yml
+  - type: Lifecycle
+    url: lifecycle/esper-lifecycle.yml
+  - type: Webhooks
+    url: asyncapi/esper-events-webhooks.yml
+- aid: esper:esper-commands-api
+  name: Esper Commands API
+  description: >-
+    APIs to run device commands.
+
+    `This version of commands is being deprecated and documentation will be archived soon. Please use
+    Commands V2.`
+  humanURL: https://api.esper.io/openapi
+  baseURL: https://foo-api.esper.cloud/api
+  tags:
+  - Commands
+  properties:
+  - type: OpenAPI
+    url: openapi/esper-commands-api-openapi.yml
+  - type: Documentation
+    url: https://help.esper.io/hc/en-us/categories/11385054747153-Developer-Documentation
+  - type: APIReference
+    url: https://api.esper.io/openapi
+  - type: GettingStarted
+    url: https://help.esper.io/hc/en-us/articles/14199291792145-Getting-Started-with-APIs
+  - type: Authentication
+    url: authentication/esper-authentication.yml
+  - type: ErrorCatalog
+    url: errors/esper-problem-types.yml
+  - type: Conventions
+    url: conventions/esper-conventions.yml
+  - type: DataModel
+    url: data-model/esper-data-model.yml
+  - type: Conformance
+    url: conformance/esper-conformance.yml
+  - type: Lifecycle
+    url: lifecycle/esper-lifecycle.yml
+  - type: Webhooks
+    url: asyncapi/esper-events-webhooks.yml
+- aid: esper:esper-commands-v2-api
+  name: Esper Commands V2 API
+  description: >-
+    Commands V2.0 is to provide advanced device commands capabilities like queuing, support for offline
+    devices, dynamic device set for commands and command history. Commands 2.0 is in active development
+    and support for all the commands will be added soon.
+  humanURL: https://api.esper.io/openapi
+  baseURL: https://foo-api.esper.cloud/api
+  tags:
+  - Commands V2
+  properties:
+  - type: OpenAPI
+    url: openapi/esper-commands-v2-api-openapi.yml
+  - type: Documentation
+    url: https://help.esper.io/hc/en-us/categories/11385054747153-Developer-Documentation
+  - type: APIReference
+    url: https://api.esper.io/openapi
+  - type: GettingStarted
+    url: https://help.esper.io/hc/en-us/articles/14199291792145-Getting-Started-with-APIs
+  - type: Authentication
+    url: authentication/esper-authentication.yml
+  - type: ErrorCatalog
+    url: errors/esper-problem-types.yml
+  - type: Conventions
+    url: conventions/esper-conventions.yml
+  - type: DataModel
+    url: data-model/esper-data-model.yml
+  - type: Conformance
+    url: conformance/esper-conformance.yml
+  - type: Lifecycle
+    url: lifecycle/esper-lifecycle.yml
+  - type: Webhooks
+    url: asyncapi/esper-events-webhooks.yml
+- aid: esper:esper-content-api
+  name: Esper Content API
+  description: APIs for Content management
+  humanURL: https://api.esper.io/openapi
+  baseURL: https://foo-api.esper.cloud/api
+  tags:
+  - Content
+  properties:
+  - type: OpenAPI
+    url: openapi/esper-content-api-openapi.yml
+  - type: Documentation
+    url: https://help.esper.io/hc/en-us/categories/11385054747153-Developer-Documentation
+  - type: APIReference
+    url: https://api.esper.io/openapi
+  - type: GettingStarted
+    url: https://help.esper.io/hc/en-us/articles/14199291792145-Getting-Started-with-APIs
+  - type: Authentication
+    url: authentication/esper-authentication.yml
+  - type: ErrorCatalog
+    url: errors/esper-problem-types.yml
+  - type: Conventions
+    url: conventions/esper-conventions.yml
+  - type: DataModel
+    url: data-model/esper-data-model.yml
+  - type: Conformance
+    url: conformance/esper-conformance.yml
+  - type: Lifecycle
+    url: lifecycle/esper-lifecycle.yml
+  - type: Webhooks
+    url: asyncapi/esper-events-webhooks.yml
+- aid: esper:esper-device-api
+  name: Esper Device API
+  description: APIs for device management
+  humanURL: https://api.esper.io/openapi
+  baseURL: https://foo-api.esper.cloud/api
+  tags:
+  - Device
+  properties:
+  - type: OpenAPI
+    url: openapi/esper-device-api-openapi.yml
+  - type: Documentation
+    url: https://help.esper.io/hc/en-us/categories/11385054747153-Developer-Documentation
+  - type: APIReference
+    url: https://api.esper.io/openapi
+  - type: GettingStarted
+    url: https://help.esper.io/hc/en-us/articles/14199291792145-Getting-Started-with-APIs
+  - type: Authentication
+    url: authentication/esper-authentication.yml
+  - type: ErrorCatalog
+    url: errors/esper-problem-types.yml
+  - type: Conventions
+    url: conventions/esper-conventions.yml
+  - type: DataModel
+    url: data-model/esper-data-model.yml
+  - type: Conformance
+    url: conformance/esper-conformance.yml
+  - type: Lifecycle
+    url: lifecycle/esper-lifecycle.yml
+  - type: Webhooks
+    url: asyncapi/esper-events-webhooks.yml
+- aid: esper:esper-device-group-api
+  name: Esper Device Group API
+  description: APIs for device group management
+  humanURL: https://api.esper.io/openapi
+  baseURL: https://foo-api.esper.cloud/api
+  tags:
+  - Device Group
+  properties:
+  - type: OpenAPI
+    url: openapi/esper-device-group-api-openapi.yml
+  - type: Documentation
+    url: https://help.esper.io/hc/en-us/categories/11385054747153-Developer-Documentation
+  - type: APIReference
+    url: https://api.esper.io/openapi
+  - type: GettingStarted
+    url: https://help.esper.io/hc/en-us/articles/14199291792145-Getting-Started-with-APIs
+  - type: Authentication
+    url: authentication/esper-authentication.yml
+  - type: ErrorCatalog
+    url: errors/esper-problem-types.yml
+  - type: Conventions
+    url: conventions/esper-conventions.yml
+  - type: DataModel
+    url: data-model/esper-data-model.yml
+  - type: Conformance
+    url: conformance/esper-conformance.yml
+  - type: Lifecycle
+    url: lifecycle/esper-lifecycle.yml
+  - type: Webhooks
+    url: asyncapi/esper-events-webhooks.yml
+- aid: esper:esper-enterprise-api
+  name: Esper Enterprise API
+  description: >-
+    The Esper Enterprise APIs to manage the account information set up for your company’s account. Read
+    our Esper Manage documentation or use the Esper Manage Dashboard through the Esper Developer Console
+  humanURL: https://api.esper.io/openapi
+  baseURL: https://foo-api.esper.cloud/api
+  tags:
+  - Enterprise
+  properties:
+  - type: OpenAPI
+    url: openapi/esper-enterprise-api-openapi.yml
+  - type: Documentation
+    url: https://help.esper.io/hc/en-us/categories/11385054747153-Developer-Documentation
+  - type: APIReference
+    url: https://api.esper.io/openapi
+  - type: GettingStarted
+    url: https://help.esper.io/hc/en-us/articles/14199291792145-Getting-Started-with-APIs
+  - type: Authentication
+    url: authentication/esper-authentication.yml
+  - type: ErrorCatalog
+    url: errors/esper-problem-types.yml
+  - type: Conventions
+    url: conventions/esper-conventions.yml
+  - type: DataModel
+    url: data-model/esper-data-model.yml
+  - type: Conformance
+    url: conformance/esper-conformance.yml
+  - type: Lifecycle
+    url: lifecycle/esper-lifecycle.yml
+  - type: Webhooks
+    url: asyncapi/esper-events-webhooks.yml
+- aid: esper:esper-enterprise-policy-api
+  name: Esper Enterprise Policy API
+  description: APIs to Esper Compliance Policy
+  humanURL: https://api.esper.io/openapi
+  baseURL: https://foo-api.esper.cloud/api
+  tags:
+  - Enterprise Policy
+  properties:
+  - type: OpenAPI
+    url: openapi/esper-enterprise-policy-api-openapi.yml
+  - type: Documentation
+    url: https://help.esper.io/hc/en-us/categories/11385054747153-Developer-Documentation
+  - type: APIReference
+    url: https://api.esper.io/openapi
+  - type: GettingStarted
+    url: https://help.esper.io/hc/en-us/articles/14199291792145-Getting-Started-with-APIs
+  - type: Authentication
+    url: authentication/esper-authentication.yml
+  - type: ErrorCatalog
+    url: errors/esper-problem-types.yml
+  - type: Conventions
+    url: conventions/esper-conventions.yml
+  - type: DataModel
+    url: data-model/esper-data-model.yml
+  - type: Conformance
+    url: conformance/esper-conformance.yml
+  - type: Lifecycle
+    url: lifecycle/esper-lifecycle.yml
+  - type: Webhooks
+    url: asyncapi/esper-events-webhooks.yml
+- aid: esper:esper-geofence-api
+  name: Esper Geofence API
+  description: APIs for geofence management
+  humanURL: https://api.esper.io/openapi
+  baseURL: https://foo-api.esper.cloud/api
+  tags:
+  - Geofence
+  properties:
+  - type: OpenAPI
+    url: openapi/esper-geofence-api-openapi.yml
+  - type: Documentation
+    url: https://help.esper.io/hc/en-us/categories/11385054747153-Developer-Documentation
+  - type: APIReference
+    url: https://api.esper.io/openapi
+  - type: GettingStarted
+    url: https://help.esper.io/hc/en-us/articles/14199291792145-Getting-Started-with-APIs
+  - type: Authentication
+    url: authentication/esper-authentication.yml
+  - type: ErrorCatalog
+    url: errors/esper-problem-types.yml
+  - type: Conventions
+    url: conventions/esper-conventions.yml
+  - type: DataModel
+    url: data-model/esper-data-model.yml
+  - type: Conformance
+    url: conformance/esper-conformance.yml
+  - type: Lifecycle
+    url: lifecycle/esper-lifecycle.yml
+  - type: Webhooks
+    url: asyncapi/esper-events-webhooks.yml
+- aid: esper:esper-group-commands-api
+  name: Esper Group Commands API
+  description: APIs to run group commands. Command will be run on all the active devices in a group
+  humanURL: https://api.esper.io/openapi
+  baseURL: https://foo-api.esper.cloud/api
+  tags:
+  - Group Commands
+  properties:
+  - type: OpenAPI
+    url: openapi/esper-group-commands-api-openapi.yml
+  - type: Documentation
+    url: https://help.esper.io/hc/en-us/categories/11385054747153-Developer-Documentation
+  - type: APIReference
+    url: https://api.esper.io/openapi
+  - type: GettingStarted
+    url: https://help.esper.io/hc/en-us/articles/14199291792145-Getting-Started-with-APIs
+  - type: Authentication
+    url: authentication/esper-authentication.yml
+  - type: ErrorCatalog
+    url: errors/esper-problem-types.yml
+  - type: Conventions
+    url: conventions/esper-conventions.yml
+  - type: DataModel
+    url: data-model/esper-data-model.yml
+  - type: Conformance
+    url: conformance/esper-conformance.yml
+  - type: Lifecycle
+    url: lifecycle/esper-lifecycle.yml
+  - type: Webhooks
+    url: asyncapi/esper-events-webhooks.yml
+- aid: esper:esper-subscription-api
+  name: Esper Subscription API
+  description: APIs for Subscription management
+  humanURL: https://api.esper.io/openapi
+  baseURL: https://foo-api.esper.cloud/api
+  tags:
+  - Subscription
+  properties:
+  - type: OpenAPI
+    url: openapi/esper-subscription-api-openapi.yml
+  - type: Documentation
+    url: https://help.esper.io/hc/en-us/categories/11385054747153-Developer-Documentation
+  - type: APIReference
+    url: https://api.esper.io/openapi
+  - type: GettingStarted
+    url: https://help.esper.io/hc/en-us/articles/14199291792145-Getting-Started-with-APIs
+  - type: Authentication
+    url: authentication/esper-authentication.yml
+  - type: ErrorCatalog
+    url: errors/esper-problem-types.yml
+  - type: Conventions
+    url: conventions/esper-conventions.yml
+  - type: DataModel
+    url: data-model/esper-data-model.yml
+  - type: Conformance
+    url: conformance/esper-conformance.yml
+  - type: Lifecycle
+    url: lifecycle/esper-lifecycle.yml
+  - type: Webhooks
+    url: asyncapi/esper-events-webhooks.yml
+- aid: esper:esper-token-api
+  name: Esper Token API
+  description: Fetch API token information
+  humanURL: https://api.esper.io/openapi
+  baseURL: https://foo-api.esper.cloud/api
+  tags:
+  - Token
+  properties:
+  - type: OpenAPI
+    url: openapi/esper-token-api-openapi.yml
+  - type: Documentation
+    url: https://help.esper.io/hc/en-us/categories/11385054747153-Developer-Documentation
+  - type: APIReference
+    url: https://api.esper.io/openapi
+  - type: GettingStarted
+    url: https://help.esper.io/hc/en-us/articles/14199291792145-Getting-Started-with-APIs
+  - type: Authentication
+    url: authentication/esper-authentication.yml
+  - type: ErrorCatalog
+    url: errors/esper-problem-types.yml
+  - type: Conventions
+    url: conventions/esper-conventions.yml
+  - type: DataModel
+    url: data-model/esper-data-model.yml
+  - type: Conformance
+    url: conformance/esper-conformance.yml
+  - type: Lifecycle
+    url: lifecycle/esper-lifecycle.yml
+  - type: Webhooks
+    url: asyncapi/esper-events-webhooks.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: TrustCenter
+  url: security/esper-trust-center.yml
+- type: Compliance
+  url: https://trust.esper.io/
+- type: DomainSecurity
+  url: security/esper-domain-security.yml
 - type: Website
-  url: https://esper.com
+  url: https://esper.io
+- type: DeveloperPortal
+  url: https://docs.esper.io/
+- type: Documentation
+  url: https://help.esper.io/hc/en-us/categories/11385054747153-Developer-Documentation
+- type: APIReference
+  url: https://api.esper.io/openapi
+- type: GettingStarted
+  url: https://help.esper.io/hc/en-us/articles/14199291792145-Getting-Started-with-APIs
+- type: Support
+  url: https://help.esper.io/
+- type: Blog
+  url: https://www.esper.io/blog
+- type: GitHubOrganization
+  url: https://github.com/esper-io
+- type: Pricing
+  url: https://www.esper.io/pricing
+- type: SignUp
+  url: https://esper.io/signup
+- type: TermsOfService
+  url: https://esper.io/terms-of-service
+- type: PrivacyPolicy
+  url: https://www.esper.io/privacy-policy
+- type: Packages
+  url: packages/esper-packages.yml
+- type: SDKs
+  url: packages/esper-packages.yml
+- type: CLI
+  url: cli/esper-cli.yml
+- type: LLMsTxt
+  url: llms/esper-llms.txt
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

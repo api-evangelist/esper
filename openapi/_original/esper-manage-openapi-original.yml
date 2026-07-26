@@ -1,0 +1,5434 @@
+swagger: '2.0'
+info:
+  description: "# Introduction\nEsper APIs are a set of REST-based APIs that help you programmatically control and monitor Android-based Dedicated Devices running the Esper agent using Esper Manage. With these APIs, you can orchestrate and manage devices that have been provisioned against your Esper Manage environment. Furthermore, these APIs allows you to manage the Android applications installed on your Dedicated Device fleet. To read more about the various capabilities of Esper APIs and Esper managed devices, please visit [esper.io](https://esper.io). This guide describes all the available APIs in detail, along with code samples for you to quickly ramp up to using them.\\\nTo use these APIs you will need to create a developer account with Esper and get access to the Esper Dev Console and the Esper ManageDashboard. You can find out more about Esper and sign up for free at [esper.io/signup](https://esper.io/signup)\\\nWe've done our best to keep this document up to date, but if you find any issues, please reach out to us at developer@esper.io.\n\n# SDK\n\n  You are welcome to use your favorite HTTP/REST library for your programming language in order to call these APIs, or you can use our SDK (currently supporting [python](https://github.com/esper-io/esper-client-py)) to do so.\n\n\n# Authentication\nThe client needs to send authentication details to access the Esper APIs by generating and applying an API key. Be sure to sign up for your free trial account with Esper Dev to generate your key:\n\n# Errors\nThe APIs use standard HTTP status codes to indicate success or failure. All error responses will have a JSON body in the following format:\n\n```\n{\n  \"errors\": [],\n  \"message\": \"error message\",\n  \"status\": 400\n}\n```\n* `errors` -  List of error details\n* `message` - Error description\n* `status` - HTTP status code\n"
+  version: 1.0.0
+  title: ESPER API REFERENCE
+  termsOfService: https://esper.io/terms-of-service
+  contact:
+    email: developer@esper.io
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+host: foo-api.esper.cloud
+basePath: /api
+tags:
+- name: Enterprise
+  description: The Esper Enterprise APIs to manage the account information set up for your company’s account. Read our Esper Manage documentation or use the Esper Manage Dashboard through the Esper Developer Console
+  externalDocs:
+    description: Find out more about enterprise settings
+    url: https://docs.esper.io/home/console.html#company-settings
+- name: Application
+  description: APIs for application management
+  externalDocs:
+    description: Find out more about application management
+    url: https://docs.esper.io/home/console.html#apps
+- name: Application V1
+  description: APIs for application management
+- name: Device
+  description: APIs for device management
+  externalDocs:
+    description: Find out more about device management
+    url: https://docs.esper.io/home/console.html#devices
+- name: Device Group
+  description: APIs for device group management
+  externalDocs:
+    description: Find out more about device group management
+    url: https://docs.esper.io/home/console.html#groups
+- name: Commands
+  description: 'APIs to run device commands.
+
+    `This version of commands is being deprecated and documentation will be archived soon. Please use Commands V2.`
+
+    '
+  externalDocs:
+    description: Find out more about device commands
+    url: https://docs.esper.io/home/console/device-management/-/#device-actions
+- name: Group Commands
+  description: APIs to run group commands. Command will be run on all the active devices in a group
+  externalDocs:
+    description: Find out more in `Actions` of group commands
+    url: https://docs.esper.io/home/console.html#groups
+- name: Token
+  description: Fetch API token information
+  externalDocs:
+    description: Find out more about API get generation
+    url: https://docs.esper.io/home/module/genapikey.html
+- name: Commands V2
+  description: Commands V2.0 is to provide advanced device commands capabilities like queuing, support for offline devices, dynamic device set for commands and command history. Commands 2.0 is in active development and support for all the commands will be added soon.
+  externalDocs:
+    description: Find out more about commands V2.0
+    url: https://docs.esper.io/
+- name: Enterprise Policy
+  description: APIs to Esper Compliance Policy
+  externalDocs:
+    description: Find out more about Compliance Policy
+    url: https://docs.esper.io/
+- name: Geofence
+  description: APIs for geofence management
+  externalDocs:
+    description: Find out more about Geofence
+    url: https://docs.esper.io/home/console.html#geofence
+- name: Subscription
+  description: APIs for Subscription management
+  externalDocs:
+    description: Find out more about Report
+    url: https://docs.esper.io/home/console.html#subscription
+- name: Content
+  description: APIs for Content management
+  externalDocs:
+    description: Find out more about Content management
+    url: https://docs.esper.io/home/console.html#content
+schemes:
+- https
+x-tagGroups:
+- name: API Reference
+  tags:
+  - Enterprise
+  - Application
+  - Application V1
+  - Device
+  - Device Group
+  - Commands
+  - Group Commands
+  - Token
+  - Commands V2
+  - Enterprise Policy
+  - Geofence
+  - Reports
+  - Subscription
+  - Content
+securityDefinitions:
+  apiKey:
+    description: "#### API KEY - Access Token\nAccess token for APIs passed as authorization header in calls. You need to generate this from your Esper Dev Console at `<domain>-api.esper.cloud` where foo is the sub-domain name you gave for your Esper Dev environment when you signed up for your Esper Dev account. Please follow the instructions [here](https://docs.esper.io/home/module/genapikey.html) to generate an access token.\nOnce you have the access token, you need to send an authorization header as below\n\n```bash\n\n    curl -X GET \\\n      https://<domain>-api.esper.cloud/api/enterprise/<enterprise_id>/device/ \\\n      -H 'Authorization: Bearer <ACCESS_TOKEN>' \\\n      -H 'Content-Type: application/json' \\\n```\n\n> Please note the use of keyword **Bearer** before the token value.\n\n\nYou can read more about api key authentication scheme [here](https://console-docs.esper.io/API/generate.html).\n"
+    name: Authorization
+    type: apiKey
+    in: header
+paths:
+  /enterprise/{enterprise_id}/application/:
+    get:
+      operationId: getAllApplications
+      summary: List apps in enterprise
+      description: Returns Application list
+      produces:
+      - application/json
+      parameters:
+      - name: application_name
+        in: query
+        description: filter by application name
+        required: false
+        type: string
+      - name: package_name
+        in: query
+        description: filter by package name
+        required: false
+        type: string
+      - name: package_name_exact
+        in: query
+        description: filter by package name (exact match)
+        required: false
+        type: string
+      - name: has_uploaded_version
+        in: query
+        description: Returns applications having atleast on version uploaded
+        required: false
+        type: boolean
+      - name: category
+        in: query
+        description: filter by category
+        required: false
+        type: string
+      - name: supported_sdk
+        in: query
+        description: filter by supported sdk versions
+        required: false
+        type: integer
+      - name: is_active
+        in: query
+        description: filter by active applications
+        required: false
+        type: boolean
+      - name: is_hidden
+        in: query
+        description: filter default esper apps
+        required: false
+        type: boolean
+        default: false
+      - name: created_on_gt
+        in: query
+        description: filter applications created after a given timestamp
+        required: false
+        type: string
+        format: datetime
+      - name: created_on_lt
+        in: query
+        description: filter applications created before a given timestamp
+        required: false
+        type: string
+        format: datetime
+      - name: updated_on_gt
+        in: query
+        description: filter applications updated after a given timestamp
+        required: false
+        type: string
+        format: datetime
+      - name: updated_on_lt
+        in: query
+        description: filter applications updated before a given timestamp
+        required: false
+        type: string
+        format: datetime
+      - name: limit
+        in: query
+        description: Number of results to return per page.
+        required: false
+        type: integer
+        default: 20
+      - name: offset
+        in: query
+        description: The initial index from which to return the results.
+        required: false
+        type: integer
+        default: 0
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            required:
+            - count
+            - results
+            type: object
+            properties:
+              count:
+                type: integer
+              next:
+                type: string
+                format: url
+                x-nullable: true
+              previous:
+                type: string
+                format: url
+                x-nullable: true
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/Application'
+        '401':
+          description: Authorization information is missing or invalid.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '500':
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      security:
+      - apiKey: []
+      tags:
+      - Application
+    parameters:
+    - name: enterprise_id
+      description: A UUID string identifying this enterprise.
+      in: path
+      required: true
+      type: string
+  /enterprise/{enterprise_id}/application/upload/:
+    post:
+      operationId: upload
+      summary: Upload an application to enterprise
+      description: Returns application
+      produces:
+      - application/json
+      consumes:
+      - multipart/form-data
+      - application/x-www-form-urlencoded
+      parameters:
+      - name: app_file
+        description: Valid APK file
+        in: formData
+        required: true
+        type: file
+      responses:
+        '201':
+          description: successful operation
+          schema:
+            type: object
+            properties:
+              application:
+                $ref: '#/definitions/Application'
+        '400':
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '401':
+          description: Authorization information is missing or invalid.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '403':
+          description: Forbidden, no permission to perform this action.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '415':
+          description: Unsupported media type.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '500':
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      security:
+      - apiKey: []
+      tags:
+      - Application
+    parameters:
+    - name: enterprise_id
+      description: A UUID string identifying this enterprise.
+      in: path
+      required: true
+      type: string
+  /enterprise/{enterprise_id}/application/{application_id}/:
+    get:
+      operationId: getApplication
+      summary: Get application information
+      description: Returns Application instance
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Application'
+        '401':
+          description: Authorization information is missing or invalid.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '404':
+          description: Not Found.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '500':
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      security:
+      - apiKey: []
+      tags:
+      - Application
+    delete:
+      operationId: deleteApplication
+      summary: Delete an application
+      description: Empty response
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        '204':
+          description: The resource was deleted successfully.
+        '401':
+          description: Authorization information is missing or invalid.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '403':
+          description: Forbidden, no permission to perform this action.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '404':
+          description: Not Found.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '500':
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      security:
+      - apiKey: []
+      tags:
+      - Application
+    parameters:
+    - name: application_id
+      in: path
+      description: A UUID string identifying this application.
+      required: true
+      type: string
+      format: uuid
+    - name: enterprise_id
+      description: A UUID string identifying enterprise.
+      in: path
+      required: true
+      type: string
+  /enterprise/{enterprise_id}/application/{application_id}/version/:
+    get:
+      operationId: getAppVersions
+      summary: List App versions
+      description: Returns AppVersion list
+      produces:
+      - application/json
+      parameters:
+      - name: version_code
+        in: query
+        description: filter by version code
+        required: false
+        type: string
+      - name: build_number
+        in: query
+        description: filter by build number
+        required: false
+        type: string
+      - name: is_g_play
+        in: query
+        description: filter google play applications
+        required: false
+        type: boolean
+      - name: approval_status
+        in: query
+        description: filter by approval status
+        required: false
+        type: string
+        enum:
+        - AVAILABLE
+        - ACCEPTED
+        - APPROVED
+        - REJECTED
+      - name: is_enabled
+        in: query
+        description: filter by enabled versions
+        required: false
+        type: boolean
+      - name: is_default
+        in: query
+        description: filter by default versions
+        required: false
+        type: boolean
+      - name: created_on_gt
+        in: query
+        description: filter applications created after a given timestamp
+        required: false
+        type: string
+        format: datetime
+      - name: created_on_lt
+        in: query
+        description: filter applications created before a given timestamp
+        required: false
+        type: string
+        format: datetime
+      - name: updated_on_gt
+        in: query
+        description: filter applications updated after a given timestamp
+        required: false
+        type: string
+        format: datetime
+      - name: updated_on_lt
+        in: query
+        description: filter applications updated before a given timestamp
+        required: false
+        type: string
+        format: datetime
+      - name: limit
+        in: query
+        description: Number of results to return per page.
+        required: false
+        type: integer
+        default: 20
+      - name: offset
+        in: query
+        description: The initial index from which to return the results.
+        required: false
+        type: integer
+        default: 0
+      - name: ordering
+        in: query
+        description: 'Order result set by field name.
+
+
+          ```
+
+          * installed_count: order by asc
+
+          * -installed_count: order by desc
+
+          ```
+
+          '
+        required: false
+        type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            required:
+            - count
+            - results
+            type: object
+            properties:
+              count:
+                type: integer
+              next:
+                type: string
+                format: url
+                x-nullable: true
+              previous:
+                type: string
+                format: url
+                x-nullable: true
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/AppVersion'
+        '401':
+          description: Authorization information is missing or invalid.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '500':
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      security:
+      - apiKey: []
+      tags:
+      - Application
+    parameters:
+    - name: application_id
+      in: path
+      description: A UUID string identifying this application.
+      required: true
+      type: string
+      format: uuid
+    - name: enterprise_id
+      description: A UUID string identifying enterprise.
+      in: path
+      required: true
+      type: string
+  /enterprise/{enterprise_id}/application/{application_id}/version/{version_id}/:
+    get:
+      operationId: getAppVersion
+      summary: Get app version information
+      description: Returns AppVersion instance
+      produces:
+      - application/json
+      parameters:
+      - name: request_id
+        in: query
+        description: If this value exists in cache, delete the application and cache entry.
+        required: false
+        type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/AppVersion'
+        '401':
+          description: Authorization information is missing or invalid.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '404':
+          description: Not Found.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '500':
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      security:
+      - apiKey: []
+      tags:
+      - Application
+    delete:
+      operationId: deleteAppVersion
+      summary: Delete app version
+      description: Empty response
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        '200':
+          description: No request id is provided and the application is linked to one or more templates. Returns a request_id. Call with this request id to delete the resource.
+          schema:
+            $ref: '#/definitions/AppVersionDelete'
+        '204':
+          description: The resource was deleted successfully.
+        '400':
+          description: Invalid request.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '401':
+          description: Authorization information is missing or invalid.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '403':
+          description: Forbidden, no permission to perform this action.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '404':
+          description: Not Found.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '500':
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      security:
+      - apiKey: []
+      tags:
+      - Application
+    patch:
+      operationId: patchAppVersion
+      summary: Patch an App version instance
+      produces:
+      - application/json
+      parameters:
+      - name: data
+        in: body
+        schema:
+          type: object
+          properties:
+            release_name:
+              title: Release name
+              description: Name of the Release
+              type: string
+            release_comments:
+              title: Release comments
+              description: Additional comments about the release
+              type: string
+            release_track:
+              title: Release track
+              description: Description of the content
+              type: string
+              enum:
+              - Alpha
+              - Beta
+              - Production
+            is_enabled:
+              title: Is Enabled
+              description: Is the app version enabled
+              type: boolean
+            min_sdk_version:
+              title: Minimum SDK version
+              description: Version number of minimum SDK version that supports this app version
+              type: string
+            target_sdk_version:
+              title: Target SDK version
+              description: Target SDK version that supports this app version
+              type: string
+            build_number:
+              title: Build Number
+              description: Build number of this app version
+              type: string
+            version_code:
+              title: Version Code
+              description: Verion code of this app version
+              type: string
+            approval_status:
+              title: Approval Status
+              description: Approval status of this app version
+              type: string
+              enum:
+              - AVAILABLE
+              - ACCEPTED
+              - APPROVED
+              - REJECTED
+            is_default:
+              title: Is default
+              description: Is the app version default
+              type: boolean
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/AppVersion'
+        '400':
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '401':
+          description: Authorization information is missing or invalid.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '403':
+          description: Forbidden, no permission to perform this action.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '404':
+          description: Not Found.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '500':
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      security:
+      - apiKey: []
+      tags:
+      - Application
+    parameters:
+    - name: version_id
+      in: path
+      description: A UUID string identifying this app version.
+      required: true
+      type: string
+      format: uuid
+    - name: application_id
+      in: path
+      description: A UUID string identifying this application.
+      required: true
+      type: string
+      format: uuid
+    - name: enterprise_id
+      description: A UUID string identifying enterprise.
+      in: path
+      required: true
+      type: string
+  /enterprise/{enterprise_id}/application/{application_id}/version/{version_id}/installdevices:
+    get:
+      operationId: getInstallDevices
+      summary: List install devices
+      description: Returns list of devices with the specified app version installed
+      produces:
+      - application/json
+      parameters:
+      - name: search
+        in: query
+        description: A search term, search based on device name, device alias_name, group name
+        required: false
+        type: string
+      - name: limit
+        in: query
+        description: Number of results to return per page
+        required: false
+        type: integer
+      - name: offset
+        in: query
+        description: The initial index from which to return the results
+        required: false
+        type: integer
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            required:
+            - count
+            - results
+            type: object
+            properties:
+              count:
+                type: integer
+              next:
+                type: string
+                format: url
+                x-nullable: true
+              previous:
+                type: string
+                format: url
+                x-nullable: true
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/InstallDevices'
+        '401':
+          description: Authorization information is missing or invalid.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '403':
+          description: Forbidden, no permission to perform this action.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '404':
+          description: Not Found.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '500':
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      security:
+      - apiKey: []
+      tags:
+      - Application
+    parameters:
+    - name: version_id
+      in: path
+      description: A UUID string identifying this app version.
+      required: true
+      type: string
+      format: uuid
+    - name: application_id
+      in: path
+      description: A UUID string identifying this application.
+      required: true
+      type: string
+      format: uuid
+    - name: enterprise_id
+      description: A UUID string identifying enterprise.
+      in: path
+      required: true
+      type: string
+  /enterprise/{enterprise_id}/device/:
+    get:
+      summary: Fetch all devices in an enterprise
+      description: Returns a list of devices
+      operationId: getAllDevices
+      produces:
+      - application/json
+      parameters:
+      - name: enterprise_id
+        in: path
+        description: ID of the enterprise
+        required: true
+        type: string
+        format: uuid
+      - name: name
+        in: query
+        description: Filter by device name
+        required: false
+        type: string
+      - name: group
+        in: query
+        description: Filter by group id
+        required: false
+        type: string
+        format: uuid
+      - name: imei
+        in: query
+        description: filter by imei
+        required: false
+        type: string
+      - name: serial
+        in: query
+        description: filter by serial number
+        required: false
+        type: string
+      - name: state
+        in: query
+        description: filter by device state
+        required: false
+        type: integer
+      - name: brand
+        in: query
+        description: filter by brand
+        required: false
+        type: string
+      - name: is_gms
+        in: query
+        description: filter for gms devices
+        required: false
+        type: boolean
+      - name: search
+        in: query
+        description: A search term. Search by device name, imei or mac address
+        required: false
+        type: string
+      - name: tags
+        in: query
+        description: A partial text search for device tags
+        required: false
+        type: string
+      - name: limit
+        in: query
+        description: Number of results to return per page.
+        required: false
+        type: integer
+        default: 20
+      - name: offset
+        in: query
+        description: The initial index from which to return the results.
+        required: false
+        type: integer
+        default: 0
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: object
+            properties:
+              count:
+                type: integer
+                format: int64
+              next:
+                type: string
+                format: url
+              previous:
+                type: string
+                format: url
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/Device'
+      security:
+      - apiKey: []
+      tags:
+      - Device
+  /enterprise/{enterprise_id}/device/{device_id}/:
+    get:
+      summary: Fetch device details by ID
+      description: Returns details of a device
+      operationId: getDeviceById
+      produces:
+      - application/json
+      parameters:
+      - name: enterprise_id
+        in: path
+        description: ID of the enterprise
+        required: true
+        type: string
+        format: uuid
+      - name: device_id
+        in: path
+        description: ID of the device
+        required: true
+        type: string
+        format: uuid
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Device'
+        '400':
+          description: Bad request
+      security:
+      - apiKey: []
+      tags:
+      - Device
+  /enterprise/{enterprise_id}/device/{device_id}/app/:
+    get:
+      operationId: getDeviceApps
+      summary: List all device apps
+      description: Returns DeviceApp list
+      produces:
+      - application/json
+      parameters:
+      - name: package_name
+        in: query
+        description: Filter by Package name
+        required: false
+        type: string
+      - name: whitelisted
+        in: query
+        description: Whitelist filter
+        required: false
+        type: string
+      - name: search
+        in: query
+        description: A search term. Search by app_name.
+        required: false
+        type: string
+      - name: limit
+        in: query
+        description: Number of results to return per page.
+        required: false
+        type: integer
+        default: 20
+      - name: offset
+        in: query
+        description: The initial index from which to return the results.
+        required: false
+        type: integer
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            required:
+            - count
+            - results
+            type: object
+            properties:
+              count:
+                type: integer
+              next:
+                type: string
+                format: url
+                x-nullable: true
+              previous:
+                type: string
+                format: url
+                x-nullable: true
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/DeviceApp'
+      security:
+      - apiKey: []
+      tags:
+      - Device
+    parameters:
+    - name: enterprise_id
+      description: A UUID string identifying this enterprise.
+      in: path
+      required: true
+      type: string
+    - name: device_id
+      description: A UUID string identifying device.
+      in: path
+      required: true
+      type: string
+  /enterprise/{enterprise_id}/device/{device_id}/app/{app_id}/:
+    get:
+      operationId: getDeviceAppById
+      summary: Get device app details
+      description: Returns DeviceApp instance
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/DeviceApp'
+      security:
+      - apiKey: []
+      tags:
+      - Device
+    parameters:
+    - name: app_id
+      in: path
+      description: A UUID string identifying this device app.
+      required: true
+      type: string
+      format: uuid
+    - name: enterprise_id
+      description: A UUID string identifying this device.
+      in: path
+      required: true
+      type: string
+    - name: device_id
+      description: A UUID string identifying this enteprise.
+      in: path
+      required: true
+      type: string
+  /enterprise/{enterprise_id}/device/{device_id}/command/:
+    post:
+      summary: Run commands on device
+      description: Fire commands on device like reboot, ping etc. Deprecated in favour of commands V2.
+      operationId: runCommand
+      deprecated: true
+      produces:
+      - application/json
+      parameters:
+      - name: enterprise_id
+        in: path
+        description: ID of the enterprise
+        required: true
+        type: string
+        format: uuid
+      - name: device_id
+        in: path
+        description: ID of the device
+        required: true
+        type: string
+        format: uuid
+      - name: command
+        in: body
+        description: Command request body
+        required: true
+        schema:
+          $ref: '#/definitions/CommandRequest'
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: '#/definitions/DeviceCommand'
+      security:
+      - apiKey: []
+      tags:
+      - Commands
+  /enterprise/{enterprise_id}/device/{device_id}/command/{command_id}/:
+    get:
+      operationId: getCommand
+      summary: Get command status
+      description: Return DeviceCommand instance. Deprecated in favour of commands V2.
+      deprecated: true
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/DeviceCommand'
+      security:
+      - apiKey: []
+      tags:
+      - Commands
+    parameters:
+    - name: command_id
+      in: path
+      description: A UUID string identifying this device command.
+      required: true
+      type: string
+      format: uuid
+    - name: device_id
+      in: path
+      description: A UUID string identifying this device.
+      required: true
+      type: string
+      format: uuid
+    - name: enterprise_id
+      description: A UUID string identifying enterprise.
+      in: path
+      required: true
+      type: string
+      format: uuid
+  /enterprise/{enterprise_id}/device/{device_id}/install/:
+    get:
+      operationId: getAppInstalls
+      summary: List installed apps
+      description: Returns AppInstall list
+      produces:
+      - application/json
+      parameters:
+      - name: device
+        in: query
+        description: filter by device id
+        required: false
+        type: string
+      - name: package_name
+        in: query
+        description: filter by package name
+        required: false
+        type: string
+      - name: application_name
+        in: query
+        description: filter by application name
+        required: false
+        type: string
+      - name: install_state
+        in: query
+        description: filter by install state
+        required: false
+        type: string
+      - name: limit
+        in: query
+        description: Number of results to return per page.
+        required: false
+        type: integer
+        default: 20
+      - name: offset
+        in: query
+        description: The initial index from which to return the results.
+        required: false
+        type: integer
+        default: 0
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            required:
+            - count
+            - results
+            type: object
+            properties:
+              count:
+                type: integer
+              next:
+                type: string
+                format: url
+                x-nullable: true
+              previous:
+                type: string
+                format: url
+                x-nullable: true
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/AppInstall'
+      security:
+      - apiKey: []
+      tags:
+      - Device
+    parameters:
+    - name: enterprise_id
+      description: A UUID string identifying this enterprise.
+      in: path
+      required: true
+      type: string
+    - name: device_id
+      description: A UUID string identifying device.
+      in: path
+      required: true
+      type: string
+  /enterprise/{enterprise_id}/device/{device_id}/status/:
+    get:
+      operationId: getDeviceEvent
+      summary: Get latest device event
+      description: Returns DeviceStatus instance
+      produces:
+      - application/json
+      parameters:
+      - name: latest_event
+        in: query
+        description: Flag to get latest event
+        required: true
+        type: integer
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            required:
+            - count
+            - results
+            type: object
+            properties:
+              count:
+                type: integer
+              next:
+                type: string
+                format: url
+                x-nullable: true
+              previous:
+                type: string
+                format: url
+                x-nullable: true
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/DeviceStatus'
+      security:
+      - apiKey: []
+      tags:
+      - Device
+    parameters:
+    - name: enterprise_id
+      description: A UUID string identifying this enterprise.
+      in: path
+      required: true
+      type: string
+    - name: device_id
+      description: A UUID string identifying device.
+      in: path
+      required: true
+      type: string
+  /enterprise/{enterprise_id}/devicegroup/:
+    get:
+      operationId: getAllGroups
+      summary: List device groups
+      description: Returns EnterpriseDeviceGroup list
+      produces:
+      - application/json
+      parameters:
+      - name: name
+        in: query
+        description: Filter by group name
+        required: false
+        type: string
+      - name: limit
+        in: query
+        description: Number of results to return per page.
+        required: false
+        type: integer
+        default: 20
+      - name: offset
+        in: query
+        description: The initial index from which to return the results.
+        required: false
+        type: integer
+        default: 0
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            required:
+            - count
+            - results
+            type: object
+            properties:
+              count:
+                type: integer
+              next:
+                type: string
+                format: url
+                x-nullable: true
+              previous:
+                type: string
+                format: url
+                x-nullable: true
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/DeviceGroup'
+      security:
+      - apiKey: []
+      tags:
+      - Device Group
+    post:
+      operationId: createGroup
+      summary: Create a device group
+      description: Returns EnterpriseDeviceGroup instance
+      produces:
+      - application/json
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/DeviceGroupUpdate'
+      responses:
+        '201':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/DeviceGroup'
+      security:
+      - apiKey: []
+      tags:
+      - Device Group
+    parameters:
+    - name: enterprise_id
+      description: A UUID string identifying enterprise.
+      in: path
+      required: true
+      type: string
+  /enterprise/{enterprise_id}/devicegroup/{group_id}/:
+    get:
+      operationId: getGroupById
+      summary: Get device group information
+      description: Returns EnterpriseDeviceGroup instance
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/DeviceGroup'
+      security:
+      - apiKey: []
+      tags:
+      - Device Group
+    put:
+      operationId: updateGroup
+      summary: Update device group
+      description: Returns EnterpriseDeviceGroup instance
+      produces:
+      - application/json
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/DeviceGroupUpdate'
+      - name: action
+        in: query
+        required: false
+        type: string
+        description: add / remove / rename / move
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/DeviceGroup'
+      security:
+      - apiKey: []
+      tags:
+      - Device Group
+    patch:
+      operationId: partialUpdateGroup
+      summary: Partial update group
+      description: Returns EnterpriseDeviceGroup instance
+      produces:
+      - application/json
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/DeviceGroupPartialUpdate'
+      - name: action
+        in: query
+        required: false
+        type: string
+        description: add / remove / rename / move
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/DeviceGroup'
+      security:
+      - apiKey: []
+      tags:
+      - Device Group
+    delete:
+      operationId: deleteGroup
+      summary: Delete a device group
+      description: Emtpy response
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        '204':
+          description: successful operation
+      security:
+      - apiKey: []
+      tags:
+      - Device Group
+    parameters:
+    - name: group_id
+      in: path
+      description: A UUID string identifying this enterprise device group.
+      required: true
+      type: string
+      format: uuid
+    - name: enterprise_id
+      description: A UUID string identifying enterprise.
+      in: path
+      required: true
+      type: string
+  /enterprise/{enterprise_id}/devicegroup/{group_id}/command/:
+    post:
+      summary: Run commands on group devices
+      description: Fire commands on all the group devices. Deprecated in favour of commands V2.
+      deprecated: true
+      operationId: runGroupCommand
+      produces:
+      - application/json
+      parameters:
+      - name: data
+        in: body
+        description: Group command request
+        required: true
+        schema:
+          $ref: '#/definitions/GroupCommandRequest'
+      responses:
+        '201':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/GroupCommand'
+      security:
+      - apiKey: []
+      tags:
+      - Group Commands
+    parameters:
+    - name: enterprise_id
+      in: path
+      description: ID of the enterprise
+      required: true
+      type: string
+      format: uuid
+    - name: group_id
+      in: path
+      description: ID of the group
+      required: true
+      type: string
+      format: uuid
+  /enterprise/{enterprise_id}/devicegroup/{group_id}/command/{command_id}/:
+    get:
+      operationId: getGroupCommand
+      summary: Get group command status
+      description: Returns GroupCommand instance. Deprecated in favour of commands V2.
+      deprecated: true
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/GroupCommand'
+      security:
+      - apiKey: []
+      tags:
+      - Group Commands
+    parameters:
+    - name: command_id
+      in: path
+      description: A UUID string identifying this device command.
+      required: true
+      type: string
+      format: uuid
+    - name: group_id
+      in: path
+      description: A UUID string identifying this group.
+      required: true
+      type: string
+      format: uuid
+    - name: enterprise_id
+      description: A UUID string identifying enterprise.
+      in: path
+      required: true
+      type: string
+      format: uuid
+  /enterprise/{enterprise_id}/policy/:
+    post:
+      summary: Create a new Enterprise Policy
+      description: API to create a new Enterprise Policy
+      operationId: createPolicy
+      produces:
+      - application/json
+      parameters:
+      - name: enterprise_id
+        in: path
+        description: ID of the enterprise
+        required: true
+        type: string
+        format: uuid
+      - name: request
+        in: body
+        description: The request body to create an Enteprise Policy
+        required: true
+        schema:
+          $ref: '#/definitions/EnterprisePolicy'
+      responses:
+        201:
+          description: command request successfully created
+          schema:
+            $ref: '#/definitions/EnterprisePolicy'
+      security:
+      - apiKey: []
+      tags:
+      - Enterprise Policy
+    get:
+      operationId: listPolicies
+      summary: List all policies in enterprise
+      description: Returns Policies list
+      produces:
+      - application/json
+      parameters:
+      - name: enterprise_id
+        in: path
+        description: ID of the enterprise
+        required: true
+        type: string
+        format: uuid
+      - name: name
+        in: query
+        description: filter by policy name
+        required: false
+        type: string
+      - name: is_active
+        in: query
+        description: filter by Active policies
+        required: false
+        type: boolean
+      - name: limit
+        in: query
+        description: Number of results to return per page.
+        required: false
+        type: integer
+        default: 20
+      - name: offset
+        in: query
+        description: The initial index from which to return the results.
+        required: false
+        type: integer
+        default: 0
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            required:
+            - count
+            - results
+            type: object
+            properties:
+              count:
+                type: integer
+              next:
+                type: string
+                format: url
+                x-nullable: true
+              previous:
+                type: string
+                format: url
+                x-nullable: true
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/EnterprisePolicy'
+      security:
+      - apiKey: []
+      tags:
+      - Enterprise Policy
+  /enterprise/{enterprise_id}/policy/{policy_id}/:
+    get:
+      operationId: getPolicyById
+      summary: Get Enterprise Policy
+      description: Returns EnterprisePolicy instance
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/EnterprisePolicy'
+      security:
+      - apiKey: []
+      tags:
+      - Enterprise Policy
+    put:
+      operationId: updatePolicy
+      summary: Update Enterprise Policy
+      description: Returns Enterprise Policy instance
+      produces:
+      - application/json
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/EnterprisePolicy'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/EnterprisePolicy'
+      security:
+      - apiKey: []
+      tags:
+      - Enterprise Policy
+    patch:
+      operationId: partialupdatePolicy
+      summary: Partial update EnterprisePolicy
+      description: Returns EnterprisePolicy instance
+      produces:
+      - application/json
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/EnterprisePolicyPartialUpdate'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/EnterprisePolicy'
+      security:
+      - apiKey: []
+      tags:
+      - Enterprise Policy
+    delete:
+      operationId: deleteEnterprisePolicy
+      summary: Delete a Enterprise Policy
+      description: Emtpy response
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        '204':
+          description: successful operation
+      security:
+      - apiKey: []
+      tags:
+      - Enterprise Policy
+    parameters:
+    - name: policy_id
+      in: path
+      description: An integer identifying this EnterprisePolicy.
+      required: true
+      type: integer
+    - name: enterprise_id
+      description: A UUID string identifying enterprise.
+      in: path
+      required: true
+      type: string
+  /v0/enterprise/{enterprise_id}/command/:
+    post:
+      summary: Create a command request
+      description: API to create a command request for the device.
+      operationId: createCommand
+      produces:
+      - application/json
+      parameters:
+      - name: enterprise_id
+        in: path
+        description: ID of the enterprise
+        required: true
+        type: string
+        format: uuid
+      - name: request
+        in: body
+        description: The request body to create a command for set of devices or groups
+        required: true
+        schema:
+          $ref: '#/definitions/V0CommandRequest'
+      responses:
+        201:
+          description: command request successfully created
+          schema:
+            $ref: '#/definitions/V0CommandRequest'
+      security:
+      - apiKey: []
+      tags:
+      - Commands V2
+    get:
+      operationId: listCommandRequest
+      summary: List command requests
+      description: API to get and filter command requests
+      produces:
+      - application/json
+      parameters:
+      - name: enterprise_id
+        in: path
+        description: ID of the enterprise
+        required: true
+        type: string
+        format: uuid
+      - name: command_type
+        in: query
+        description: Filter by type of command request i.e device, group etc
+        required: false
+        type: string
+      - name: devices
+        in: query
+        description: Filter by device IDs. Accepts comma separated values.
+        required: false
+        type: string
+      - name: device_type
+        in: query
+        description: Filter by device type i.e active, inactive etc
+        required: false
+        type: string
+      - name: command
+        in: query
+        description: Filter by command name
+        required: false
+        type: string
+      - name: issued_by
+        in: query
+        description: Filter by user. Accepts user id.
+        required: false
+        type: string
+      responses:
+        '200':
+          description: on successful request
+          schema:
+            type: object
+            properties:
+              count:
+                type: integer
+                format: int64
+              next:
+                type: string
+                format: url
+              previous:
+                type: string
+                format: url
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/V0CommandRequest'
+      security:
+      - apiKey: []
+      tags:
+      - Commands V2
+  /v0/enterprise/{enterprise_id}/command/{request_id}/status/:
+    get:
+      operationId: getCommandRequestStatus
+      summary: get status list for command request
+      description: API to get and filter command request status
+      produces:
+      - application/json
+      parameters:
+      - name: enterprise_id
+        in: path
+        description: ID of the enterprise
+        required: true
+        type: string
+        format: uuid
+      - name: request_id
+        in: path
+        description: ID for the command request
+        required: true
+        type: string
+        format: uuid
+      - name: device
+        in: query
+        description: Filter status result by device id.
+        required: false
+        type: string
+      - name: state
+        in: query
+        description: Filter by command state
+        required: false
+        type: string
+      responses:
+        '200':
+          description: on successful request
+          schema:
+            type: object
+            properties:
+              count:
+                type: integer
+                format: int64
+              next:
+                type: string
+                format: url
+              previous:
+                type: string
+                format: url
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/V0CommandStatus'
+      security:
+      - apiKey: []
+      tags:
+      - Commands V2
+  /v0/enterprise/{enterprise_id}/content/:
+    get:
+      operationId: getAllContent
+      summary: List content in the enterprise
+      description: Returns Content list
+      produces:
+      - application/json
+      parameters:
+      - name: search
+        in: query
+        description: Seach by tags, description
+        required: false
+        type: string
+      - name: limit
+        in: query
+        description: Number of results to return per page.
+        required: false
+        type: integer
+        default: 20
+      - name: offset
+        in: query
+        description: The initial index from which to return the results.
+        required: false
+        type: integer
+        default: 0
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            required:
+            - count
+            - results
+            type: object
+            properties:
+              count:
+                type: integer
+              next:
+                type: string
+                format: url
+                x-nullable: true
+              previous:
+                type: string
+                format: url
+                x-nullable: true
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/Content'
+        '401':
+          description: Authorization information is missing or invalid.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '500':
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      security:
+      - apiKey: []
+      tags:
+      - Content
+    parameters:
+    - name: enterprise_id
+      description: A UUID string identifying this enterprise.
+      in: path
+      required: true
+      type: string
+  /v0/enterprise/{enterprise_id}/content/upload/:
+    post:
+      operationId: postContent
+      summary: Upload new content
+      description: Returns Content instance
+      produces:
+      - application/json
+      consumes:
+      - multipart/form-data
+      parameters:
+      - name: key
+        description: Valid file to upload
+        in: formData
+        required: true
+        type: file
+      responses:
+        '200':
+          description: Successful Operation
+          schema:
+            $ref: '#/definitions/Content'
+        '400':
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '401':
+          description: Authorization information is missing or invalid.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '403':
+          description: Forbidden, no permission to perform this action.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '415':
+          description: Unsupported media type.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '500':
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      security:
+      - apiKey: []
+      tags:
+      - Content
+    parameters:
+    - name: enterprise_id
+      description: A UUID string identifying this enterprise.
+      in: path
+      required: true
+      type: string
+  /v0/enterprise/{enterprise_id}/content/{content_id}/:
+    get:
+      operationId: getContent
+      summary: Get content information
+      description: Returns Content instance
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Content'
+        '401':
+          description: Authorization information is missing or invalid.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '404':
+          description: Not Found.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '500':
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      security:
+      - apiKey: []
+      tags:
+      - Content
+    delete:
+      operationId: deleteContent
+      summary: Delete Content
+      description: Empty response
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        '204':
+          description: The resource was deleted successfully.
+        '401':
+          description: Authorization information is missing or invalid.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '403':
+          description: Forbidden, no permission to perform this action.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '404':
+          description: Not Found.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '500':
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      security:
+      - apiKey: []
+      tags:
+      - Content
+    patch:
+      operationId: patchContent
+      summary: Patch a content instance
+      produces:
+      - application/json
+      parameters:
+      - name: data
+        in: body
+        schema:
+          type: object
+          properties:
+            tags:
+              title: Tags
+              description: Tags for the content
+              type: array
+              items:
+                type: string
+                maxLength: 255
+            description:
+              title: Description
+              description: Description of the content
+              type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Content'
+        '400':
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '401':
+          description: Authorization information is missing or invalid.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '403':
+          description: Forbidden, no permission to perform this action.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '404':
+          description: Not Found.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '415':
+          description: Unsupported media type.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '500':
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      security:
+      - apiKey: []
+      tags:
+      - Content
+    parameters:
+    - name: content_id
+      in: path
+      description: A UUID string identifying a content instance.
+      required: true
+      type: string
+      format: uuid
+    - name: enterprise_id
+      description: A UUID string identifying enterprise.
+      in: path
+      required: true
+      type: string
+  /v0/enterprise/{enterprise_id}/developerapp/{developerapp_id}/renew-token/:
+    post:
+      operationId: renewToken
+      summary: Renew Token
+      description: API to renew your token
+      produces:
+      - application/json
+      parameters:
+      - name: enterprise_id
+        in: path
+        description: A UUID string identifying this enterprise.
+        required: true
+        type: string
+        format: uuid
+      - name: developerapp_id
+        in: path
+        description: A UUID string identifying the developerapp
+        required: true
+        type: string
+        format: uuid
+      - name: access_token
+        in: query
+        description: Token to be renewed
+        required: true
+        type: string
+      responses:
+        '201':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/TokenRenewV0'
+      security:
+      - apiKey: []
+      tags:
+      - Token
+  /v0/enterprise/{enterprise_id}/device/{device_id}/command-history/:
+    get:
+      operationId: getDeviceCommandHistory
+      summary: get command history for device
+      description: API to get and filter deivce command history
+      produces:
+      - application/json
+      parameters:
+      - name: enterprise_id
+        in: path
+        description: Id of the enterprise
+        required: true
+        type: string
+        format: uuid
+      - name: device_id
+        in: path
+        description: Id for the command request
+        required: true
+        type: string
+        format: uuid
+      - name: state
+        in: query
+        description: Filter by command state
+        required: false
+        type: string
+      responses:
+        '200':
+          description: on successful request
+          schema:
+            type: object
+            properties:
+              count:
+                type: integer
+                format: int64
+              next:
+                type: string
+                format: url
+              previous:
+                type: string
+                format: url
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/V0CommandStatus'
+      security:
+      - apiKey: []
+      tags:
+      - Commands V2
+  /v0/enterprise/{enterprise_id}/geofence/:
+    get:
+      operationId: getAllGeofences
+      summary: List Geofences in Enterprise
+      description: API to view all the geofences in an enterprise
+      produces:
+      - application/json
+      parameters:
+      - name: enterprise_id
+        in: path
+        description: A UUID string identifying the enterprise.
+        required: true
+        type: string
+        format: uuid
+      - name: search
+        in: query
+        description: A search term.
+        required: false
+        type: string
+      - name: limit
+        in: query
+        description: Number of results to return per page.
+        required: false
+        type: integer
+      - name: offset
+        in: query
+        description: The initial index from which to return the results.
+        required: false
+        type: integer
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            required:
+            - count
+            - results
+            type: object
+            properties:
+              count:
+                type: integer
+              next:
+                type: string
+                format: url
+                x-nullable: true
+              previous:
+                type: string
+                format: url
+                x-nullable: true
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/Geofence'
+      security:
+      - apiKey: []
+      tags:
+      - Geofence
+    post:
+      operationId: createGeofence
+      summary: Create a geofence
+      description: Returns Geofence instance
+      produces:
+      - application/json
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Geofence'
+      - name: enterprise_id
+        in: path
+        description: A UUID string identifying the enterprise.
+        required: true
+        type: string
+        format: uuid
+      responses:
+        '201':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Geofence'
+      security:
+      - apiKey: []
+      tags:
+      - Geofence
+  /v0/enterprise/{enterprise_id}/geofence/{geofence_id}/:
+    get:
+      operationId: getGeofence
+      summary: Get geofence information
+      description: Returns geofence instance
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Geofence'
+      security:
+      - apiKey: []
+      tags:
+      - Geofence
+    put:
+      operationId: updateGeofence
+      summary: Update geofence information
+      description: Returns geofence instance
+      produces:
+      - application/json
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Geofence'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Geofence'
+      security:
+      - apiKey: []
+      tags:
+      - Geofence
+    patch:
+      operationId: partialUpdateGeofence
+      summary: Partially updates geofence information
+      description: Returns geofence instance
+      produces:
+      - application/json
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/GeofenceUpdate'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Geofence'
+      security:
+      - apiKey: []
+      tags:
+      - Geofence
+    delete:
+      operationId: deleteGeofence
+      summary: Delete a geofence
+      description: Empty response
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        '204':
+          description: successful operation
+      security:
+      - apiKey: []
+      tags:
+      - Geofence
+    parameters:
+    - name: geofence_id
+      in: path
+      description: A UUID string identifying the geofence.
+      required: true
+      type: string
+      format: uuid
+    - name: enterprise_id
+      description: A UUID string identifying the enterprise.
+      in: path
+      required: true
+      type: string
+      format: uuid
+  /v0/enterprise/{enterprise_id}/subscription/:
+    get:
+      operationId: getAllSubscriptions
+      summary: List Subscriptions in Enterprise
+      description: API to view all the subscriptions in an enterprise
+      produces:
+      - application/json
+      parameters:
+      - name: enterprise_id
+        in: path
+        description: A UUID string identifying the enterprise.
+        required: true
+        type: string
+        format: uuid
+      - name: limit
+        in: query
+        description: Number of results to return per page.
+        required: false
+        type: integer
+      - name: offset
+        in: query
+        description: The initial index from which to return the results.
+        required: false
+        type: integer
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            required:
+            - count
+            - results
+            type: object
+            properties:
+              count:
+                type: integer
+              next:
+                type: string
+                format: url
+                x-nullable: true
+              previous:
+                type: string
+                format: url
+                x-nullable: true
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/EventSubscription'
+      security:
+      - apiKey: []
+      tags:
+      - Subscription
+    post:
+      operationId: createSubscription
+      summary: Create a Subscription
+      description: Returns Subscription instance
+      produces:
+      - application/json
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/EventSubscriptionArgs'
+      - name: enterprise_id
+        in: path
+        description: A UUID string identifying the enterprise.
+        required: true
+        type: string
+        format: uuid
+      responses:
+        '201':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/EventSubscription'
+      security:
+      - apiKey: []
+      tags:
+      - Subscription
+  /v0/enterprise/{enterprise_id}/subscription/{subscription_id}/:
+    get:
+      operationId: getSubscription
+      summary: Get subscription information
+      description: Returns subscription instance
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/EventSubscription'
+      security:
+      - apiKey: []
+      tags:
+      - Subscription
+    delete:
+      operationId: deleteSubscription
+      summary: Delete a subscription
+      description: Empty response
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        '204':
+          description: successful operation
+      security:
+      - apiKey: []
+      tags:
+      - Subscription
+    parameters:
+    - name: subscription_id
+      in: path
+      description: A UUID string identifying the subscription.
+      required: true
+      type: string
+      format: uuid
+    - name: enterprise_id
+      description: A UUID string identifying the enterprise.
+      in: path
+      required: true
+      type: string
+      format: uuid
+  /v1/enterprise/{enterprise_id}/:
+    get:
+      operationId: getEnterprise
+      summary: Get your enterprise information
+      description: Returns Enterprise instance
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/EnterpriseV1'
+      security:
+      - apiKey: []
+      tags:
+      - Enterprise
+    patch:
+      operationId: partialUpdateEnterprise
+      summary: Partial update enterprise information
+      description: Returns updated enterprise
+      produces:
+      - application/json
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/EnterpriseUpdateV1'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/EnterpriseV1'
+      security:
+      - apiKey: []
+      tags:
+      - Enterprise
+    parameters:
+    - name: enterprise_id
+      in: path
+      description: A UUID string identifying this enterprise.
+      required: true
+      type: string
+      format: uuid
+  /v1/enterprise/{enterprise_id}/application/:
+    get:
+      operationId: getAllApplicationsV1
+      summary: List apps in enterprise
+      description: Returns Application list
+      produces:
+      - application/json
+      parameters:
+      - name: application_name
+        in: query
+        description: filter by application name
+        required: false
+        type: string
+      - name: package_name
+        in: query
+        description: filter by package name
+        required: false
+        type: string
+      - name: package_name_exact
+        in: query
+        description: filter by package name (exact match)
+        required: false
+        type: string
+      - name: has_uploaded_version
+        in: query
+        description: Returns applications having atleast on version uploaded
+        required: false
+        type: boolean
+      - name: category
+        in: query
+        description: filter by category
+        required: false
+        type: string
+      - name: supported_sdk
+        in: query
+        description: filter by supported sdk versions
+        required: false
+        type: integer
+      - name: is_active
+        in: query
+        description: filter by active applications
+        required: false
+        type: boolean
+      - name: is_hidden
+        in: query
+        description: filter default esper apps
+        required: false
+        type: boolean
+        default: false
+      - name: created_on_gt
+        in: query
+        description: filter applications created after a given timestamp
+        required: false
+        type: string
+        format: datetime
+      - name: created_on_lt
+        in: query
+        description: filter applications created before a given timestamp
+        required: false
+        type: string
+        format: datetime
+      - name: updated_on_gt
+        in: query
+        description: filter applications updated after a given timestamp
+        required: false
+        type: string
+        format: datetime
+      - name: updated_on_lt
+        in: query
+        description: filter applications updated before a given timestamp
+        required: false
+        type: string
+        format: datetime
+      - name: limit
+        in: query
+        description: Number of results to return per page.
+        required: false
+        type: integer
+        default: 20
+      - name: offset
+        in: query
+        description: The initial index from which to return the results.
+        required: false
+        type: integer
+        default: 0
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            required:
+            - count
+            - results
+            type: object
+            properties:
+              count:
+                type: integer
+              next:
+                type: string
+                format: url
+                x-nullable: true
+              previous:
+                type: string
+                format: url
+                x-nullable: true
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/ApplicationV1'
+        '401':
+          description: Authorization information is missing or invalid.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '500':
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      security:
+      - apiKey: []
+      tags:
+      - Application V1
+    parameters:
+    - name: enterprise_id
+      description: A UUID string identifying this enterprise.
+      in: path
+      required: true
+      type: string
+  /v1/enterprise/{enterprise_id}/application/{application_id}/:
+    get:
+      operationId: getApplicationv1
+      summary: Get application information
+      description: Returns Application instance
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/ApplicationV1'
+        '401':
+          description: Authorization information is missing or invalid.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '404':
+          description: Not Found.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '500':
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      security:
+      - apiKey: []
+      tags:
+      - Application V1
+    delete:
+      operationId: deleteApplicationV1
+      summary: Delete an application
+      description: Empty response
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        '204':
+          description: The resource was deleted successfully.
+        '401':
+          description: Authorization information is missing or invalid.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '403':
+          description: Forbidden, no permission to perform this action.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '404':
+          description: Not Found.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '500':
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      security:
+      - apiKey: []
+      tags:
+      - Application V1
+    parameters:
+    - name: application_id
+      in: path
+      description: A UUID string identifying this application.
+      required: true
+      type: string
+      format: uuid
+    - name: enterprise_id
+      description: A UUID string identifying enterprise.
+      in: path
+      required: true
+      type: string
+  /v1/enterprise/{enterprise_id}/application/{application_id}/version/:
+    get:
+      operationId: getAppVersionsV1
+      summary: List App versions
+      description: Returns AppVersion list
+      produces:
+      - application/json
+      parameters:
+      - name: version_code
+        in: query
+        description: filter by version code
+        required: false
+        type: string
+      - name: build_number
+        in: query
+        description: filter by build number
+        required: false
+        type: string
+      - name: is_g_play
+        in: query
+        description: filter google play applications
+        required: false
+        type: boolean
+      - name: approval_status
+        in: query
+        description: filter by approval status
+        required: false
+        type: string
+        enum:
+        - AVAILABLE
+        - ACCEPTED
+        - APPROVED
+        - REJECTED
+      - name: is_enabled
+        in: query
+        description: filter by enabled versions
+        required: false
+        type: boolean
+      - name: is_default
+        in: query
+        description: filter by default versions
+        required: false
+        type: boolean
+      - name: created_on_gt
+        in: query
+        description: filter applications created after a given timestamp
+        required: false
+        type: string
+        format: datetime
+      - name: created_on_lt
+        in: query
+        description: filter applications created before a given timestamp
+        required: false
+        type: string
+        format: datetime
+      - name: updated_on_gt
+        in: query
+        description: filter applications updated after a given timestamp
+        required: false
+        type: string
+        format: datetime
+      - name: updated_on_lt
+        in: query
+        description: filter applications updated before a given timestamp
+        required: false
+        type: string
+        format: datetime
+      - name: limit
+        in: query
+        description: Number of results to return per page.
+        required: false
+        type: integer
+      - name: offset
+        in: query
+        description: The initial index from which to return the results.
+        required: false
+        type: integer
+        default: 0
+      - name: ordering
+        in: query
+        description: 'Order result set by field name.
+
+
+          ```
+
+          * installed_count: order by asc
+
+          * -installed_count: order by desc
+
+          ```
+
+          '
+        required: false
+        type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            required:
+            - count
+            - results
+            type: object
+            properties:
+              count:
+                type: integer
+              next:
+                type: string
+                format: url
+                x-nullable: true
+              previous:
+                type: string
+                format: url
+                x-nullable: true
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/AppVersionV1'
+        '401':
+          description: Authorization information is missing or invalid.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '500':
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      security:
+      - apiKey: []
+      tags:
+      - Application V1
+    parameters:
+    - name: application_id
+      in: path
+      description: A UUID string identifying this application.
+      required: true
+      type: string
+      format: uuid
+    - name: enterprise_id
+      description: A UUID string identifying enterprise.
+      in: path
+      required: true
+      type: string
+  /v1/enterprise/{enterprise_id}/application/{application_id}/version/{version_id}/:
+    get:
+      operationId: getAppVersionV1
+      summary: Get app version information
+      description: Returns AppVersion instance
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/AppVersionV1'
+        '401':
+          description: Authorization information is missing or invalid.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '404':
+          description: Not Found.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '500':
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      security:
+      - apiKey: []
+      tags:
+      - Application V1
+    delete:
+      operationId: deleteAppVersionV1
+      summary: Delete app version
+      description: Empty response
+      produces:
+      - application/json
+      parameters:
+      - name: request_id
+        in: query
+        description: If this value exists in cache, delete the application and cache entry.
+        required: false
+        type: string
+      responses:
+        '200':
+          description: No request id is provided and the application is linked to one or more templates. Returns a request_id. Call with this request id to delete the resource.
+          schema:
+            $ref: '#/definitions/AppVersionDelete'
+        '204':
+          description: The resource was deleted successfully.
+        '400':
+          description: Invalid request.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '401':
+          description: Authorization information is missing or invalid.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '403':
+          description: Forbidden, no permission to perform this action.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '404':
+          description: Not Found.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '500':
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      security:
+      - apiKey: []
+      tags:
+      - Application V1
+    patch:
+      operationId: patchAppVersionV1
+      summary: Patch an App version instance
+      produces:
+      - application/json
+      parameters:
+      - name: data
+        in: body
+        schema:
+          type: object
+          properties:
+            release_name:
+              title: Release name
+              description: Name of the Release
+              type: string
+            is_default:
+              title: Is Default
+              description: Is the app version the deafult
+              type: boolean
+            min_sdk_version:
+              title: Minimum SDK version
+              description: Version number of minimum SDK version that supports this app version
+              type: string
+            build_number:
+              title: Build Number
+              description: Build number of this app version
+              type: string
+            version_code:
+              title: Version Code
+              description: Verion code of this app version
+              type: string
+            approval_status:
+              title: Approval Status
+              description: Approval status of this app version
+              type: string
+              enum:
+              - AVAILABLE
+              - ACCEPTED
+              - APPROVED
+              - REJECTED
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/AppVersionV1'
+        '400':
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '401':
+          description: Authorization information is missing or invalid.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '403':
+          description: Forbidden, no permission to perform this action.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '404':
+          description: Not Found.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '500':
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      security:
+      - apiKey: []
+      tags:
+      - Application V1
+    parameters:
+    - name: version_id
+      in: path
+      description: A UUID string identifying this app version.
+      required: true
+      type: string
+      format: uuid
+    - name: application_id
+      in: path
+      description: A UUID string identifying this application.
+      required: true
+      type: string
+      format: uuid
+    - name: enterprise_id
+      description: A UUID string identifying enterprise.
+      in: path
+      required: true
+      type: string
+  /v1/enterprise/{enterprise_id}/application/{application_id}/version/{version_id}/installdevices:
+    get:
+      operationId: getInstallDevicesV1
+      summary: List install devices
+      description: Returns list of devices with the specified app version installed
+      produces:
+      - application/json
+      parameters:
+      - name: search
+        in: query
+        description: A search term, search based on device name, device alias_name, group name
+        required: false
+        type: string
+      - name: limit
+        in: query
+        description: Number of results to return per page
+        required: false
+        type: integer
+      - name: offset
+        in: query
+        description: The initial index from which to return the results
+        required: false
+        type: integer
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            required:
+            - count
+            - results
+            type: object
+            properties:
+              count:
+                type: integer
+              next:
+                type: string
+                format: url
+                x-nullable: true
+              previous:
+                type: string
+                format: url
+                x-nullable: true
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/InstallDevices'
+        '401':
+          description: Authorization information is missing or invalid.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '403':
+          description: Forbidden, no permission to perform this action.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '404':
+          description: Not Found.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '500':
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      security:
+      - apiKey: []
+      tags:
+      - Application
+    parameters:
+    - name: version_id
+      in: path
+      description: A UUID string identifying this app version.
+      required: true
+      type: string
+      format: uuid
+    - name: application_id
+      in: path
+      description: A UUID string identifying this application.
+      required: true
+      type: string
+      format: uuid
+    - name: enterprise_id
+      description: A UUID string identifying enterprise.
+      in: path
+      required: true
+      type: string
+  /v1/token-info/:
+    get:
+      operationId: getTokenInfo
+      summary: Token Information
+      description: API to get resource information associated with your token like your enterprise, user etc
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/TokenInfoV1'
+      security:
+      - apiKey: []
+      tags:
+      - Token
+definitions:
+  AppInstall:
+    required:
+    - application
+    - install_state
+    - enterprise
+    - device
+    type: object
+    properties:
+      id:
+        title: Id
+        type: string
+        format: uuid
+        readOnly: true
+      application:
+        $ref: '#/definitions/AppInstallApplication'
+      install_state:
+        $ref: '#/definitions/AppInstallStateEnum'
+      reason_details:
+        title: Reason details
+        type: string
+        minLength: 1
+        x-nullable: true
+      created_on:
+        title: Created on
+        type: string
+        format: date-time
+        readOnly: true
+      updated_on:
+        title: Updated on
+        type: string
+        format: date-time
+        readOnly: true
+      is_active:
+        title: Is active
+        type: boolean
+      enterprise:
+        title: Enterprise
+        type: string
+        format: url
+      device:
+        title: Device
+        type: string
+        format: url
+  AppInstallApplication:
+    title: Application
+    type: object
+    properties:
+      application_name:
+        title: Application name
+        type: string
+      package_name:
+        title: Package name
+        type: string
+      version:
+        $ref: '#/definitions/AppInstallVersion'
+      is_enabled:
+        title: Is enabled
+        type: boolean
+  AppInstallStateEnum:
+    title: Install state
+    type: string
+    description: 'Device App Install State
+
+
+      ``` * NOT_INSTALLED = "Not Installed"
+
+      * INSTALL_IN_PROGRESS = "Installation In-Progress"
+
+      * UNINSTALL_IN_PROGRESS = "Uninstallation In-Progress"
+
+      * INSTALL_SUCCESS = "Install Success"
+
+      * INSTALL_FAILED = "Install Failed"
+
+      * UNINSTALL_SUCCESS = "Uninstall Success"
+
+      * UNINSTALL_FAILED = "Uninstall Failed"
+
+      ```
+
+      '
+    enum:
+    - NOT_INSTALLED
+    - INSTALL_IN_PROGRESS
+    - UNINSTALL_IN_PROGRESS
+    - INSTALL_SUCCESS
+    - INSTALL_FAILED
+    - UNINSTALL_SUCCESS
+    - UNINSTALL_FAILED
+  AppInstallVersion:
+    title: Version
+    type: object
+    properties:
+      app_version_id:
+        title: App version id
+        type: string
+        format: uuid
+      version_code:
+        title: Version code
+        type: string
+      build_number:
+        title: Build number
+        type: string
+      hash_string:
+        title: Hash string
+        type: string
+  AppPermission:
+    required:
+    - permission
+    - enterprise
+    type: object
+    properties:
+      id:
+        title: Id
+        type: string
+        format: uuid
+        readOnly: true
+      permission:
+        title: Permission
+        type: string
+        maxLength: 255
+        minLength: 1
+      grant_state:
+        title: Grant state
+        type: string
+        enum:
+        - Default
+        - Denied
+        - Granted
+      created_on:
+        title: Created on
+        type: string
+        format: date-time
+        readOnly: true
+      updated_on:
+        title: Updated on
+        type: string
+        format: date-time
+        readOnly: true
+      is_active:
+        title: Is active
+        type: boolean
+      enterprise:
+        title: Enterprise
+        type: string
+        format: url
+      app_version:
+        title: App version
+        type: string
+        format: url
+  AppVersion:
+    title: Application Version
+    required:
+    - permissions
+    - version_code
+    - enterprise
+    type: object
+    properties:
+      id:
+        title: Id
+        type: string
+        format: uuid
+        readOnly: true
+      installed_count:
+        title: Installed count
+        type: integer
+        readOnly: true
+      permissions:
+        type: array
+        items:
+          $ref: '#/definitions/AppPermission'
+      app_file:
+        title: App file
+        type: string
+        readOnly: true
+        format: url
+      app_icon:
+        title: App icon
+        type: string
+        readOnly: true
+        x-nullable: true
+        format: url
+      version_code:
+        title: Version code
+        type: string
+        maxLength: 50
+        minLength: 1
+      build_number:
+        title: Build number
+        type: string
+        maxLength: 100
+        minLength: 1
+        x-nullable: true
+      size_in_mb:
+        title: Size in mb
+        type: number
+      hash_string:
+        title: Hash string
+        type: string
+      release_name:
+        title: Release name
+        type: string
+        maxLength: 255
+        minLength: 1
+        x-nullable: true
+      release_comments:
+        title: Release comments
+        type: string
+        minLength: 1
+        x-nullable: true
+      release_track:
+        title: Release track
+        type: string
+        enum:
+        - Alpha
+        - Beta
+        - Production
+        x-nullable: true
+      created_on:
+        title: Created on
+        type: string
+        format: date-time
+        readOnly: true
+      updated_on:
+        title: Updated on
+        type: string
+        format: date-time
+        readOnly: true
+      min_sdk_version:
+        title: Min sdk version
+        type: string
+        maxLength: 10
+        minLength: 1
+        x-nullable: true
+      target_sdk_version:
+        title: Target sdk version
+        type: string
+        maxLength: 10
+        minLength: 1
+        x-nullable: true
+      is_enabled:
+        title: Is enabled
+        type: boolean
+      enterprise:
+        title: Enterprise
+        type: string
+        format: url
+      application:
+        title: Application
+        type: string
+        format: url
+      approval_status:
+        title: Application status
+        type: string
+        enum:
+        - AVAILABLE
+        - ACCEPTED
+        - APPROVED
+        - REJECTED
+  AppVersionDelete:
+    type: object
+    properties:
+      request_id:
+        title: Request id
+        type: string
+        format: uuid
+      templates:
+        description: List of linked templates to an app version
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              title: Id
+              description: Id of the linked template
+              type: integer
+            name:
+              title: Name
+              description: Name of the linked template
+              type: string
+  AppVersionV1:
+    title: Application Version V1
+    required:
+    - version_code
+    - enterprise
+    type: object
+    properties:
+      id:
+        title: Id
+        type: string
+        format: uuid
+        readOnly: true
+      installed_count:
+        title: Installed count
+        type: integer
+        readOnly: true
+      is_g_play:
+        title: Is google play
+        type: boolean
+      app_file:
+        title: App file url
+        type: string
+        format: url
+        x-nullable: true
+      app_icon:
+        title: App icon url
+        type: string
+        format: url
+        x-nullable: true
+      version_code:
+        title: Version code
+        type: string
+        maxLength: 50
+        minLength: 1
+        x-nullable: true
+      build_number:
+        title: Build number
+        type: string
+        maxLength: 100
+        minLength: 1
+        x-nullable: true
+      min_sdk_version:
+        title: Minimum sdk version
+        type: string
+        maxLength: 10
+        minLength: 1
+        x-nullable: true
+      enterprise:
+        title: Enterprise URL
+        type: string
+        format: url
+      application:
+        title: Application URL
+        type: string
+        format: url
+      release_name:
+        title: Name of the release
+        type: string
+        maxLength: 255
+        x-nullable: true
+      release_comments:
+        title: Release comments
+        type: string
+        x-nullable: true
+      approval_status:
+        title: Approval Status
+        type: string
+        maxLength: 50
+        enum:
+        - AVAILABLE
+        - ACCEPTED
+        - APPROVED
+        - REJECTED
+        default: APPROVED
+      release_date:
+        title: Release date
+        type: string
+        format: date-time
+      size_in_mb:
+        title: Size in mb
+        type: number
+        default: 0
+      is_default:
+        title: Is default
+        type: boolean
+        default: false
+      created_on:
+        title: Created on
+        type: string
+        format: date-time
+        readOnly: true
+  Application:
+    required:
+    - application_name
+    - package_name
+    - enterprise
+    type: object
+    properties:
+      id:
+        title: Id
+        type: string
+        format: uuid
+        readOnly: true
+      versions:
+        type: array
+        items:
+          $ref: '#/definitions/ApplicationVersion'
+      application_name:
+        title: Application name
+        type: string
+        maxLength: 255
+        minLength: 1
+      package_name:
+        title: Package name
+        type: string
+        maxLength: 255
+        minLength: 1
+      developer:
+        title: Developer
+        type: string
+        maxLength: 255
+        minLength: 1
+        x-nullable: true
+      category:
+        title: Category
+        type: string
+        maxLength: 255
+        minLength: 1
+        x-nullable: true
+      content_rating:
+        title: Content rating
+        type: string
+        format: decimal
+      compatibility:
+        title: Compatibility
+        type: string
+        minLength: 1
+        x-nullable: true
+      created_on:
+        title: Created on
+        type: string
+        format: date-time
+        readOnly: true
+      updated_on:
+        title: Updated on
+        type: string
+        format: date-time
+        readOnly: true
+      is_active:
+        title: Is active
+        type: boolean
+      is_hidden:
+        title: Is hidden
+        type: boolean
+      enterprise:
+        title: Enterprise
+        type: string
+        format: url
+  ApplicationV1:
+    required:
+    - application_name
+    - package_name
+    - enterprise
+    type: object
+    properties:
+      id:
+        title: Id
+        type: string
+        format: uuid
+        readOnly: true
+      latest_version:
+        $ref: '#/definitions/ApplicationVersionV1'
+      application_name:
+        title: Application name
+        type: string
+        maxLength: 255
+        minLength: 1
+      package_name:
+        title: Package name
+        type: string
+        maxLength: 255
+        minLength: 1
+        readOnly: true
+      is_hidden:
+        title: Is hidden
+        type: boolean
+      enterprise:
+        title: Enterprise
+        type: string
+        format: url
+  ApplicationVersion:
+    title: Version
+    type: object
+    properties:
+      id:
+        title: Id
+        type: string
+        format: uuid
+        readOnly: true
+      version_code:
+        title: Version code
+        type: string
+        maxLength: 50
+        minLength: 1
+      build_number:
+        title: Build number
+        type: string
+        maxLength: 100
+        minLength: 1
+        x-nullable: true
+      hash_string:
+        title: Hash string
+        type: string
+      min_sdk_version:
+        title: Min sdk version
+        type: string
+        maxLength: 10
+        minLength: 1
+        x-nullable: true
+      target_sdk_version:
+        title: Target sdk version
+        type: string
+        maxLength: 10
+        minLength: 1
+        x-nullable: true
+      download_url:
+        title: Url
+        type: string
+        format: url
+      icon_url:
+        title: Url for the icon
+        type: string
+        format: url
+      release_name:
+        title: Name of the release
+        type: string
+  ApplicationVersionV1:
+    title: Application Version V1
+    type: object
+    properties:
+      id:
+        title: Id
+        type: string
+        format: uuid
+        readOnly: true
+      version_code:
+        title: Version code
+        type: string
+        maxLength: 50
+        minLength: 1
+      build_number:
+        title: Build number
+        type: string
+        maxLength: 100
+        minLength: 1
+        x-nullable: true
+      hash_string:
+        title: Hash string
+        type: string
+      min_sdk_version:
+        title: Min sdk version
+        type: string
+        maxLength: 10
+        minLength: 1
+        x-nullable: true
+      target_sdk_version:
+        title: Target sdk version
+        type: string
+        maxLength: 10
+        minLength: 1
+        x-nullable: true
+      icon_url:
+        title: Url for the icon
+        type: string
+        format: url
+      release_name:
+        title: Name of the release
+        type: string
+  CommandArgs:
+    title: Command args
+    type: object
+    properties:
+      wipe_external_storage:
+        type: boolean
+        default: false
+      wipe_FRP:
+        type: boolean
+        default: true
+      brightness_value:
+        type: integer
+        minimum: 1
+        maximum: 100
+      stream:
+        $ref: '#/definitions/SettingsVolumeStreamEnum'
+      volume_level:
+        type: integer
+        minimum: 0
+        maximum: 100
+      wifi_state:
+        type: boolean
+      bluetooth_state:
+        type: boolean
+      rotate_state:
+        $ref: '#/definitions/SettingsRotateStateEnum'
+      gps_state:
+        $ref: '#/definitions/SettingsGPSStateEnum'
+      screen_off_timeout:
+        description: Value in seconds
+        type: integer
+        minimum: 5000
+        maximum: 1800000
+      app_version:
+        type: string
+      package_name:
+        type: string
+  CommandRequest:
+    required:
+    - command
+    type: object
+    properties:
+      command_args:
+        $ref: '#/definitions/CommandArgs'
+      command:
+        $ref: '#/definitions/DeviceCommandEnum'
+  Content:
+    required:
+    - id
+    type: object
+    properties:
+      id:
+        title: Id
+        description: Unique content Identifier
+        type: integer
+        readOnly: true
+      download_url:
+        title: Content download URL
+        description: URL to download the content
+        type: string
+        format: url
+      name:
+        title: Name
+        description: Name of the content
+        type: string
+      key:
+        title: Key
+        type: string
+        maxLength: 255
+        minLength: 1
+      is_dir:
+        title: Is Directory
+        type: boolean
+        default: false
+      kind:
+        title: Content kind
+        description: The mime type of the content
+        type: string
+        maxLength: 255
+        x-nullable: true
+      hash:
+        title: Content Hash
+        description: Hash string of the content
+        type: string
+      size:
+        title: Content Size
+        description: Size of the content in bytes
+        type: string
+        maxLength: 255
+      path:
+        title: Path
+        description: Path to the content
+        type: string
+      permissions:
+        title: Permissions
+        description: The permssion string for the content
+        type: string
+      tags:
+        title: Content tags
+        description: Tags for the content
+        type: array
+        items:
+          type: string
+          maxLength: 255
+      description:
+        title: Content description
+        description: Description for the content
+        type: string
+        x-nullable: true
+      created:
+        title: Created on
+        type: string
+        format: date-time
+        readOnly: true
+      modified:
+        title: Modified on
+        type: string
+        format: date-time
+        readOnly: true
+      enterprise:
+        title: Enterprise
+        description: URL of the enterprise resource
+        type: string
+        format: url
+      owner:
+        title: Owner
+        description: Owner of the content
+        type: object
+        properties:
+          id:
+            type: integer
+          username:
+            type: string
+  Device:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+      url:
+        type: string
+        format: url
+      device_name:
+        type: string
+      alias_name:
+        type: string
+        description: Device friendly name
+      policy_name:
+        type: string
+      status:
+        type: integer
+        format: int32
+        description: Current status of device
+      state:
+        type: integer
+        format: int32
+        description: Current state of device
+      current_command:
+        type: string
+        format: uuid
+        description: Current command associated with device
+      suid:
+        type: string
+        description: Device generated unique id
+      fcm_id:
+        type: string
+      enterprise:
+        type: string
+        format: url
+      policy:
+        type: string
+        format: url
+      user:
+        type: string
+        format: url
+      groups:
+        type: array
+        items:
+          type: string
+          format: url
+      tags:
+        type: array
+        items:
+          type: string
+      api_level:
+        type: integer
+        format: int32
+      template_name:
+        type: string
+      mqtt_id:
+        type: string
+      softwareInfo:
+        type: object
+      hardwareInfo:
+        type: object
+      displays:
+        type: object
+      networkInfo:
+        type: object
+      memoryInfo:
+        type: object
+      audioConstraints:
+        type: object
+      provisioned_on:
+        type: string
+        format: date-time
+      created_on:
+        type: string
+        format: date-time
+      updated_on:
+        type: string
+        format: date-time
+      emm_device:
+        $ref: '#/definitions/EmmDevice'
+      is_gms:
+        type: boolean
+        default: true
+      is_active:
+        type: boolean
+        default: true
+  DeviceApp:
+    required:
+    - app_name
+    - package_name
+    - device
+    type: object
+    properties:
+      id:
+        title: Id
+        type: string
+        format: uuid
+        readOnly: true
+      permissions:
+        type: array
+        items:
+          $ref: '#/definitions/DeviceAppPermission'
+      app_name:
+        title: App name
+        type: string
+        minLength: 1
+      package_name:
+        title: Package name
+        type: string
+        maxLength: 255
+        minLength: 1
+      whitelisted:
+        title: Whitelisted
+        type: boolean
+      is_data_clearable:
+        title: Data clearable
+        type: boolean
+      is_uninstallable:
+        title: Uninstallable
+        type: boolean
+      product_id:
+        title: Product id
+        type: string
+        maxLength: 255
+        minLength: 1
+        x-nullable: true
+      version_code:
+        title: Version code
+        type: string
+        maxLength: 128
+        minLength: 1
+        x-nullable: true
+      version_name:
+        title: Version name
+        type: string
+        maxLength: 128
+        minLength: 1
+        x-nullable: true
+      created_on:
+        title: Created on
+        type: string
+        format: date-time
+        readOnly: true
+      updated_on:
+        title: Updated on
+        type: string
+        format: date-time
+        readOnly: true
+      is_active:
+        title: Is active
+        type: boolean
+      device:
+        title: Device
+        type: string
+        format: uuid
+  DeviceAppPermission:
+    required:
+    - permission
+    type: object
+    properties:
+      id:
+        title: Id
+        type: string
+        format: uuid
+        readOnly: true
+      permission:
+        title: Permission
+        type: string
+        maxLength: 255
+        minLength: 1
+      grant_state:
+        title: Grant state
+        type: string
+        description: '* PERMISSION_GRANT_STATE_DEFAULT = 0
+
+          * PERMISSION_GRANT_STATE_DENIED = 1
+
+          * PERMISSION_GRANT_STATE_GRANTED = 2
+
+
+          For state details check [Android docs](https://developer.android.com/reference/android/app/admin/DevicePolicyManager#PERMISSION_GRANT_STATE_DEFAULT)
+
+          '
+        enum:
+        - PERMISSION_GRANT_STATE_DEFAULT
+        - PERMISSION_GRANT_STATE_DENIED
+        - PERMISSION_GRANT_STATE_GRANTED
+      created_on:
+        title: Created on
+        type: string
+        format: date-time
+        readOnly: true
+      updated_on:
+        title: Updated on
+        type: string
+        format: date-time
+        readOnly: true
+      is_active:
+        title: Is active
+        type: boolean
+      app:
+        title: App
+        type: string
+        format: uuid
+  DeviceCommand:
+    required:
+    - command
+    - enterprise
+    - device
+    type: object
+    properties:
+      id:
+        title: Id
+        type: string
+        format: uuid
+        readOnly: true
+      current_base_uri:
+        title: Current base uri
+        type: string
+        minLength: 1
+      command_args:
+        $ref: '#/definitions/CommandArgs'
+      action:
+        title: Action
+        type: string
+        enum:
+        - acknowledge
+        - in_progress
+        - success
+        - failed
+      schedule:
+        title: Schedule
+        type: string
+      group_schedule_id:
+        title: Group schedule id
+        type: string
+        format: uuid
+      command:
+        $ref: '#/definitions/DeviceCommandEnum'
+      state:
+        title: State
+        type: string
+        enum:
+        - Command Initiated
+        - Command Acknowledged
+        - Command In Progress
+        - Command TimeOut
+        - Command Success
+        - Command Failure
+        - Command Scheduled
+      details:
+        title: Details
+        type: string
+        x-nullable: true
+      created_on:
+        title: Created on
+        type: string
+        format: date-time
+        readOnly: true
+      updated_on:
+        title: Updated on
+        type: string
+        format: date-time
+        readOnly: true
+      enterprise:
+        title: Enterprise
+        type: string
+        format: url
+      device:
+        title: Device
+        type: string
+        format: url
+      group_command:
+        title: Group command
+        type: string
+        format: url
+        x-nullable: true
+      issued_by:
+        title: Issued by
+        type: string
+        format: url
+        x-nullable: true
+  DeviceCommandEnum:
+    type: string
+    description: "Command Options\n\n```\n* REBOOT: Reboot device\n* LOCK:  Lock device screen\n* INSTALL:  Install an app on device\n* UNINSTALL: Uninstall an app from device\n* WIPE: Wipe device\n* UPDATE_HEARTBEAT: Ping Device\n* SET_WIFI_STATE: wifi on/off\n* SET_BLUETOOTH_STATE: Bluetooth on/off\n* SET_ROTATION_STATE: Auto rotate setting\n* SET_GPS_STATE: GPS options\n* SET_BRIGHTNESS_SCALE: Brightness control\n* SET_STREAM_VOLUME: Volume control\n* SET_SCREEN_OFF_TIMEOUT: Screen timeout setting\n* ADD_TO_WHITELIST: Whitelist an installed sytem app\n* CLEAR_APP_DATA: Clear app data\n* CAPTURE_SCREENSHOT: Allows you to take a screenshot of the device's current screen. The \"tag\" is an optional param that can be set to corresponding screenshot. \n```\n"
+    enum:
+    - REBOOT
+    - LOCK
+    - INSTALL
+    - UPDATE_HEARTBEAT
+    - WIPE
+    - SET_WIFI_STATE
+    - SET_BLUETOOTH_STATE
+    - SET_ROTATION_STATE
+    - SET_GPS_STATE
+    - SET_BRIGHTNESS_SCALE
+    - SET_STREAM_VOLUME
+    - SET_SCREEN_OFF_TIMEOUT
+    - UNINSTALL
+    - ADD_TO_WHITELIST
+    - CLEAR_APP_DATA
+    - CAPTURE_SCREENSHOT
+  DeviceGroup:
+    required:
+    - name
+    type: object
+    properties:
+      id:
+        title: Id
+        description: Group id
+        type: string
+        format: uuid
+        readOnly: true
+      name:
+        title: Name
+        description: Group name
+        type: string
+      created_on:
+        title: Created on
+        description: Date and time of when the group was created
+        type: string
+        format: date-time
+        readOnly: true
+      enterprise:
+        title: Enterprise
+        description: Enterprise url
+        type: string
+        format: url
+        readOnly: true
+      parent:
+        title: Parent
+        description: Parent group url
+        type: string
+        format: url
+      device_count:
+        title: Device count
+        description: Count of devices in the group
+        type: integer
+        readOnly: true
+      path:
+        title: Path
+        description: Path of the group
+        type: string
+        readOnly: true
+      children_count:
+        title: Children count
+        description: Count of child groups
+        type: integer
+        readOnly: true
+  DeviceGroupPartialUpdate:
+    type: object
+    properties:
+      id:
+        title: Id
+        description: Group id
+        type: string
+        format: uuid
+        readOnly: true
+      name:
+        title: Name
+        description: Group name
+        type: string
+      created_on:
+        title: Created on
+        description: Date and time of when the group was created
+        type: string
+        format: date-time
+        readOnly: true
+      enterprise:
+        title: Enterprise
+        description: Enterprise url
+        type: string
+        format: url
+        readOnly: true
+      parent:
+        title: Parent
+        description: Parent group id
+        type: string
+        format: uuid
+      device_ids:
+        title: Device ids
+        type: array
+        description: Device ids
+        items:
+          type: string
+          format: uuid
+        uniqueItems: true
+      device_count:
+        title: Device count
+        description: Count of devices in the group
+        type: integer
+        readOnly: true
+      path:
+        title: Path
+        description: Path of the group
+        type: string
+        readOnly: true
+      children_count:
+        title: Children Count
+        description: Count of child groups
+        type: integer
+        readOnly: true
+  DeviceGroupUpdate:
+    required:
+    - name
+    type: object
+    properties:
+      id:
+        title: Id
+        description: Group id
+        type: string
+        format: uuid
+        readOnly: true
+      name:
+        title: Name
+        description: Group name
+        type: string
+      created_on:
+        title: Created on
+        description: Date and time of when the group was created
+        type: string
+        format: date-time
+        readOnly: true
+      enterprise:
+        title: Enterprise
+        description: Enterprise url
+        type: string
+        format: url
+        readOnly: true
+      parent:
+        title: Parent
+        description: Parent group id
+        type: string
+        format: uuid
+      device_ids:
+        title: Device ids
+        type: array
+        description: Devices ids
+        items:
+          type: string
+          format: uuid
+        uniqueItems: true
+      device_count:
+        title: Device count
+        type: integer
+        readOnly: true
+      path:
+        title: Path
+        type: string
+        description: Path of the group
+        readOnly: true
+      children_count:
+        title: Children Count
+        description: Count of child groups
+        type: integer
+        readOnly: true
+  DeviceStatus:
+    required:
+    - data
+    - device
+    - enterprise
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      data:
+        title: Data
+        type: string
+      created_on:
+        title: Created on
+        type: string
+        format: date-time
+        readOnly: true
+      device:
+        title: Device
+        type: string
+        format: url
+      enterprise:
+        title: Enterprise
+        type: string
+        format: url
+  EmmDevice:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      google_device_id:
+        type: string
+      managementType:
+        type: string
+      device:
+        type: string
+        format: uuid
+      google_user:
+        type: integer
+        format: int64
+      policy:
+        type: integer
+        format: int64
+      created_on:
+        type: string
+        format: date-time
+      updated_on:
+        type: string
+        format: date-time
+      is_active:
+        type: boolean
+        default: true
+  EnterprisePolicy:
+    required:
+    - name
+    - enterprise
+    - policy
+    type: object
+    properties:
+      uuid:
+        title: UUID
+        description: Unique Policy identifier
+        type: string
+        format: uuid
+        readOnly: true
+      enterprise:
+        title: Enterprise url
+        description: Url of the enterprise resource
+        type: string
+        format: url
+      url:
+        title: Policy URL
+        description: URL link to policy
+        type: string
+        format: url
+        readOnly: true
+      name:
+        title: Policy Name
+        description: Name of the Policy
+        type: string
+      description:
+        title: Policy Description
+        description: Details regarding the Policy
+        type: string
+      device_count:
+        title: Number of Devices with this policy applied
+        description: Count of Devices with this policy applied
+        type: integer
+        readOnly: true
+      google_policy_id:
+        title: Google policy id
+        description: Id of the Google policy
+        type: string
+        readOnly: true
+      policy:
+        $ref: '#/definitions/EnterprisePolicyData'
+      updated_on:
+        title: Updated On
+        type: string
+        format: date-time
+        description: Last-Updated Timestamp of Policy
+        readOnly: true
+      created_on:
+        title: Created on
+        description: Creation Timestamp of Policy
+        type: string
+        format: date-time
+        readOnly: true
+      is_active:
+        title: Policy Active status
+        description: Is this policy currently active
+        type: boolean
+  EnterprisePolicyData:
+    title: Policy Data
+    type: object
+    properties:
+      keyguardDisabled:
+        description: Should KeyGuard be disabled?
+        type: boolean
+      safeBootDisabled:
+        description: Should SafeBoot be disabled?
+        type: boolean
+      statusBarDisabled:
+        description: Should Status Bar be disabled?
+        type: boolean
+      factoryResetDisabled:
+        description: Should Factory Reset be disabled?
+        type: boolean
+      screenshotDisabled:
+        description: Should Screenshot capability be disabled?
+        type: boolean
+      usbConnectivityDisabled:
+        description: Should USB connectivity be disabled?
+        type: boolean
+      smsDisabled:
+        description: Should SMS functionality be disabled?
+        type: boolean
+      outgoingCallsDisabled:
+        description: Should Outgoing Calls be disabled?
+        type: boolean
+      cameraDisabled:
+        description: Should Camera be disabled?
+        type: boolean
+      nfcBeamDisabled:
+        description: Should NFC capability be disabled?
+        type: boolean
+      disablePlayStore:
+        description: Should Google Play Store be disabled on the device?
+        type: boolean
+      usbFileTransferDisabled:
+        description: Should USB File transfer capability be disabled?
+        type: boolean
+      tetheringDisabled:
+        description: Should USB Tethering capability be enabled?
+        type: boolean
+      dateTimeConfigDisabled:
+        description: Should Date/Time configuration capability be disabled?
+        type: boolean
+      appUninstallDisabled:
+        description: Should App uninstall capability be disabled?
+        type: boolean
+      googleAssistantDisabled:
+        description: Should Google Assistant feature be disabled?
+        type: boolean
+      disableLocalAppInstall:
+        description: Should Side-loading of Applications be disabled?
+        type: boolean
+      adbDisabled:
+        description: Should Android Debugger be disabled?
+        type: boolean
+      phonePolicy:
+        type: object
+        description: Rules regarding restricting calls from/to phone-numbers
+        properties:
+          incomingNumbers:
+            type: array
+            description: List of permitted incoming phone numbers to recieve calls from
+            items:
+              type: string
+              maxLength: 15
+          outgoingNumbers:
+            type: array
+            description: List of permitted outgoing phone numbers to make calls to
+            items:
+              type: string
+              maxLength: 15
+          dialer:
+            type: string
+            description: Pick a dialer - System default or Esper Dialer
+            enum:
+            - DEFAULT
+            - SHOONYA
+      frpGoogles:
+        description: Details regarding Factory Reset Protection capability. List of permitted Google People IDs, emails and such
+        type: array
+        items:
+          type: object
+          properties:
+            type:
+              description: Type of User account provided - USER or ADMIN
+              type: string
+              enum:
+              - USER
+              - ADMIN
+            email:
+              description: Email id to be used for Factory protection. This will be asked on the Device's UI
+              type: string
+              format: email
+            googleId:
+              description: Google People ID associated with the above email (https://developers.google.com/people/api/rest/v1/people/get)
+              type: string
+      googleAccountPermission:
+        description: Details regarding Google accounts to be associated with the device
+        type: object
+        properties:
+          maxAccount:
+            description: Maximum number of Google accounts to be associated with this device. (Max = 10)
+            type: integer
+          emails:
+            type: array
+            description: List of emails to be associated
+            items:
+              type: string
+              format: email
+          domains:
+            type: array
+            description: List of domains that can be associated
+            items:
+              type: string
+      devicePasswordPolicy:
+        description: Define the Password Policy for the device
+        type: object
+        properties:
+          passwordQuality:
+            description: What is the type of password quality to apply to the device?
+            type: string
+            enum:
+            - PASSWORD_QUALITY_ALPHABETIC
+            - PASSWORD_QUALITY_ALPHANUMERIC
+            - PASSWORD_QUALITY_BIOMETRIC_WEAK
+            - PASSWORD_QUALITY_COMPLEX
+            - PASSWORD_QUALITY_NUMERIC
+            - PASSWORD_QUALITY_NUMERIC_COMPLEX
+            - PASSWORD_QUALITY_SOMETHING
+            - PASSWORD_QUALITY_UNSPECIFIED
+      minimumPasswordLength:
+        description: What is the minimum length for your device's password
+        type: integer
+        minimum: 4
+      permissionPolicy:
+        description: What permission should be applied by default for all apps, henceforth?
+        type: string
+        enum:
+        - PERMISSION_POLICY_PROMPT
+        - PERMISSION_POLICY_AUTO_GRANT
+        - PERMISSION_POLICY_AUTO_DENY
+      deviceUpdatePolicy:
+        description: Configuration regarding Device OS Updates
+        type: object
+        properties:
+          type:
+            description: What type of installation is preferred?
+            enum:
+            - TYPE_INSTALL_AUTOMATIC
+            - TYPE_POSTPONE
+            - TYPE_INSTALL_WINDOWED
+            - TYPE_INSTALL_DISABLED
+            type: string
+          maintenanceStart:
+            type: integer
+            description: If the `type` is `TYPE_INSTALL_WINDOWED`, when should the maintenance start?
+          maintenanceEnd:
+            type: integer
+            description: If the `type` is `TYPE_INSTALL_WINDOWED`, when should the maintenance end?
+      settingsAccessLevel:
+        type: string
+        description: Type of Android settings app to be applied? Default System Settings or ESPER Settings App?
+        enum:
+        - SYSTEM
+        - SHOONYA
+        - NONE
+      settingsAppPassword:
+        type: string
+        description: Lock Password (optional) for the ESPER Settings app
+        format: password
+  EnterprisePolicyPartialUpdate:
+    type: object
+    properties:
+      uuid:
+        title: UUID
+        description: Unique Policy identifier
+        type: string
+        format: uuid
+        readOnly: true
+      enterprise:
+        title: Enterprise url
+        description: Url of the enterprise resource
+        type: string
+        format: url
+      url:
+        title: Policy URL
+        description: URL link to policy
+        type: string
+        format: url
+        readOnly: true
+      name:
+        title: Policy Name
+        description: Name of the Policy
+        type: string
+      description:
+        title: Policy Description
+        description: Details regarding the Policy
+        type: string
+      device_count:
+        title: Number of Devices with this policy applied
+        description: Count of Devices with this policy applied
+        type: integer
+        readOnly: true
+      policy:
+        $ref: '#/definitions/EnterprisePolicyData'
+      updated_on:
+        title: Updated On
+        type: string
+        format: date-time
+        description: Last-Updated Timestamp of Policy
+        readOnly: true
+      created_on:
+        title: Created on
+        description: Creation Timestamp of Policy
+        type: string
+        format: date-time
+        readOnly: true
+      is_active:
+        title: Policy Active status
+        description: Is this policy currently active
+        type: boolean
+      google_policy_id:
+        title: Google policy id
+        description: Id of the Google policy
+        type: string
+        readOnly: true
+  EnterpriseUpdateV1:
+    type: object
+    properties:
+      id:
+        title: Id
+        description: Id of the enterprise
+        type: string
+        format: uuid
+        readOnly: true
+      name:
+        title: Enterprise Name
+        description: Name of the enterprise
+        type: string
+        maxLength: 255
+        minLength: 1
+      registered_name:
+        title: Registered name
+        description: Registered Name of the enterprise
+        type: string
+        maxLength: 255
+        minLength: 1
+      registered_address:
+        title: Registered address
+        description: Registered address of the enterprise.
+        type: string
+        maxLength: 255
+        minLength: 1
+      location:
+        title: Enterprise location
+        description: City, State, Country location of the enterprise
+        type: string
+        maxLength: 255
+        minLength: 1
+      zipcode:
+        title: Enterprise zipcode
+        description: Description of the enterprise
+        type: string
+        maxLength: 8
+        minLength: 1
+      contact_person:
+        title: Contact person
+        description: Person who is the point of contact for the enterprise
+        type: string
+        maxLength: 255
+        minLength: 1
+        x-nullable: true
+      contact_number:
+        title: Contact number
+        description: Contact number of the enterprise
+        type: string
+        maxLength: 20
+        minLength: 1
+        x-nullable: true
+      contact_email:
+        title: Contact email
+        description: Contact email address of the enterprise
+        type: string
+        format: email
+        maxLength: 254
+        minLength: 1
+  EnterpriseV1:
+    required:
+    - id
+    - name
+    - short_code
+    type: object
+    properties:
+      id:
+        title: Id
+        description: Id of the enterprise
+        type: string
+        format: uuid
+        readOnly: true
+      name:
+        title: Name
+        description: Name of the enterprise
+        type: string
+        maxLength: 255
+        minLength: 1
+      short_code:
+        title: Short code
+        description: A short 10-char representation of the enterprise, separated by hyphens. Field is optional, as system will auto-generate a value if none is provided.
+        type: string
+        maxLength: 10
+        minLength: 1
+        readOnly: true
+      registered_name:
+        title: Registered name of the enterprise
+        description: Registered Name of the enterprise
+        type: string
+        maxLength: 255
+        minLength: 1
+      registered_address:
+        title: Registered address
+        description: Registered address of the enterprise.
+        type: string
+        maxLength: 255
+        minLength: 1
+      location:
+        title: Enterprise location
+        description: City, State, Country location of the enterprise
+        type: string
+        maxLength: 255
+        minLength: 1
+      zipcode:
+        title: Enterprise zipcode
+        description: Zip code of enterprise location
+        type: string
+        maxLength: 8
+        minLength: 1
+      contact_person:
+        title: Contact person
+        description: Person who is the point of contact for the enterprise
+        type: string
+        maxLength: 255
+        minLength: 1
+        x-nullable: true
+      contact_number:
+        title: Contact number
+        description: Contact number of the enterprise
+        type: string
+        maxLength: 20
+        minLength: 1
+        x-nullable: true
+      contact_email:
+        title: Contact email
+        description: Contact email address of the enterprise
+        type: string
+        format: email
+        maxLength: 254
+        minLength: 1
+      emm:
+        title: Google EMM
+        description: This field will have details about emm enrollment if the enterprise is emm enrolled
+        type: object
+        properties:
+          google_enterprise_id:
+            type: string
+        maxLength: 50
+        minLength: 1
+        x-nullable: true
+        readOnly: true
+      created_on:
+        title: Created on
+        description: Date and time of when this resource was created
+        type: string
+        format: date-time
+        readOnly: true
+      updated_on:
+        title: Updated on
+        description: Date and time of when this resource was updated
+        type: string
+        format: date-time
+        readOnly: true
+  ErrorResponse:
+    type: object
+    properties:
+      errors:
+        title: Messages describing the error
+        type: array
+        items:
+          type: string
+      message:
+        title: Message describing the error
+        type: string
+      status:
+        title: alias name
+        type: integer
+  EventSubscription:
+    required:
+    - enterprise
+    - aws_account_id
+    type: object
+    properties:
+      id:
+        title: Id
+        type: string
+        format: uuid
+        readOnly: true
+      aws_account_id:
+        title: AWS account Id
+        type: string
+        minLength: 1
+      sns_topic_arn:
+        title: SNS topic arn
+        type: string
+        readOnly: true
+      created_on:
+        title: Created on
+        type: string
+        format: date-time
+        readOnly: true
+      updated_on:
+        title: Updated on
+        type: string
+        format: date-time
+        readOnly: true
+      is_subscribed:
+        title: Is subscribed
+        type: boolean
+      enterprise:
+        title: Enterprise
+        type: string
+        format: url
+  EventSubscriptionArgs:
+    required:
+    - aws_account_id
+    type: object
+    properties:
+      aws_account_id:
+        title: AWS account Id
+        type: string
+        minLength: 1
+  Geofence:
+    required:
+    - name
+    - latitude
+    - longitude
+    type: object
+    properties:
+      id:
+        title: Geofence id
+        description: id of the geofence
+        type: string
+        format: uuid
+        readOnly: true
+      name:
+        title: Geofence name
+        description: Name of the geofence
+        type: string
+      description:
+        title: Geofence description
+        description: A description about the geofence
+        type: string
+      enterprise:
+        title: Enterprise id
+        description: id of the enterprise resource
+        type: string
+        format: uuid
+        readOnly: true
+      latitude:
+        title: Geofence latitude
+        description: Latitude corresponding to the geofence
+        type: string
+        format: decimal
+      longitude:
+        title: Geofence longitude
+        description: Longitude corresponding to the geofence
+        type: string
+        format: decimal
+      radius:
+        title: Geofence radius
+        description: The radius within which the geofence should be applied
+        type: integer
+      radius_unit:
+        title: Unit of radius
+        description: The unit in which the radius is taken, eg - kilometers, meters etc
+        type: string
+        enum:
+        - KILOMETERS
+        - METERS
+        - MILES
+      device_actions:
+        title: Device Actions
+        description: The actions to be performed on the device
+        type: array
+        items:
+          type: string
+          enum:
+          - LOCK_DOWN
+          - BEEP
+      device_count:
+        title: Device count
+        description: Number of devices
+        type: integer
+        readOnly: true
+      created_by:
+        title: Created by
+        description: The user who created the geofence
+        type: string
+        readOnly: true
+      created_on:
+        title: Creation date and time
+        description: Date and time of when the geofence was created
+        type: string
+        format: date-time
+        readOnly: true
+      updated_on:
+        title: Updation date and time
+        description: Date and time of when the geofence was updated
+        type: string
+        format: date-time
+        readOnly: true
+  GeofenceUpdate:
+    type: object
+    properties:
+      name:
+        title: Geofence name
+        description: Name of the geofence
+        type: string
+      description:
+        title: Geofence description
+        description: A description about the geofence
+        type: string
+      latitude:
+        title: Geofence latitude
+        description: Latitude corresponding to the geofence
+        type: string
+        format: decimal
+      longitude:
+        title: Geofence longitude
+        description: Longitude corresponding to the geofence
+        type: string
+        format: decimal
+      radius:
+        title: Geofence radius
+        description: The radius within which the geofence should be applied
+        type: integer
+      radius_unit:
+        title: Unit of radius
+        description: The unit in which the radius is taken, eg - kilometers, meters etc
+        type: string
+        enum:
+        - KILOMETERS
+        - METERS
+        - MILES
+      device_actions:
+        title: Device Actions
+        description: The actions to be performed on the device
+        type: array
+        items:
+          type: string
+          enum:
+          - LOCK_DOWN
+          - BEEP
+  GroupCommand:
+    required:
+    - command
+    - enterprise
+    - group
+    type: object
+    properties:
+      id:
+        title: Id
+        type: string
+        format: uuid
+        readOnly: true
+      schedule:
+        title: Schedule
+        type: string
+      command:
+        $ref: '#/definitions/GroupCommandEnum'
+      command_args:
+        $ref: '#/definitions/GroupCommandArgs'
+      state:
+        title: State
+        type: string
+        enum:
+        - Command Initiated
+        - Command Success
+        - Command Failure
+        - Command Scheduled
+      details:
+        title: Details
+        type: string
+        x-nullable: true
+      created_on:
+        title: Created on
+        type: string
+        format: date-time
+        readOnly: true
+      updated_on:
+        title: Updated on
+        type: string
+        format: date-time
+        readOnly: true
+      is_active:
+        title: Is active
+        type: boolean
+      enterprise:
+        title: Enterprise
+        type: string
+        format: url
+      group:
+        title: Group
+        type: string
+        format: url
+      issued_by:
+        title: Issued by
+        type: string
+        format: uri
+        x-nullable: true
+  GroupCommandArgs:
+    title: Command args
+    type: object
+    properties:
+      app_version:
+        type: string
+  GroupCommandEnum:
+    type: string
+    description: 'Group Command Options
+
+
+      ```
+
+      * REBOOT: Reboot device
+
+      * LOCK:  Lock device screen
+
+      * INSTALL:  Install an app on device
+
+      * UPDATE_HEARTBEAT: Ping Device
+
+      ```
+
+      '
+    enum:
+    - REBOOT
+    - LOCK
+    - INSTALL
+    - UPDATE_HEARTBEAT
+  GroupCommandRequest:
+    required:
+    - command
+    type: object
+    properties:
+      command_args:
+        $ref: '#/definitions/GroupCommandArgs'
+      command:
+        $ref: '#/definitions/GroupCommandEnum'
+  InstallDevices:
+    required:
+    - id
+    type: object
+    properties:
+      id:
+        title: Id
+        type: string
+        format: uuid
+      device_name:
+        title: Device name
+        type: string
+      alias_name:
+        title: alias name
+        type: string
+        x-nullable: true
+      group_name:
+        title: Group name
+        type: string
+        maxLength: 255
+        minLength: 1
+  SettingsGPSStateEnum:
+    type: integer
+    description: 'Device settings GPS state enum
+
+
+      ```
+
+      * LOCATION_MODE_HIGH_ACCURACY = 0
+
+      * LOCATION_MODE_SENSORS_ONLY = 1
+
+      * LOCATION_MODE_BATTERY_SAVING = 2
+
+      * LOCATION_MODE_OFF = 3
+
+      ```
+
+      '
+    enum:
+    - 0
+    - 1
+    - 2
+    - 3
+  SettingsRotateStateEnum:
+    type: integer
+    description: 'Device settings rotate state enum
+
+
+      ```
+
+      * AUTO = 0
+
+      * PORTRAIT_ONLY = 1
+
+      * LANDSCAPE_ONLY = 2
+
+      ```
+
+      '
+    enum:
+    - 0
+    - 1
+    - 2
+  SettingsVolumeStreamEnum:
+    type: integer
+    description: 'Device settings volume stream enum
+
+
+      ```
+
+      * STREAM_RING = 0
+
+      * STREAM_NOTIFICATION = 1
+
+      * STREAM_ALARM = 2
+
+      * STREAM_MUSIC = 3
+
+      ```
+
+      '
+    enum:
+    - 0
+    - 1
+    - 2
+    - 3
+  TokenInfoV1:
+    required:
+    - id
+    - enterprise
+    type: object
+    properties:
+      id:
+        title: Id
+        description: Token id
+        type: string
+        format: integer
+        readOnly: true
+      enterprise:
+        title: Enterprise id
+        description: Id of the enterprise resource
+        type: string
+        format: uuid
+        readOnly: true
+      user:
+        title: User id
+        description: Id of the user resource
+        type: string
+        readOnly: true
+      developer_app:
+        title: Developer app id
+        description: Id of the developer app resource that you created using the esper dev console
+        type: string
+        format: uuid
+        readOnly: true
+      source_refresh_token:
+        title: Refresh token
+        description: The refresh token is used to refresh your expired API token
+        type: string
+        readOnly: true
+      token:
+        title: API Token
+        description: API token for accessing esper APIs
+        type: string
+        readOnly: true
+      expires_on:
+        title: API token expiry
+        description: Date and time of when your API token will get expired
+        type: string
+        format: date-time
+        readOnly: true
+      scope:
+        title: Scope of API token
+        description: This defines what access scopes does your API token has
+        type: array
+        items:
+          type: string
+        readOnly: true
+      created_on:
+        title: Created on
+        description: Date and time of when this resource was created
+        type: string
+        format: date-time
+        readOnly: true
+      updated_on:
+        title: Updated on
+        description: Date and time of when this resource was updated
+        type: string
+        format: date-time
+        readOnly: true
+  TokenRenewV0:
+    type: object
+    properties:
+      id:
+        title: Token id
+        description: Id of the token
+        type: string
+        format: integer
+        readOnly: true
+      user:
+        title: User id
+        description: Id of the user resource
+        type: string
+        readOnly: true
+      enterprise:
+        title: Enterprise id
+        description: Id of the enterprise resource
+        type: string
+        format: uuid
+        readOnly: true
+      token:
+        title: API Token
+        description: API token for accessing esper APIs
+        type: string
+        readOnly: true
+      expires_at:
+        title: API token expiry
+        description: Date and time of when your API token will get expired
+        type: string
+        format: date-time
+        readOnly: true
+      developerapp:
+        title: Developer app id
+        description: Id of the developer app resource that you created using the esper dev console
+        type: string
+        format: uuid
+        readOnly: true
+      scope:
+        title: Scope of API token
+        description: This defines what access scopes your API token has
+        type: string
+        readOnly: true
+      created_on:
+        title: Created on
+        description: Date and time of when this resource was created
+        type: string
+        format: date-time
+        readOnly: true
+      updated_on:
+        title: Updated on
+        description: Date and time of when this resource was updated
+        type: string
+        format: date-time
+        readOnly: true
+  V0CommandArgs:
+    title: Command args
+    type: object
+    properties:
+      device_alias_name:
+        description: Alternate human-readable name for your Device
+        type: string
+      custom_settings_config:
+        description: Managed configurations for your device (passed as JSON object)
+        type: object
+      app_version:
+        description: The version id of app uploaded on Esper
+        type: string
+      package_name:
+        description: The app package name uploaded on Esper
+        type: string
+      policy_url:
+        description: The URL to the policy
+        type: string
+      wifi_access_points:
+        description: Wifi access points for the device (passed as JSON object)
+        type: object
+      state:
+        description: LOCKED/UNLOCKED
+        type: string
+      message:
+        description: Message to be added with command
+        type: string
+      app_state:
+        description: The state of app - SHOW/HIDE/DISABLE
+        type: string
+      bluetooth_state:
+        description: The state of bluetooth - ON/OFF
+        type: boolean
+      brightness_value:
+        description: The brightness value of a device(1-100)
+        type: integer
+      gps_state:
+        description: The GPS state of a device. Should be either 0, 1, 2, 3 or 4 (LOCATION_MODE_HIGH_ACCURACY = 0, LOCATION_MODE_SENSORS_ONLY = 1, LOCATION_MODE_BATTERY_SAVING = 2, LOCATION_MODE_OFF = 3, LOCATION_MODE_ON = 4)
+        type: integer
+      rotate_state:
+        description: The screen orientation of a device. Should be either 0, 1 or 2 (0 = AUTO, 1 = PORTRAIT_ONLY, 2 = LANDSCAPE_ONLY)
+        type: integer
+      screen_off_timeout:
+        description: The value for screen timeout of a device. Should be either -1 or between 5000 and 1800000
+        type: integer
+      stream:
+        description: The value of the volume stream. Should be either 0(Ring), 1(Notification), 2(Alarm) or 3(Music)
+        type: integer
+      volume_level:
+        description: The level of volume. Should be a value from 0 to 100
+        type: integer
+      timezone_string:
+        description: The timezone of a device. Should be a valid timezone string
+        type: integer
+      wifi_state:
+        description: The state of WIFI - ON/OFF
+        type: boolean
+      wifi_revert_timeout:
+        description: The WIFI revert timeout. Should be greater than or equal to 1
+        type: integer
+  V0CommandRequest:
+    type: object
+    properties:
+      id:
+        title: Id
+        description: Unique command request identifier
+        type: string
+        format: uuid
+        readOnly: true
+      enterprise:
+        title: Enterperise ID
+        description: Esper account identifier
+        type: string
+        format: uuid
+        readOnly: true
+      command_type:
+        type: string
+        description: "Identifies the type of command\n\n```\n* DEVICE: command request is meant for devices\n* GROUP: command request is meant for groups\n* DYNAMIC: command request is meant for dynamic set of devices\n  i.e subset of devices from different groups or otherwise.\n```\n"
+        enum:
+        - DEVICE
+        - GROUP
+        - DYNAMIC
+      devices:
+        type: array
+        description: list of devices to run commands
+        items:
+          type: string
+          format: uuid
+        minItems: 0
+        maxItems: 500
+      groups:
+        type: array
+        description: list of groups to run commands
+        items:
+          type: string
+          format: uuid
+        minItems: 0
+        maxItems: 500
+      device_type:
+        type: string
+        description: "Type of devices to run commands on\n\n```\n* active: Run commands on currently online devices\n* inactive: Run commands on currently offline devices\n* all: Run commands on all the devices.\n  Commands will be queued for offline devices until they come back online.\n```\n"
+        default: active
+        enum:
+        - active
+        - inactive
+        - all
+      command:
+        $ref: '#/definitions/V0DeviceCommandEnum'
+      command_args:
+        $ref: '#/definitions/V0CommandArgs'
+      schedule:
+        $ref: '#/definitions/V0CommandScheduleEnum'
+      schedule_args:
+        $ref: '#/definitions/V0CommandScheduleArgs'
+      issued_by:
+        type: string
+        format: url
+        description: command is issued by this user
+        readOnly: true
+      created_on:
+        title: Created on
+        description: Timestamp of command request
+        type: string
+        format: date-time
+        readOnly: true
+      status:
+        title: Current Status
+        description: Show creent status of commands issued during in this request
+        type: array
+        items:
+          $ref: '#/definitions/V0CommandRequestStatus'
+        readOnly: true
+  V0CommandRequestStatus:
+    type: object
+    properties:
+      state:
+        title: Command State
+        description: Current State of command
+        type: string
+        format: uuid
+      total:
+        title: Count
+        description: No of commands currently in this state
+        type: integer
+        format: int64
+  V0CommandScheduleArgs:
+    title: Command Schedule Arguments
+    type: object
+    properties:
+      name:
+        type: string
+      start_datetime:
+        type: string
+        format: date-time
+      end_datetime:
+        type: string
+        format: date-time
+      time_type:
+        $ref: '#/definitions/V0CommandScheduleArgsTimeTypeEnum'
+      window_start_time:
+        type: string
+      window_end_time:
+        type: string
+      days:
+        type: array
+        items:
+          type: string
+  V0CommandScheduleArgsTimeTypeEnum:
+    type: string
+    description: 'The Time-Type argument, in Schedule args, is to indicate which timezone the Command Framework should utilize when scheduling the command.
+
+      Following Schedule Args for Time-Type are supported:
+
+
+      ```
+
+      * CONSOLE: Use the local timezone of the user creating the schedule.
+
+      * DEVICE: Use the local timezone of the device, to which the command is issued, wherever it may be.
+
+      ```
+
+      '
+    enum:
+    - console
+    - device
+  V0CommandScheduleEnum:
+    type: string
+    description: 'Following Schedule types are supported
+
+
+      ```
+
+      * IMMEDIATE: Schedule the command to execcute Immediately
+
+      * WINDOW: Schedule the command to execute within the given window
+
+      * RECURRING: Schedule the command to execute repeatedly, within given parameters
+
+      ```
+
+      '
+    enum:
+    - IMMEDIATE
+    - WINDOW
+    - RECURRING
+  V0CommandStatus:
+    type: object
+    properties:
+      id:
+        title: Id
+        description: Unique command identifier
+        type: string
+        format: uuid
+        readOnly: true
+      request:
+        title: Request Id
+        description: Request Id associated with this command
+        type: string
+        format: uuid
+        readOnly: true
+      device:
+        title: Device
+        description: Device associated with this command
+        type: string
+        format: url
+        readOnly: true
+      state:
+        type: string
+        description: Current state of the command
+        enum:
+        - Command Queued
+        - Command Initiated
+        - Command Acknowledged
+        - Command In Progress
+        - Command TimeOut
+        - Command Success
+        - Command Failure
+        - Command Scheduled
+        - Command Cancelled
+      reason:
+        type: string
+        description: details briefing the reason for current command state
+      created_on:
+        title: Created on
+        description: Timestamp of command creation
+        type: string
+        format: date-time
+        readOnly: true
+      updated_on:
+        title: Updated on
+        description: Last updated timestamp of command
+        type: string
+        format: date-time
+        readOnly: true
+  V0DeviceCommandEnum:
+    type: string
+    description: "Following commands are supported\n\n```\n* ADD_TO_WHITELIST: Whitelist an installed sytem app. Requires `package_name` in command arguments where `package_name` is the app package uploaded on Esper \n* ADD_WIFI_AP : Add wifi access points for device. Requires `wifi_access_points` in command arguments where `wifi_access_points` is the data with access points\n* CLEAR_APP_DATA : Clear data for an installed app. Requires `package_name` in command arguments where `package_name` is the app package uploaded on Esper \n* INSTALL: Install an app on a device. Requires `app_version` in command arguments where `app_version` is the version id of app uploaded on Esper\n* LOCK: Lock device screen\n* REBOOT: Reboot a device\n* REMOVE_FROM_WHITELIST : Remove an installed system app from whitelist. Requires `package_name` in command arguments where `package_name` is the app package uploaded on Esper \n* REMOVE_WIFI_AP : Remove Wifi access points for device. Requires `wifi_access_points` in command arguments where `wifi_access_points` is the data with access points\n* SET_APP_PERMISSION : Set permission for an installed app. Requires `package_name`, `grant_state`, `permission` in command arguments where `package_name` is the app package uploaded on Esper, `grant_state` should be \"PERMISSION_GRANT_STATE_DEFAULT\", \"PERMISSION_GRANT_STATE_DENIED\", \"PERMISSION_GRANT_STATE_GRANTED\" and `permission` is a valid permission\n* SET_APP_STATE : Set the state of an app - SHOW/HIDE/DISABLE. Requries `app_state` and `package_name` in command arguments where `app_state` is the state of app and `package_name` is the app package uploaded on Esper\n* SET_BLUETOOTH_STATE : Set bluetooth state (ON/OFF) for device. Requires `bluetooth_state` in command arguments where `bluetooth_state` is a boolean.\n* SET_BRIGHTNESS_SCALE : Set brightness for device. Requires `brightness_value` in command arguments where `brightness_value` is an integer (1-100).\n* SET_DEVICE_LOCKDOWN_STATE : Set lockdown state for a device. Requires `state` and `message` in command arguments where `state` is LOCKED/UNLOCKED and `message` is the message to be added with command\n* SET_GPS_STATE :Set the GPS state for a device. Requires `gps_state` in command arguments where `gps_state` should be either 0, 1, 2, 3 or 4 (LOCATION_MODE_HIGH_ACCURACY = 0, LOCATION_MODE_SENSORS_ONLY = 1, LOCATION_MODE_BATTERY_SAVING = 2, LOCATION_MODE_OFF = 3, LOCATION_MODE_ON = 4)\n* SET_KIOSK_APP : Command to set the Kiosk app for a device. Requires `package_name` in command arguments where `package_name` is the app package uploaded on Esper  \n* SET_NEW_POLICY : Apply policy on device. Requires `policy_url` in command arguments where `policy_url` is the URL to the policy \n* SET_ROTATION_STATE : Set screen orientation. Requires `rotate_state` in command arguments where `rotate_state` should be either 0, 1 or 2 (0 = AUTO, 1 = PORTRAIT_ONLY, 2 = LANDSCAPE_ONLY)\n* SET_SCREEN_OFF_TIMEOUT: Set screen off timeout for a device. Requires `screen_off_timeout` in command arguments where `screen_off_timeout` should be either -1 or between 5000 and 1800000\n* SET_STREAM_VOLUME : Set strema volume for a device. Requires `stream` and `volume_level` in command arguments where `stream` should be either 0(Ring), 1(Notification), 2(Alarm) or 3(Music) and `volume_level` should be a value from 0 to 100\n* SET_TIMEZONE : Set the timezone for a device. Requires `timezone_string` in command arguments where `timezone_string` is a valid string representing the timezone\n* SET_WIFI_STATE : Set the wifi state (ON/OFF) for a device. Requires `wifi_state` in command arguments where `wifi_state` is a boolean. \n* UNINSTALL: Uninstall an app from device. Requires `package_name` in command arguments where `package_name` is the app package uploaded on Esper\n* UPDATE_DEVICE_CONFIG: Push additional configurations to the Device\n* UPDATE_HEARTBEAT: Ping a device\n* UPDATE_LATEST_DPC : Prompt device to update the DPC app to the latest versions.\n* WIPE : Wipes the device.\n```\n"
+    enum:
+    - ADD_TO_WHITELIST
+    - ADD_WIFI_AP
+    - CLEAR_APP_DATA
+    - INSTALL
+    - LOCK
+    - REBOOT
+    - REMOVE_FROM_WHITELIST
+    - REMOVE_WIFI_AP
+    - SET_APP_PERMISSION
+    - SET_APP_STATE
+    - SET_BLUETOOTH_STATE
+    - SET_BRIGHTNESS_SCALE
+    - SET_DEVICE_LOCKDOWN_STATE
+    - SET_GPS_STATE
+    - SET_KIOSK_APP
+    - SET_NEW_POLICY
+    - SET_ROTATION_STATE
+    - SET_SCREEN_OFF_TIMEOUT
+    - SET_STREAM_VOLUME
+    - SET_TIMEZONE
+    - SET_WIFI_STATE
+    - UNINSTALL
+    - UPDATE_DEVICE_CONFIG
+    - UPDATE_HEARTBEAT
+    - UPDATE_LATEST_DPC
+    - WIPE

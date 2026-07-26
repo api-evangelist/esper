@@ -1,0 +1,24 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Esper Manage API
+  version: 1.0.0
+extends: openapi/esper-manage-openapi-original.yml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-rating: 3
+    x-apievangelist-notes: >-
+      First-party Swagger 2.0 spec bundled from github.com/esper-io/esper-api-spec.
+      Auth is a tenant Bearer API key; errors use a custom envelope (not RFC 9457);
+      list endpoints paginate with limit/offset. No documented idempotency or
+      rate-limit signaling. Event delivery is via AWS event subscriptions.
+- target: $.info
+  update:
+    x-artifacts:
+      authentication: authentication/esper-authentication.yml
+      conventions: conventions/esper-conventions.yml
+      errors: errors/esper-problem-types.yml
+      data_model: data-model/esper-data-model.yml
+      lifecycle: lifecycle/esper-lifecycle.yml
+      webhooks: asyncapi/esper-events-webhooks.yml
+      packages: packages/esper-packages.yml

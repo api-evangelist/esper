@@ -1,0 +1,32 @@
+generated: '2026-07-19'
+method: searched
+source: https://github.com/esper-io/esper-cli + https://help.esper.io/hc/en-us/articles/12339952516497-Esper-CLI
+name: espercli
+official: true
+repo: https://github.com/esper-io/esper-cli
+docs: https://help.esper.io/hc/en-us/articles/12339952516497-Esper-CLI
+install:
+- method: pip
+  command: pip install espercli
+description: >-
+  Official Esper command line tool to manage Esper Manage resources from the
+  terminal, wrapping the Esper Manage APIs. Configure once with an enterprise
+  and API key, then operate on devices, groups, apps and enterprise settings.
+commands:
+- group: configure
+  description: Set up CLI credentials (enterprise, API key, server host).
+- group: enterprise
+  description: View and update enterprise account settings.
+- group: device
+  description: List, show and act on devices; run device commands.
+- group: group
+  description: Create and manage device groups; run group commands.
+- group: app
+  description: Upload, list and manage applications and versions.
+- group: device-command
+  description: Trigger and track device/group commands.
+- group: token
+  description: Show/renew API token information.
+notes: >-
+  Command groups are captured from the official CLI docs; run `espercli --help`
+  for the authoritative, versioned surface.
