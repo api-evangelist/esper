@@ -457,6 +457,12 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: AgentSkill
+  url: skills/esper-deploy-app-to-group.md
+- type: MCPServer
+  url: mcp/esper-mcp.yml
+- type: Overlay
+  url: overlays/esper-manage-overlay.yaml
 - type: TrustCenter
   url: security/esper-trust-center.yml
 - type: Compliance
