@@ -1,0 +1,873 @@
+{
+  "item": [
+    {
+      "id": "c9588fe4-32a0-4d94-ae8e-44d7dcd4eba9",
+      "name": "Geofence",
+      "description": {
+        "content": "APIs for geofence management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "55638b68-3310-455f-9943-7451465a1e9a",
+          "name": "List Geofences in Enterprise",
+          "request": {
+            "name": "List Geofences in Enterprise",
+            "description": {
+              "content": "API to view all the geofences in an enterprise",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v0",
+                "enterprise",
+                ":enterprise_id",
+                "geofence",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "A search term."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Number of results to return per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "The initial index from which to return the results."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "enterprise_id",
+                  "description": "(Required) A UUID string identifying the enterprise."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3a974e37-01b4-4825-8de6-f98548544886",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "enterprise",
+                    ":enterprise_id",
+                    "geofence",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "enterprise_id",
+                      "description": "(Required) A UUID string identifying the enterprise."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 7495,\n  \"results\": [\n    {\n      \"name\": \"string\",\n      \"latitude\": \"string\",\n      \"longitude\": \"string\",\n      \"id\": \"653872ae-23e4-99cb-0883-b7837bcdb286\",\n      \"description\": \"string\",\n      \"enterprise\": \"cf1d3e5e-51ba-67e5-4bdb-85382f456352\",\n      \"radius\": 98,\n      \"radius_unit\": \"METERS\",\n      \"device_actions\": [\n        \"BEEP\",\n        \"BEEP\"\n      ],\n      \"device_count\": 3684,\n      \"created_by\": \"string\",\n      \"created_on\": \"1971-04-29T05:31:04.021Z\",\n      \"updated_on\": \"1981-03-21T04:52:23.232Z\"\n    },\n    {\n      \"name\": \"string\",\n      \"latitude\": \"string\",\n      \"longitude\": \"string\",\n      \"id\": \"8647228a-e2c5-29fa-fe96-b1d4df6b48f9\",\n      \"description\": \"string\",\n      \"enterprise\": \"29513a9e-b4a0-0036-f8b1-0fc1ad2c807c\",\n      \"radius\": 6412,\n      \"radius_unit\": \"MILES\",\n      \"device_actions\": [\n        \"BEEP\",\n        \"LOCK_DOWN\"\n      ],\n      \"device_count\": 2059,\n      \"created_by\": \"string\",\n      \"created_on\": \"1952-12-10T16:59:24.355Z\",\n      \"updated_on\": \"1964-10-12T01:47:53.416Z\"\n    }\n  ],\n  \"next\": \"string\",\n  \"previous\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "abef501e-e80e-4a10-9832-4282b9fc7a68",
+          "name": "Create a geofence",
+          "request": {
+            "name": "Create a geofence",
+            "description": {
+              "content": "Returns Geofence instance",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v0",
+                "enterprise",
+                ":enterprise_id",
+                "geofence",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "enterprise_id",
+                  "description": "(Required) A UUID string identifying the enterprise."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"latitude\": \"<decimal>\",\n  \"longitude\": \"<decimal>\",\n  \"description\": \"<string>\",\n  \"radius\": \"<integer>\",\n  \"radius_unit\": \"<string>\",\n  \"device_actions\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7b07fc32-1d18-41e3-9e83-959b7e85fa3b",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "enterprise",
+                    ":enterprise_id",
+                    "geofence",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "enterprise_id",
+                      "description": "(Required) A UUID string identifying the enterprise."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"<string>\",\n  \"latitude\": \"<decimal>\",\n  \"longitude\": \"<decimal>\",\n  \"id\": \"3f3d3d77-a32e-533e-69e7-f2127049a500\",\n  \"description\": \"<string>\",\n  \"enterprise\": \"0dd6691a-9fc3-6cb6-d781-9448b05911a7\",\n  \"radius\": \"<integer>\",\n  \"radius_unit\": \"<string>\",\n  \"device_actions\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"device_count\": 5552,\n  \"created_by\": \"string\",\n  \"created_on\": \"1967-09-29T17:21:06.786Z\",\n  \"updated_on\": \"1965-07-15T04:11:57.446Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b4c04432-6685-4c33-8413-377eb1a7a547",
+          "name": "Get geofence information",
+          "request": {
+            "name": "Get geofence information",
+            "description": {
+              "content": "Returns geofence instance",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v0",
+                "enterprise",
+                ":enterprise_id",
+                "geofence",
+                ":geofence_id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "geofence_id",
+                  "description": "(Required) A UUID string identifying the geofence."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "enterprise_id",
+                  "description": "(Required) A UUID string identifying the enterprise."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "74f8339e-fe2f-46ea-9f14-ba0da0b4eb4c",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "enterprise",
+                    ":enterprise_id",
+                    "geofence",
+                    ":geofence_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "geofence_id",
+                      "description": "(Required) A UUID string identifying the geofence."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "enterprise_id",
+                      "description": "(Required) A UUID string identifying the enterprise."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"<string>\",\n  \"latitude\": \"<decimal>\",\n  \"longitude\": \"<decimal>\",\n  \"id\": \"3f3d3d77-a32e-533e-69e7-f2127049a500\",\n  \"description\": \"<string>\",\n  \"enterprise\": \"0dd6691a-9fc3-6cb6-d781-9448b05911a7\",\n  \"radius\": \"<integer>\",\n  \"radius_unit\": \"<string>\",\n  \"device_actions\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"device_count\": 5552,\n  \"created_by\": \"string\",\n  \"created_on\": \"1967-09-29T17:21:06.786Z\",\n  \"updated_on\": \"1965-07-15T04:11:57.446Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cec762ae-aa72-49eb-8fac-d587e1f180b7",
+          "name": "Update geofence information",
+          "request": {
+            "name": "Update geofence information",
+            "description": {
+              "content": "Returns geofence instance",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v0",
+                "enterprise",
+                ":enterprise_id",
+                "geofence",
+                ":geofence_id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "geofence_id",
+                  "description": "(Required) A UUID string identifying the geofence."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "enterprise_id",
+                  "description": "(Required) A UUID string identifying the enterprise."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"latitude\": \"<decimal>\",\n  \"longitude\": \"<decimal>\",\n  \"description\": \"<string>\",\n  \"radius\": \"<integer>\",\n  \"radius_unit\": \"<string>\",\n  \"device_actions\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2edfbd5d-842b-45a9-a1d3-8846d4996696",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "enterprise",
+                    ":enterprise_id",
+                    "geofence",
+                    ":geofence_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "geofence_id",
+                      "description": "(Required) A UUID string identifying the geofence."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "enterprise_id",
+                      "description": "(Required) A UUID string identifying the enterprise."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"<string>\",\n  \"latitude\": \"<decimal>\",\n  \"longitude\": \"<decimal>\",\n  \"id\": \"3f3d3d77-a32e-533e-69e7-f2127049a500\",\n  \"description\": \"<string>\",\n  \"enterprise\": \"0dd6691a-9fc3-6cb6-d781-9448b05911a7\",\n  \"radius\": \"<integer>\",\n  \"radius_unit\": \"<string>\",\n  \"device_actions\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"device_count\": 5552,\n  \"created_by\": \"string\",\n  \"created_on\": \"1967-09-29T17:21:06.786Z\",\n  \"updated_on\": \"1965-07-15T04:11:57.446Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e34a888c-d88e-4322-8453-889f411e170b",
+          "name": "Partially updates geofence information",
+          "request": {
+            "name": "Partially updates geofence information",
+            "description": {
+              "content": "Returns geofence instance",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v0",
+                "enterprise",
+                ":enterprise_id",
+                "geofence",
+                ":geofence_id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "geofence_id",
+                  "description": "(Required) A UUID string identifying the geofence."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "enterprise_id",
+                  "description": "(Required) A UUID string identifying the enterprise."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"latitude\": \"<decimal>\",\n  \"longitude\": \"<decimal>\",\n  \"radius\": \"<integer>\",\n  \"radius_unit\": \"<string>\",\n  \"device_actions\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "927b29c5-974b-4c82-9849-bf277d10ef9f",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "enterprise",
+                    ":enterprise_id",
+                    "geofence",
+                    ":geofence_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "geofence_id",
+                      "description": "(Required) A UUID string identifying the geofence."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "enterprise_id",
+                      "description": "(Required) A UUID string identifying the enterprise."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"latitude\": \"<decimal>\",\n  \"longitude\": \"<decimal>\",\n  \"radius\": \"<integer>\",\n  \"radius_unit\": \"<string>\",\n  \"device_actions\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"<string>\",\n  \"latitude\": \"<decimal>\",\n  \"longitude\": \"<decimal>\",\n  \"id\": \"3f3d3d77-a32e-533e-69e7-f2127049a500\",\n  \"description\": \"<string>\",\n  \"enterprise\": \"0dd6691a-9fc3-6cb6-d781-9448b05911a7\",\n  \"radius\": \"<integer>\",\n  \"radius_unit\": \"<string>\",\n  \"device_actions\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"device_count\": 5552,\n  \"created_by\": \"string\",\n  \"created_on\": \"1967-09-29T17:21:06.786Z\",\n  \"updated_on\": \"1965-07-15T04:11:57.446Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "47cd6bb4-216f-4ebd-a380-d4cf30e6740e",
+          "name": "Delete a geofence",
+          "request": {
+            "name": "Delete a geofence",
+            "description": {
+              "content": "Empty response",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v0",
+                "enterprise",
+                ":enterprise_id",
+                "geofence",
+                ":geofence_id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "geofence_id",
+                  "description": "(Required) A UUID string identifying the geofence."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "enterprise_id",
+                  "description": "(Required) A UUID string identifying the enterprise."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d73fbd27-ec14-4351-94ff-41eab30d54fd",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "enterprise",
+                    ":enterprise_id",
+                    "geofence",
+                    ":geofence_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "geofence_id",
+                      "description": "(Required) A UUID string identifying the geofence."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "enterprise_id",
+                      "description": "(Required) A UUID string identifying the enterprise."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://foo-api.esper.cloud/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "63fbb207-ecb2-400d-bfa4-49026f303b72",
+    "name": "ESPER API REFERENCE Application Geofence API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "# Introduction\nEsper APIs are a set of REST-based APIs that help you programmatically control and monitor Android-based Dedicated Devices running the Esper agent using Esper Manage. With these APIs, you can orchestrate and manage devices that have been provisioned against your Esper Manage environment. Furthermore, these APIs allows you to manage the Android applications installed on your Dedicated Device fleet. To read more about the various capabilities of Esper APIs and Esper managed devices, please visit [esper.io](https://esper.io). This guide describes all the available APIs in detail, along with code samples for you to quickly ramp up to using them.\\\nTo use these APIs you will need to create a developer account with Esper and get access to the Esper Dev Console and the Esper ManageDashboard. You can find out more about Esper and sign up for free at [esper.io/signup](https://esper.io/signup)\\\nWe've done our best to keep this document up to date, but if you find any issues, please reach out to us at developer@esper.io.\n\n# SDK\n\n  You are welcome to use your favorite HTTP/REST library for your programming language in order to call these APIs, or you can use our SDK (currently supporting [python](https://github.com/esper-io/esper-client-py)) to do so.\n\n\n# Authentication\nThe client needs to send authentication details to access the Esper APIs by generating and applying an API key. Be sure to sign up for your free trial account with Esper Dev to generate your key:\n\n# Errors\nThe APIs use standard HTTP status codes to indicate success or failure. All error responses will have a JSON body in the following format:\n\n```\n{\n  \"errors\": [],\n  \"message\": \"error message\",\n  \"status\": 400\n}\n```\n* `errors` -  List of error details\n* `message` - Error description\n* `status` - HTTP status code\n\n\nContact Support:\n Email: developer@esper.io",
+      "type": "text/plain"
+    }
+  }
+}

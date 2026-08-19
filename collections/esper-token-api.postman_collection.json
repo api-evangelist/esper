@@ -1,0 +1,278 @@
+{
+  "item": [
+    {
+      "id": "1dec4aa5-bfa9-4518-8456-6d9c4ec2ac4f",
+      "name": "Token",
+      "description": {
+        "content": "Fetch API token information",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "afa4c70d-6737-4a38-bb61-797a37f5b0da",
+          "name": "Renew Token",
+          "request": {
+            "name": "Renew Token",
+            "description": {
+              "content": "API to renew your token",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v0",
+                "enterprise",
+                ":enterprise_id",
+                "developerapp",
+                ":developerapp_id",
+                "renew-token",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "access_token",
+                  "value": "<string>",
+                  "description": "(Required) Token to be renewed"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "enterprise_id",
+                  "description": "(Required) A UUID string identifying this enterprise."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "developerapp_id",
+                  "description": "(Required) A UUID string identifying the developerapp"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "11bf8dd4-ec8e-40a1-b6a0-7f09daba8649",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "enterprise",
+                    ":enterprise_id",
+                    "developerapp",
+                    ":developerapp_id",
+                    "renew-token",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_token",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "enterprise_id",
+                      "description": "(Required) A UUID string identifying this enterprise."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "developerapp_id",
+                      "description": "(Required) A UUID string identifying the developerapp"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"user\": \"string\",\n  \"enterprise\": \"3440be89-7114-dfed-70f8-b36c8e33f62e\",\n  \"token\": \"string\",\n  \"expires_at\": \"1972-02-23T13:16:22.585Z\",\n  \"developerapp\": \"2d7fae58-fc15-ed74-52ac-28aa685b240d\",\n  \"scope\": \"string\",\n  \"created_on\": \"1974-09-17T18:28:49.025Z\",\n  \"updated_on\": \"2011-06-03T07:58:54.122Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ab24e55e-665f-4a80-93d4-a9eacf9ab0f2",
+          "name": "Token Information",
+          "request": {
+            "name": "Token Information",
+            "description": {
+              "content": "API to get resource information associated with your token like your enterprise, user etc",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "token-info",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a0223eb8-0af5-4798-8391-31604f113291",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "token-info",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"enterprise\": \"1497f2e0-25a1-17e1-7760-0dc4d562b0c6\",\n  \"user\": \"string\",\n  \"developer_app\": \"77b7b75a-d7ab-cd71-782b-29e200d4e8ec\",\n  \"source_refresh_token\": \"string\",\n  \"token\": \"string\",\n  \"expires_on\": \"1994-11-25T17:25:48.235Z\",\n  \"scope\": [\n    \"string\",\n    \"string\"\n  ],\n  \"created_on\": \"2020-10-22T10:42:58.801Z\",\n  \"updated_on\": \"1975-01-22T12:26:52.670Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://foo-api.esper.cloud/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "63a6fc47-c458-4083-82b9-67898860f71e",
+    "name": "ESPER API REFERENCE Application Token API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "# Introduction\nEsper APIs are a set of REST-based APIs that help you programmatically control and monitor Android-based Dedicated Devices running the Esper agent using Esper Manage. With these APIs, you can orchestrate and manage devices that have been provisioned against your Esper Manage environment. Furthermore, these APIs allows you to manage the Android applications installed on your Dedicated Device fleet. To read more about the various capabilities of Esper APIs and Esper managed devices, please visit [esper.io](https://esper.io). This guide describes all the available APIs in detail, along with code samples for you to quickly ramp up to using them.\\\nTo use these APIs you will need to create a developer account with Esper and get access to the Esper Dev Console and the Esper ManageDashboard. You can find out more about Esper and sign up for free at [esper.io/signup](https://esper.io/signup)\\\nWe've done our best to keep this document up to date, but if you find any issues, please reach out to us at developer@esper.io.\n\n# SDK\n\n  You are welcome to use your favorite HTTP/REST library for your programming language in order to call these APIs, or you can use our SDK (currently supporting [python](https://github.com/esper-io/esper-client-py)) to do so.\n\n\n# Authentication\nThe client needs to send authentication details to access the Esper APIs by generating and applying an API key. Be sure to sign up for your free trial account with Esper Dev to generate your key:\n\n# Errors\nThe APIs use standard HTTP status codes to indicate success or failure. All error responses will have a JSON body in the following format:\n\n```\n{\n  \"errors\": [],\n  \"message\": \"error message\",\n  \"status\": 400\n}\n```\n* `errors` -  List of error details\n* `message` - Error description\n* `status` - HTTP status code\n\n\nContact Support:\n Email: developer@esper.io",
+      "type": "text/plain"
+    }
+  }
+}

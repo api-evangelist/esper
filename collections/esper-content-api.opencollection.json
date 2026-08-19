@@ -1,0 +1,149 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ESPER API REFERENCE Application Content API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Content",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List content in the enterprise",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v0/enterprise/:enterprise_id/content/",
+            "params": [
+              {
+                "name": "enterprise_id",
+                "value": "",
+                "type": "path",
+                "description": "A UUID string identifying this enterprise."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Seach by tags, description"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return per page."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The initial index from which to return the results."
+              }
+            ]
+          },
+          "docs": "Returns Content list"
+        },
+        {
+          "info": {
+            "name": "Upload new content",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v0/enterprise/:enterprise_id/content/upload/",
+            "params": [
+              {
+                "name": "enterprise_id",
+                "value": "",
+                "type": "path",
+                "description": "A UUID string identifying this enterprise."
+              }
+            ]
+          },
+          "docs": "Returns Content instance"
+        },
+        {
+          "info": {
+            "name": "Get content information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v0/enterprise/:enterprise_id/content/:content_id/",
+            "params": [
+              {
+                "name": "content_id",
+                "value": "",
+                "type": "path",
+                "description": "A UUID string identifying a content instance."
+              },
+              {
+                "name": "enterprise_id",
+                "value": "",
+                "type": "path",
+                "description": "A UUID string identifying enterprise."
+              }
+            ]
+          },
+          "docs": "Returns Content instance"
+        },
+        {
+          "info": {
+            "name": "Patch a content instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/v0/enterprise/:enterprise_id/content/:content_id/",
+            "params": [
+              {
+                "name": "content_id",
+                "value": "",
+                "type": "path",
+                "description": "A UUID string identifying a content instance."
+              },
+              {
+                "name": "enterprise_id",
+                "value": "",
+                "type": "path",
+                "description": "A UUID string identifying enterprise."
+              }
+            ]
+          },
+          "docs": "Patch a content instance"
+        },
+        {
+          "info": {
+            "name": "Delete Content",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v0/enterprise/:enterprise_id/content/:content_id/",
+            "params": [
+              {
+                "name": "content_id",
+                "value": "",
+                "type": "path",
+                "description": "A UUID string identifying a content instance."
+              },
+              {
+                "name": "enterprise_id",
+                "value": "",
+                "type": "path",
+                "description": "A UUID string identifying enterprise."
+              }
+            ]
+          },
+          "docs": "Empty response"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,186 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ESPER API REFERENCE Application Device Group API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Device Group",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List device groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/enterprise/:enterprise_id/devicegroup/",
+            "params": [
+              {
+                "name": "enterprise_id",
+                "value": "",
+                "type": "path",
+                "description": "A UUID string identifying enterprise."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by group name"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return per page."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The initial index from which to return the results."
+              }
+            ]
+          },
+          "docs": "Returns EnterpriseDeviceGroup list"
+        },
+        {
+          "info": {
+            "name": "Create a device group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/enterprise/:enterprise_id/devicegroup/",
+            "params": [
+              {
+                "name": "enterprise_id",
+                "value": "",
+                "type": "path",
+                "description": "A UUID string identifying enterprise."
+              }
+            ]
+          },
+          "docs": "Returns EnterpriseDeviceGroup instance"
+        },
+        {
+          "info": {
+            "name": "Get device group information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/enterprise/:enterprise_id/devicegroup/:group_id/",
+            "params": [
+              {
+                "name": "group_id",
+                "value": "",
+                "type": "path",
+                "description": "A UUID string identifying this enterprise device group."
+              },
+              {
+                "name": "enterprise_id",
+                "value": "",
+                "type": "path",
+                "description": "A UUID string identifying enterprise."
+              }
+            ]
+          },
+          "docs": "Returns EnterpriseDeviceGroup instance"
+        },
+        {
+          "info": {
+            "name": "Update device group",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/enterprise/:enterprise_id/devicegroup/:group_id/",
+            "params": [
+              {
+                "name": "group_id",
+                "value": "",
+                "type": "path",
+                "description": "A UUID string identifying this enterprise device group."
+              },
+              {
+                "name": "enterprise_id",
+                "value": "",
+                "type": "path",
+                "description": "A UUID string identifying enterprise."
+              },
+              {
+                "name": "action",
+                "value": "",
+                "type": "query",
+                "description": "add / remove / rename / move"
+              }
+            ]
+          },
+          "docs": "Returns EnterpriseDeviceGroup instance"
+        },
+        {
+          "info": {
+            "name": "Partial update group",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/enterprise/:enterprise_id/devicegroup/:group_id/",
+            "params": [
+              {
+                "name": "group_id",
+                "value": "",
+                "type": "path",
+                "description": "A UUID string identifying this enterprise device group."
+              },
+              {
+                "name": "enterprise_id",
+                "value": "",
+                "type": "path",
+                "description": "A UUID string identifying enterprise."
+              },
+              {
+                "name": "action",
+                "value": "",
+                "type": "query",
+                "description": "add / remove / rename / move"
+              }
+            ]
+          },
+          "docs": "Returns EnterpriseDeviceGroup instance"
+        },
+        {
+          "info": {
+            "name": "Delete a device group",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/enterprise/:enterprise_id/devicegroup/:group_id/",
+            "params": [
+              {
+                "name": "group_id",
+                "value": "",
+                "type": "path",
+                "description": "A UUID string identifying this enterprise device group."
+              },
+              {
+                "name": "enterprise_id",
+                "value": "",
+                "type": "path",
+                "description": "A UUID string identifying enterprise."
+              }
+            ]
+          },
+          "docs": "Emtpy response"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

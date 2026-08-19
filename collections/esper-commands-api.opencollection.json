@@ -1,0 +1,74 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ESPER API REFERENCE Application Commands API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Commands",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Run commands on device",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/enterprise/:enterprise_id/device/:device_id/command/",
+            "params": [
+              {
+                "name": "enterprise_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the enterprise"
+              },
+              {
+                "name": "device_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the device"
+              }
+            ]
+          },
+          "docs": "Fire commands on device like reboot, ping etc. Deprecated in favour of commands V2."
+        },
+        {
+          "info": {
+            "name": "Get command status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/enterprise/:enterprise_id/device/:device_id/command/:command_id/",
+            "params": [
+              {
+                "name": "command_id",
+                "value": "",
+                "type": "path",
+                "description": "A UUID string identifying this device command."
+              },
+              {
+                "name": "device_id",
+                "value": "",
+                "type": "path",
+                "description": "A UUID string identifying this device."
+              },
+              {
+                "name": "enterprise_id",
+                "value": "",
+                "type": "path",
+                "description": "A UUID string identifying enterprise."
+              }
+            ]
+          },
+          "docs": "Return DeviceCommand instance. Deprecated in favour of commands V2."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,118 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ESPER API REFERENCE Application Subscription API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Subscription",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Subscriptions in Enterprise",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v0/enterprise/:enterprise_id/subscription/",
+            "params": [
+              {
+                "name": "enterprise_id",
+                "value": "",
+                "type": "path",
+                "description": "A UUID string identifying the enterprise."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return per page."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The initial index from which to return the results."
+              }
+            ]
+          },
+          "docs": "API to view all the subscriptions in an enterprise"
+        },
+        {
+          "info": {
+            "name": "Create a Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v0/enterprise/:enterprise_id/subscription/",
+            "params": [
+              {
+                "name": "enterprise_id",
+                "value": "",
+                "type": "path",
+                "description": "A UUID string identifying the enterprise."
+              }
+            ]
+          },
+          "docs": "Returns Subscription instance"
+        },
+        {
+          "info": {
+            "name": "Get subscription information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v0/enterprise/:enterprise_id/subscription/:subscription_id/",
+            "params": [
+              {
+                "name": "subscription_id",
+                "value": "",
+                "type": "path",
+                "description": "A UUID string identifying the subscription."
+              },
+              {
+                "name": "enterprise_id",
+                "value": "",
+                "type": "path",
+                "description": "A UUID string identifying the enterprise."
+              }
+            ]
+          },
+          "docs": "Returns subscription instance"
+        },
+        {
+          "info": {
+            "name": "Delete a subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v0/enterprise/:enterprise_id/subscription/:subscription_id/",
+            "params": [
+              {
+                "name": "subscription_id",
+                "value": "",
+                "type": "path",
+                "description": "A UUID string identifying the subscription."
+              },
+              {
+                "name": "enterprise_id",
+                "value": "",
+                "type": "path",
+                "description": "A UUID string identifying the enterprise."
+              }
+            ]
+          },
+          "docs": "Empty response"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

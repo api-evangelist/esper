@@ -1,0 +1,60 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ESPER API REFERENCE Application Token API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Token",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Renew Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v0/enterprise/:enterprise_id/developerapp/:developerapp_id/renew-token/",
+            "params": [
+              {
+                "name": "enterprise_id",
+                "value": "",
+                "type": "path",
+                "description": "A UUID string identifying this enterprise."
+              },
+              {
+                "name": "developerapp_id",
+                "value": "",
+                "type": "path",
+                "description": "A UUID string identifying the developerapp"
+              },
+              {
+                "name": "access_token",
+                "value": "",
+                "type": "query",
+                "description": "Token to be renewed"
+              }
+            ]
+          },
+          "docs": "API to renew your token"
+        },
+        {
+          "info": {
+            "name": "Token Information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/token-info/"
+          },
+          "docs": "API to get resource information associated with your token like your enterprise, user etc"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

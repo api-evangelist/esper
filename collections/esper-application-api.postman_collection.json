@@ -1,0 +1,4756 @@
+{
+  "item": [
+    {
+      "id": "dba6de00-9d27-425f-a478-5443d1b54c6a",
+      "name": "Application",
+      "description": {
+        "content": "APIs for application management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0a6ee751-be54-4ce6-82d3-6b43c5bf6bb2",
+          "name": "List apps in enterprise",
+          "request": {
+            "name": "List apps in enterprise",
+            "description": {
+              "content": "Returns Application list",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "enterprise",
+                ":enterprise_id",
+                "application",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "application_name",
+                  "value": "<string>",
+                  "description": "filter by application name"
+                },
+                {
+                  "disabled": false,
+                  "key": "package_name",
+                  "value": "<string>",
+                  "description": "filter by package name"
+                },
+                {
+                  "disabled": false,
+                  "key": "package_name_exact",
+                  "value": "<string>",
+                  "description": "filter by package name (exact match)"
+                },
+                {
+                  "disabled": false,
+                  "key": "has_uploaded_version",
+                  "value": "<boolean>",
+                  "description": "Returns applications having atleast on version uploaded"
+                },
+                {
+                  "disabled": false,
+                  "key": "category",
+                  "value": "<string>",
+                  "description": "filter by category"
+                },
+                {
+                  "disabled": false,
+                  "key": "supported_sdk",
+                  "value": "<integer>",
+                  "description": "filter by supported sdk versions"
+                },
+                {
+                  "disabled": false,
+                  "key": "is_active",
+                  "value": "<boolean>",
+                  "description": "filter by active applications"
+                },
+                {
+                  "disabled": false,
+                  "key": "is_hidden",
+                  "value": "false",
+                  "description": "filter default esper apps"
+                },
+                {
+                  "disabled": false,
+                  "key": "created_on_gt",
+                  "value": "<datetime>",
+                  "description": "filter applications created after a given timestamp"
+                },
+                {
+                  "disabled": false,
+                  "key": "created_on_lt",
+                  "value": "<datetime>",
+                  "description": "filter applications created before a given timestamp"
+                },
+                {
+                  "disabled": false,
+                  "key": "updated_on_gt",
+                  "value": "<datetime>",
+                  "description": "filter applications updated after a given timestamp"
+                },
+                {
+                  "disabled": false,
+                  "key": "updated_on_lt",
+                  "value": "<datetime>",
+                  "description": "filter applications updated before a given timestamp"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Number of results to return per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "The initial index from which to return the results."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "enterprise_id",
+                  "description": "(Required) A UUID string identifying this enterprise."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d6ab1dd3-1d4e-45c0-be18-b1f704038390",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enterprise",
+                    ":enterprise_id",
+                    "application",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "application_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "package_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "package_name_exact",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "has_uploaded_version",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "category",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "supported_sdk",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "is_active",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "is_hidden",
+                      "value": "false"
+                    },
+                    {
+                      "key": "created_on_gt",
+                      "value": "<datetime>"
+                    },
+                    {
+                      "key": "created_on_lt",
+                      "value": "<datetime>"
+                    },
+                    {
+                      "key": "updated_on_gt",
+                      "value": "<datetime>"
+                    },
+                    {
+                      "key": "updated_on_lt",
+                      "value": "<datetime>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enterprise_id",
+                      "description": "(Required) A UUID string identifying this enterprise."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 6068,\n  \"results\": [\n    {\n      \"application_name\": \"string\",\n      \"package_name\": \"string\",\n      \"enterprise\": \"string\",\n      \"id\": \"7d853414-db47-3b6b-c0e3-fd01dc8164db\",\n      \"versions\": [\n        {\n          \"id\": \"2f86a631-6a03-4ea2-8a2a-20913023a013\",\n          \"version_code\": \"string\",\n          \"build_number\": \"string\",\n          \"hash_string\": \"string\",\n          \"min_sdk_version\": \"string\",\n          \"target_sdk_version\": \"string\",\n          \"download_url\": \"string\",\n          \"icon_url\": \"string\",\n          \"release_name\": \"string\"\n        },\n        {\n          \"id\": \"9f332788-5839-b592-a69a-a7a3b66af75e\",\n          \"version_code\": \"str\",\n          \"build_number\": \"string\",\n          \"hash_string\": \"string\",\n          \"min_sdk_version\": \"string\",\n          \"target_sdk_version\": \"str\",\n          \"download_url\": \"string\",\n          \"icon_url\": \"string\",\n          \"release_name\": \"string\"\n        }\n      ],\n      \"developer\": \"string\",\n      \"category\": \"string\",\n      \"content_rating\": \"string\",\n      \"compatibility\": \"string\",\n      \"created_on\": \"1956-10-30T18:28:46.209Z\",\n      \"updated_on\": \"1973-03-28T13:33:59.179Z\",\n      \"is_active\": false,\n      \"is_hidden\": true\n    },\n    {\n      \"application_name\": \"string\",\n      \"package_name\": \"string\",\n      \"enterprise\": \"string\",\n      \"id\": \"78f7d3ab-dc59-49c2-940d-9d6e3f8e9b84\",\n      \"versions\": [\n        {\n          \"id\": \"68ac9c66-37c5-115c-85eb-7a81019e743f\",\n          \"version_code\": \"string\",\n          \"build_number\": \"string\",\n          \"hash_string\": \"string\",\n          \"min_sdk_version\": \"str\",\n          \"target_sdk_version\": \"stri\",\n          \"download_url\": \"string\",\n          \"icon_url\": \"string\",\n          \"release_name\": \"string\"\n        },\n        {\n          \"id\": \"3381185d-1ed5-c1c9-1517-96ef6d20f618\",\n          \"version_code\": \"string\",\n          \"build_number\": \"string\",\n          \"hash_string\": \"string\",\n          \"min_sdk_version\": \"string\",\n          \"target_sdk_version\": \"st\",\n          \"download_url\": \"string\",\n          \"icon_url\": \"string\",\n          \"release_name\": \"string\"\n        }\n      ],\n      \"developer\": \"string\",\n      \"category\": \"string\",\n      \"content_rating\": \"string\",\n      \"compatibility\": \"string\",\n      \"created_on\": \"1977-04-11T16:57:53.031Z\",\n      \"updated_on\": \"1976-08-21T14:09:24.260Z\",\n      \"is_active\": false,\n      \"is_hidden\": true\n    }\n  ],\n  \"next\": \"string\",\n  \"previous\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f47d71a0-832d-46b9-8ef5-4b2b0eacced6",
+              "name": "Authorization information is missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enterprise",
+                    ":enterprise_id",
+                    "application",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "application_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "package_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "package_name_exact",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "has_uploaded_version",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "category",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "supported_sdk",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "is_active",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "is_hidden",
+                      "value": "false"
+                    },
+                    {
+                      "key": "created_on_gt",
+                      "value": "<datetime>"
+                    },
+                    {
+                      "key": "created_on_lt",
+                      "value": "<datetime>"
+                    },
+                    {
+                      "key": "updated_on_gt",
+                      "value": "<datetime>"
+                    },
+                    {
+                      "key": "updated_on_lt",
+                      "value": "<datetime>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enterprise_id",
+                      "description": "(Required) A UUID string identifying this enterprise."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ],\n  \"message\": \"string\",\n  \"status\": 4107\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "39a09282-8863-4b52-8a0b-4797d8983d4e",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enterprise",
+                    ":enterprise_id",
+                    "application",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "application_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "package_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "package_name_exact",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "has_uploaded_version",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "category",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "supported_sdk",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "is_active",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "is_hidden",
+                      "value": "false"
+                    },
+                    {
+                      "key": "created_on_gt",
+                      "value": "<datetime>"
+                    },
+                    {
+                      "key": "created_on_lt",
+                      "value": "<datetime>"
+                    },
+                    {
+                      "key": "updated_on_gt",
+                      "value": "<datetime>"
+                    },
+                    {
+                      "key": "updated_on_lt",
+                      "value": "<datetime>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enterprise_id",
+                      "description": "(Required) A UUID string identifying this enterprise."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ],\n  \"message\": \"string\",\n  \"status\": 7648\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "df964c23-f2e7-4590-8fb8-c8631ab25d73",
+          "name": "Upload an application to enterprise",
+          "request": {
+            "name": "Upload an application to enterprise",
+            "description": {
+              "content": "Returns application",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "enterprise",
+                ":enterprise_id",
+                "application",
+                "upload",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "enterprise_id",
+                  "description": "(Required) A UUID string identifying this enterprise."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "app_file",
+                  "type": "file",
+                  "description": "(Required) Valid APK file"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "af454373-5a48-4e3a-bd24-2dc684c23f68",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enterprise",
+                    ":enterprise_id",
+                    "application",
+                    "upload",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enterprise_id",
+                      "description": "(Required) A UUID string identifying this enterprise."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) Valid APK file",
+                        "type": "text/plain"
+                      },
+                      "key": "app_file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"application\": {\n    \"application_name\": \"string\",\n    \"package_name\": \"string\",\n    \"enterprise\": \"string\",\n    \"id\": \"c8e88238-126e-9f1d-ef7b-e8ab545c5b76\",\n    \"versions\": [\n      {\n        \"id\": \"cb6f285a-57ea-e575-6a7d-037960da17e5\",\n        \"version_code\": \"string\",\n        \"build_number\": \"string\",\n        \"hash_string\": \"string\",\n        \"min_sdk_version\": \"string\",\n        \"target_sdk_version\": \"string\",\n        \"download_url\": \"string\",\n        \"icon_url\": \"string\",\n        \"release_name\": \"string\"\n      },\n      {\n        \"id\": \"d2f3c925-fae4-3d7f-ca11-7b57afbd1fa1\",\n        \"version_code\": \"string\",\n        \"build_number\": \"string\",\n        \"hash_string\": \"string\",\n        \"min_sdk_version\": \"strin\",\n        \"target_sdk_version\": \"str\",\n        \"download_url\": \"string\",\n        \"icon_url\": \"string\",\n        \"release_name\": \"string\"\n      }\n    ],\n    \"developer\": \"string\",\n    \"category\": \"string\",\n    \"content_rating\": \"string\",\n    \"compatibility\": \"string\",\n    \"created_on\": \"2020-02-16T04:53:34.793Z\",\n    \"updated_on\": \"2004-03-04T13:14:04.321Z\",\n    \"is_active\": true,\n    \"is_hidden\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ba06ee08-bd9e-4864-9660-429f8bb79388",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enterprise",
+                    ":enterprise_id",
+                    "application",
+                    "upload",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enterprise_id",
+                      "description": "(Required) A UUID string identifying this enterprise."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) Valid APK file",
+                        "type": "text/plain"
+                      },
+                      "key": "app_file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ],\n  \"message\": \"string\",\n  \"status\": 7648\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f6fb0b04-b749-4b4a-83ce-317f9c3152cb",
+              "name": "Authorization information is missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enterprise",
+                    ":enterprise_id",
+                    "application",
+                    "upload",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enterprise_id",
+                      "description": "(Required) A UUID string identifying this enterprise."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) Valid APK file",
+                        "type": "text/plain"
+                      },
+                      "key": "app_file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ],\n  \"message\": \"string\",\n  \"status\": 7648\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bbac73b6-f7e3-4732-ba39-bd9700aac3c6",
+              "name": "Forbidden, no permission to perform this action.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enterprise",
+                    ":enterprise_id",
+                    "application",
+                    "upload",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enterprise_id",
+                      "description": "(Required) A UUID string identifying this enterprise."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) Valid APK file",
+                        "type": "text/plain"
+                      },
+                      "key": "app_file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ],\n  \"message\": \"string\",\n  \"status\": 7648\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aaf4b755-9ce7-489d-a9f2-b49a65a8eb6f",
+              "name": "Unsupported media type.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enterprise",
+                    ":enterprise_id",
+                    "application",
+                    "upload",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enterprise_id",
+                      "description": "(Required) A UUID string identifying this enterprise."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) Valid APK file",
+                        "type": "text/plain"
+                      },
+                      "key": "app_file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Unsupported Media Type",
+              "code": 415,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ],\n  \"message\": \"string\",\n  \"status\": 7648\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "09da68e6-fbe1-403e-b4b8-b44872f6a5af",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enterprise",
+                    ":enterprise_id",
+                    "application",
+                    "upload",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enterprise_id",
+                      "description": "(Required) A UUID string identifying this enterprise."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) Valid APK file",
+                        "type": "text/plain"
+                      },
+                      "key": "app_file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ],\n  \"message\": \"string\",\n  \"status\": 7648\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3f0ec0cf-3099-4fff-97a7-6576b8601cba",
+          "name": "Get application information",
+          "request": {
+            "name": "Get application information",
+            "description": {
+              "content": "Returns Application instance",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "enterprise",
+                ":enterprise_id",
+                "application",
+                ":application_id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "application_id",
+                  "description": "(Required) A UUID string identifying this application."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "enterprise_id",
+                  "description": "(Required) A UUID string identifying enterprise."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9adf72b3-e04e-475b-953e-6aa1ddc9634c",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enterprise",
+                    ":enterprise_id",
+                    "application",
+                    ":application_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "application_id",
+                      "description": "(Required) A UUID string identifying this application."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enterprise_id",
+                      "description": "(Required) A UUID string identifying enterprise."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"application_name\": \"string\",\n  \"package_name\": \"string\",\n  \"enterprise\": \"string\",\n  \"id\": \"6628d86b-e201-0a87-46b6-ccd4ec71c266\",\n  \"versions\": [\n    {\n      \"id\": \"48afb407-8533-20b2-23ef-978317ee3732\",\n      \"version_code\": \"str\",\n      \"build_number\": \"string\",\n      \"hash_string\": \"string\",\n      \"min_sdk_version\": \"string\",\n      \"target_sdk_version\": \"stri\",\n      \"download_url\": \"string\",\n      \"icon_url\": \"string\",\n      \"release_name\": \"string\"\n    },\n    {\n      \"id\": \"11500422-ca3c-e117-7ca0-859896bc2e48\",\n      \"version_code\": \"string\",\n      \"build_number\": \"string\",\n      \"hash_string\": \"string\",\n      \"min_sdk_version\": \"string\",\n      \"target_sdk_version\": \"strin\",\n      \"download_url\": \"string\",\n      \"icon_url\": \"string\",\n      \"release_name\": \"string\"\n    }\n  ],\n  \"developer\": \"string\",\n  \"category\": \"string\",\n  \"content_rating\": \"string\",\n  \"compatibility\": \"string\",\n  \"created_on\": \"1990-04-21T04:02:57.688Z\",\n  \"updated_on\": \"2025-04-02T07:55:38.823Z\",\n  \"is_active\": true,\n  \"is_hidden\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f3f7e9a0-ab7f-422a-a964-8312dc2f44a1",
+              "name": "Authorization information is missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enterprise",
+                    ":enterprise_id",
+                    "application",
+                    ":application_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "application_id",
+                      "description": "(Required) A UUID string identifying this application."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enterprise_id",
+                      "description": "(Required) A UUID string identifying enterprise."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ],\n  \"message\": \"string\",\n  \"status\": 7648\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b60b2d41-df66-4faa-9123-3899859c2c2c",
+              "name": "Not Found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enterprise",
+                    ":enterprise_id",
+                    "application",
+                    ":application_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "application_id",
+                      "description": "(Required) A UUID string identifying this application."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enterprise_id",
+                      "description": "(Required) A UUID string identifying enterprise."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ],\n  \"message\": \"string\",\n  \"status\": 7648\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "152b49e8-5278-40fc-b042-32b20274ec1f",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enterprise",
+                    ":enterprise_id",
+                    "application",
+                    ":application_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "application_id",
+                      "description": "(Required) A UUID string identifying this application."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enterprise_id",
+                      "description": "(Required) A UUID string identifying enterprise."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ],\n  \"message\": \"string\",\n  \"status\": 7648\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1e177be7-8d13-47fc-99ca-a3477ed449c0",
+          "name": "Delete an application",
+          "request": {
+            "name": "Delete an application",
+            "description": {
+              "content": "Empty response",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "enterprise",
+                ":enterprise_id",
+                "application",
+                ":application_id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "application_id",
+                  "description": "(Required) A UUID string identifying this application."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "enterprise_id",
+                  "description": "(Required) A UUID string identifying enterprise."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2a93d512-5c3b-4408-b7ce-962e3496490d",
+              "name": "The resource was deleted successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enterprise",
+                    ":enterprise_id",
+                    "application",
+                    ":application_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "application_id",
+                      "description": "(Required) A UUID string identifying this application."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enterprise_id",
+                      "description": "(Required) A UUID string identifying enterprise."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8a9ad3ea-ef05-4250-8e7f-1f94ac3cc6a8",
+              "name": "Authorization information is missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enterprise",
+                    ":enterprise_id",
+                    "application",
+                    ":application_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "application_id",
+                      "description": "(Required) A UUID string identifying this application."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enterprise_id",
+                      "description": "(Required) A UUID string identifying enterprise."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ],\n  \"message\": \"string\",\n  \"status\": 7648\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "be24390f-9841-4f94-87f9-befadced0302",
+              "name": "Forbidden, no permission to perform this action.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enterprise",
+                    ":enterprise_id",
+                    "application",
+                    ":application_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "application_id",
+                      "description": "(Required) A UUID string identifying this application."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enterprise_id",
+                      "description": "(Required) A UUID string identifying enterprise."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ],\n  \"message\": \"string\",\n  \"status\": 7648\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "38711f4c-31ee-4f93-810a-284e8234d490",
+              "name": "Not Found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enterprise",
+                    ":enterprise_id",
+                    "application",
+                    ":application_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "application_id",
+                      "description": "(Required) A UUID string identifying this application."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enterprise_id",
+                      "description": "(Required) A UUID string identifying enterprise."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ],\n  \"message\": \"string\",\n  \"status\": 7648\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8e7ea159-83f6-4c40-9091-97ab5d4164e3",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enterprise",
+                    ":enterprise_id",
+                    "application",
+                    ":application_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "application_id",
+                      "description": "(Required) A UUID string identifying this application."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enterprise_id",
+                      "description": "(Required) A UUID string identifying enterprise."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ],\n  \"message\": \"string\",\n  \"status\": 7648\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3cc6f03b-e3cf-413f-b1fa-554ba9744577",
+          "name": "List App versions",
+          "request": {
+            "name": "List App versions",
+            "description": {
+              "content": "Returns AppVersion list",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "enterprise",
+                ":enterprise_id",
+                "application",
+                ":application_id",
+                "version",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "version_code",
+                  "value": "<string>",
+                  "description": "filter by version code"
+                },
+                {
+                  "disabled": false,
+                  "key": "build_number",
+                  "value": "<string>",
+                  "description": "filter by build number"
+                },
+                {
+                  "disabled": false,
+                  "key": "is_g_play",
+                  "value": "<boolean>",
+                  "description": "filter google play applications"
+                },
+                {
+                  "disabled": false,
+                  "key": "approval_status",
+                  "value": "<string>",
+                  "description": "filter by approval status"
+                },
+                {
+                  "disabled": false,
+                  "key": "is_enabled",
+                  "value": "<boolean>",
+                  "description": "filter by enabled versions"
+                },
+                {
+                  "disabled": false,
+                  "key": "is_default",
+                  "value": "<boolean>",
+                  "description": "filter by default versions"
+                },
+                {
+                  "disabled": false,
+                  "key": "created_on_gt",
+                  "value": "<datetime>",
+                  "description": "filter applications created after a given timestamp"
+                },
+                {
+                  "disabled": false,
+                  "key": "created_on_lt",
+                  "value": "<datetime>",
+                  "description": "filter applications created before a given timestamp"
+                },
+                {
+                  "disabled": false,
+                  "key": "updated_on_gt",
+                  "value": "<datetime>",
+                  "description": "filter applications updated after a given timestamp"
+                },
+                {
+                  "disabled": false,
+                  "key": "updated_on_lt",
+                  "value": "<datetime>",
+                  "description": "filter applications updated before a given timestamp"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Number of results to return per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "The initial index from which to return the results."
+                },
+                {
+                  "disabled": false,
+                  "key": "ordering",
+                  "value": "<string>",
+                  "description": "Order result set by field name.\n\n```\n* installed_count: order by asc\n* -installed_count: order by desc\n```\n"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "application_id",
+                  "description": "(Required) A UUID string identifying this application."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "enterprise_id",
+                  "description": "(Required) A UUID string identifying enterprise."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ad5c0168-a73e-4718-b2de-a0025d8a80a8",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enterprise",
+                    ":enterprise_id",
+                    "application",
+                    ":application_id",
+                    "version",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "version_code",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "build_number",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_g_play",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "approval_status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_enabled",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "is_default",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "created_on_gt",
+                      "value": "<datetime>"
+                    },
+                    {
+                      "key": "created_on_lt",
+                      "value": "<datetime>"
+                    },
+                    {
+                      "key": "updated_on_gt",
+                      "value": "<datetime>"
+                    },
+                    {
+                      "key": "updated_on_lt",
+                      "value": "<datetime>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "ordering",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "application_id",
+                      "description": "(Required) A UUID string identifying this application."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enterprise_id",
+                      "description": "(Required) A UUID string identifying enterprise."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 8597,\n  \"results\": [\n    {\n      \"permissions\": [\n        {\n          \"permission\": \"string\",\n          \"enterprise\": \"string\",\n          \"id\": \"84deaaaa-f51b-9b77-055c-161b0e397dd7\",\n          \"grant_state\": \"Default\",\n          \"created_on\": \"1962-09-02T19:53:03.233Z\",\n          \"updated_on\": \"2015-09-12T01:17:15.489Z\",\n          \"is_active\": false,\n          \"app_version\": \"string\"\n        },\n        {\n          \"permission\": \"string\",\n          \"enterprise\": \"string\",\n          \"id\": \"fa414fe5-54e3-fb0c-9578-c250ca6b443a\",\n          \"grant_state\": \"Default\",\n          \"created_on\": \"1948-12-21T14:03:07.162Z\",\n          \"updated_on\": \"2000-07-27T02:42:01.551Z\",\n          \"is_active\": false,\n          \"app_version\": \"string\"\n        }\n      ],\n      \"version_code\": \"string\",\n      \"enterprise\": \"string\",\n      \"id\": \"35f16b0a-c6d5-9f04-da9c-6878ff353a09\",\n      \"installed_count\": 5504,\n      \"app_file\": \"string\",\n      \"app_icon\": \"string\",\n      \"build_number\": \"string\",\n      \"size_in_mb\": 1094.1408641760497,\n      \"hash_string\": \"string\",\n      \"release_name\": \"string\",\n      \"release_comments\": \"string\",\n      \"release_track\": \"Alpha\",\n      \"created_on\": \"1975-07-19T06:33:38.286Z\",\n      \"updated_on\": \"2015-06-30T04:51:09.289Z\",\n      \"min_sdk_version\": \"string\",\n      \"target_sdk_version\": \"str\",\n      \"is_enabled\": false,\n      \"application\": \"string\",\n      \"approval_status\": \"ACCEPTED\"\n    },\n    {\n      \"permissions\": [\n        {\n          \"permission\": \"string\",\n          \"enterprise\": \"string\",\n          \"id\": \"a7252e89-808b-89d1-5be7-5cc640e24fcb\",\n          \"grant_state\": \"Granted\",\n          \"created_on\": \"1967-11-25T09:28:18.093Z\",\n          \"updated_on\": \"1978-03-15T16:26:35.130Z\",\n          \"is_active\": true,\n          \"app_version\": \"string\"\n        },\n        {\n          \"permission\": \"string\",\n          \"enterprise\": \"string\",\n          \"id\": \"5c1c1911-0868-450b-3e31-2d1b8c34ed16\",\n          \"grant_state\": \"Default\",\n          \"created_on\": \"1954-11-24T05:56:23.870Z\",\n          \"updated_on\": \"1995-01-14T11:53:19.791Z\",\n          \"is_active\": false,\n          \"app_version\": \"string\"\n        }\n      ],\n      \"version_code\": \"stri\",\n      \"enterprise\": \"string\",\n      \"id\": \"6736d04c-ae2b-27a9-858e-aec48ac79751\",\n      \"installed_count\": 2471,\n      \"app_file\": \"string\",\n      \"app_icon\": \"string\",\n      \"build_number\": \"string\",\n      \"size_in_mb\": 5651.557698345026,\n      \"hash_string\": \"string\",\n      \"release_name\": \"string\",\n      \"release_comments\": \"string\",\n      \"release_track\": \"Beta\",\n      \"created_on\": \"1985-12-14T04:43:05.214Z\",\n      \"updated_on\": \"1955-10-16T06:31:49.614Z\",\n      \"min_sdk_version\": \"stri\",\n      \"target_sdk_version\": \"s\",\n      \"is_enabled\": true,\n      \"application\": \"string\",\n      \"approval_status\": \"ACCEPTED\"\n    }\n  ],\n  \"next\": \"string\",\n  \"previous\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3bffb770-b9cd-40c0-a7d5-1440260bdcc8",
+              "name": "Authorization information is missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enterprise",
+                    ":enterprise_id",
+                    "application",
+                    ":application_id",
+                    "version",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "version_code",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "build_number",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_g_play",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "approval_status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_enabled",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "is_default",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "created_on_gt",
+                      "value": "<datetime>"
+                    },
+                    {
+                      "key": "created_on_lt",
+                      "value": "<datetime>"
+                    },
+                    {
+                      "key": "updated_on_gt",
+                      "value": "<datetime>"
+                    },
+                    {
+                      "key": "updated_on_lt",
+                      "value": "<datetime>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "ordering",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "application_id",
+                      "description": "(Required) A UUID string identifying this application."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enterprise_id",
+                      "description": "(Required) A UUID string identifying enterprise."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ],\n  \"message\": \"string\",\n  \"status\": 7648\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6eae0725-7b63-49e3-8db9-0ea33b9ac24d",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enterprise",
+                    ":enterprise_id",
+                    "application",
+                    ":application_id",
+                    "version",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "version_code",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "build_number",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_g_play",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "approval_status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_enabled",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "is_default",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "created_on_gt",
+                      "value": "<datetime>"
+                    },
+                    {
+                      "key": "created_on_lt",
+                      "value": "<datetime>"
+                    },
+                    {
+                      "key": "updated_on_gt",
+                      "value": "<datetime>"
+                    },
+                    {
+                      "key": "updated_on_lt",
+                      "value": "<datetime>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "ordering",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "application_id",
+                      "description": "(Required) A UUID string identifying this application."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enterprise_id",
+                      "description": "(Required) A UUID string identifying enterprise."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ],\n  \"message\": \"string\",\n  \"status\": 7648\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1b2cd4c9-779a-4d69-9f58-3ac2da4b670e",
+          "name": "Get app version information",
+          "request": {
+            "name": "Get app version information",
+            "description": {
+              "content": "Returns AppVersion instance",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "enterprise",
+                ":enterprise_id",
+                "application",
+                ":application_id",
+                "version",
+                ":version_id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "request_id",
+                  "value": "<string>",
+                  "description": "If this value exists in cache, delete the application and cache entry."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "version_id",
+                  "description": "(Required) A UUID string identifying this app version."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "application_id",
+                  "description": "(Required) A UUID string identifying this application."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "enterprise_id",
+                  "description": "(Required) A UUID string identifying enterprise."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "688bcc50-74fd-4046-adb2-ae1f32843504",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enterprise",
+                    ":enterprise_id",
+                    "application",
+                    ":application_id",
+                    "version",
+                    ":version_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "request_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "version_id",
+                      "description": "(Required) A UUID string identifying this app version."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "application_id",
+                      "description": "(Required) A UUID string identifying this application."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enterprise_id",
+                      "description": "(Required) A UUID string identifying enterprise."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"permissions\": [\n    {\n      \"permission\": \"string\",\n      \"enterprise\": \"string\",\n      \"id\": \"3f4c8924-5f50-984e-a51f-06de99633d60\",\n      \"grant_state\": \"Granted\",\n      \"created_on\": \"1956-08-19T03:22:47.024Z\",\n      \"updated_on\": \"1980-08-18T08:58:53.288Z\",\n      \"is_active\": true,\n      \"app_version\": \"string\"\n    },\n    {\n      \"permission\": \"string\",\n      \"enterprise\": \"string\",\n      \"id\": \"d00e731d-133a-0902-ff10-9dd92c7bb229\",\n      \"grant_state\": \"Denied\",\n      \"created_on\": \"1980-12-13T21:40:26.653Z\",\n      \"updated_on\": \"1988-12-20T21:06:50.435Z\",\n      \"is_active\": true,\n      \"app_version\": \"string\"\n    }\n  ],\n  \"version_code\": \"string\",\n  \"enterprise\": \"string\",\n  \"id\": \"0defc538-0c37-71c8-b1c7-80fc5ee0157f\",\n  \"installed_count\": 336,\n  \"app_file\": \"string\",\n  \"app_icon\": \"string\",\n  \"build_number\": \"string\",\n  \"size_in_mb\": 300.28855149209386,\n  \"hash_string\": \"string\",\n  \"release_name\": \"string\",\n  \"release_comments\": \"string\",\n  \"release_track\": \"Beta\",\n  \"created_on\": \"2002-04-03T10:38:59.583Z\",\n  \"updated_on\": \"1995-11-19T09:21:38.042Z\",\n  \"min_sdk_version\": \"string\",\n  \"target_sdk_version\": \"string\",\n  \"is_enabled\": true,\n  \"application\": \"string\",\n  \"approval_status\": \"AVAILABLE\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ac06836e-ebc4-4196-9f21-ded74103c50a",
+              "name": "Authorization information is missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enterprise",
+                    ":enterprise_id",
+                    "application",
+                    ":application_id",
+                    "version",
+                    ":version_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "request_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "version_id",
+                      "description": "(Required) A UUID string identifying this app version."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "application_id",
+                      "description": "(Required) A UUID string identifying this application."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enterprise_id",
+                      "description": "(Required) A UUID string identifying enterprise."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ],\n  \"message\": \"string\",\n  \"status\": 7648\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e02c0d76-81c3-4dd6-8d49-756656af3eda",
+              "name": "Not Found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enterprise",
+                    ":enterprise_id",
+                    "application",
+                    ":application_id",
+                    "version",
+                    ":version_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "request_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "version_id",
+                      "description": "(Required) A UUID string identifying this app version."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "application_id",
+                      "description": "(Required) A UUID string identifying this application."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enterprise_id",
+                      "description": "(Required) A UUID string identifying enterprise."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ],\n  \"message\": \"string\",\n  \"status\": 7648\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cf1ee985-8e38-4747-a82a-de298701e0a9",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enterprise",
+                    ":enterprise_id",
+                    "application",
+                    ":application_id",
+                    "version",
+                    ":version_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "request_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "version_id",
+                      "description": "(Required) A UUID string identifying this app version."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "application_id",
+                      "description": "(Required) A UUID string identifying this application."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enterprise_id",
+                      "description": "(Required) A UUID string identifying enterprise."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ],\n  \"message\": \"string\",\n  \"status\": 7648\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "de744678-a1e6-4b25-8b8e-3a177c881442",
+          "name": "Delete app version",
+          "request": {
+            "name": "Delete app version",
+            "description": {
+              "content": "Empty response",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "enterprise",
+                ":enterprise_id",
+                "application",
+                ":application_id",
+                "version",
+                ":version_id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "version_id",
+                  "description": "(Required) A UUID string identifying this app version."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "application_id",
+                  "description": "(Required) A UUID string identifying this application."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "enterprise_id",
+                  "description": "(Required) A UUID string identifying enterprise."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "dacc7362-21c8-4863-ad19-bd0132dcdafe",
+              "name": "No request id is provided and the application is linked to one or more templates. Returns a request_id. Call with this request id to delete the resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enterprise",
+                    ":enterprise_id",
+                    "application",
+                    ":application_id",
+                    "version",
+                    ":version_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "version_id",
+                      "description": "(Required) A UUID string identifying this app version."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "application_id",
+                      "description": "(Required) A UUID string identifying this application."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enterprise_id",
+                      "description": "(Required) A UUID string identifying enterprise."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_id\": \"ba22a86f-2772-f0ea-0c94-5f5e35aa1e1e\",\n  \"templates\": [\n    {\n      \"id\": 1101,\n      \"name\": \"string\"\n    },\n    {\n      \"id\": 2383,\n      \"name\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "24ffe907-f6b6-4581-b668-2df3889c4f7a",
+              "name": "The resource was deleted successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enterprise",
+                    ":enterprise_id",
+                    "application",
+                    ":application_id",
+                    "version",
+                    ":version_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "version_id",
+                      "description": "(Required) A UUID string identifying this app version."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "application_id",
+                      "description": "(Required) A UUID string identifying this application."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enterprise_id",
+                      "description": "(Required) A UUID string identifying enterprise."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "76db4be2-c2ee-44de-8adb-650c35535253",
+              "name": "Invalid request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enterprise",
+                    ":enterprise_id",
+                    "application",
+                    ":application_id",
+                    "version",
+                    ":version_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "version_id",
+                      "description": "(Required) A UUID string identifying this app version."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "application_id",
+                      "description": "(Required) A UUID string identifying this application."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enterprise_id",
+                      "description": "(Required) A UUID string identifying enterprise."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ],\n  \"message\": \"string\",\n  \"status\": 7648\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "919c8614-15f7-4116-89ec-830201f55587",
+              "name": "Authorization information is missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enterprise",
+                    ":enterprise_id",
+                    "application",
+                    ":application_id",
+                    "version",
+                    ":version_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "version_id",
+                      "description": "(Required) A UUID string identifying this app version."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "application_id",
+                      "description": "(Required) A UUID string identifying this application."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enterprise_id",
+                      "description": "(Required) A UUID string identifying enterprise."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ],\n  \"message\": \"string\",\n  \"status\": 7648\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "878aca7e-2823-413d-9bf1-1efa3a610931",
+              "name": "Forbidden, no permission to perform this action.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enterprise",
+                    ":enterprise_id",
+                    "application",
+                    ":application_id",
+                    "version",
+                    ":version_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "version_id",
+                      "description": "(Required) A UUID string identifying this app version."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "application_id",
+                      "description": "(Required) A UUID string identifying this application."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enterprise_id",
+                      "description": "(Required) A UUID string identifying enterprise."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ],\n  \"message\": \"string\",\n  \"status\": 7648\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "afcf4187-b232-45ff-a2b3-2443d1606c80",
+              "name": "Not Found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enterprise",
+                    ":enterprise_id",
+                    "application",
+                    ":application_id",
+                    "version",
+                    ":version_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "version_id",
+                      "description": "(Required) A UUID string identifying this app version."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "application_id",
+                      "description": "(Required) A UUID string identifying this application."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enterprise_id",
+                      "description": "(Required) A UUID string identifying enterprise."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ],\n  \"message\": \"string\",\n  \"status\": 7648\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "343ae8a0-476a-45af-9394-3078af87ad7c",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enterprise",
+                    ":enterprise_id",
+                    "application",
+                    ":application_id",
+                    "version",
+                    ":version_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "version_id",
+                      "description": "(Required) A UUID string identifying this app version."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "application_id",
+                      "description": "(Required) A UUID string identifying this application."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enterprise_id",
+                      "description": "(Required) A UUID string identifying enterprise."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ],\n  \"message\": \"string\",\n  \"status\": 7648\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "976d5e7a-88cc-42b6-aa82-d589db16c250",
+          "name": "Patch an App version instance",
+          "request": {
+            "name": "Patch an App version instance",
+            "description": {},
+            "url": {
+              "path": [
+                "enterprise",
+                ":enterprise_id",
+                "application",
+                ":application_id",
+                "version",
+                ":version_id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "version_id",
+                  "description": "(Required) A UUID string identifying this app version."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "application_id",
+                  "description": "(Required) A UUID string identifying this application."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "enterprise_id",
+                  "description": "(Required) A UUID string identifying enterprise."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"release_name\": \"<string>\",\n  \"release_comments\": \"<string>\",\n  \"release_track\": \"<string>\",\n  \"is_enabled\": \"<boolean>\",\n  \"min_sdk_version\": \"<string>\",\n  \"target_sdk_version\": \"<string>\",\n  \"build_number\": \"<string>\",\n  \"version_code\": \"<string>\",\n  \"approval_status\": \"<string>\",\n  \"is_default\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5f07dbbf-4e42-412a-ad6e-a923086d94fa",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enterprise",
+                    ":enterprise_id",
+                    "application",
+                    ":application_id",
+                    "version",
+                    ":version_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "version_id",
+                      "description": "(Required) A UUID string identifying this app version."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "application_id",
+                      "description": "(Required) A UUID string identifying this application."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enterprise_id",
+                      "description": "(Required) A UUID string identifying enterprise."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"release_name\": \"<string>\",\n  \"release_comments\": \"<string>\",\n  \"release_track\": \"<string>\",\n  \"is_enabled\": \"<boolean>\",\n  \"min_sdk_version\": \"<string>\",\n  \"target_sdk_version\": \"<string>\",\n  \"build_number\": \"<string>\",\n  \"version_code\": \"<string>\",\n  \"approval_status\": \"<string>\",\n  \"is_default\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"permissions\": [\n    {\n      \"permission\": \"string\",\n      \"enterprise\": \"string\",\n      \"id\": \"3f4c8924-5f50-984e-a51f-06de99633d60\",\n      \"grant_state\": \"Granted\",\n      \"created_on\": \"1956-08-19T03:22:47.024Z\",\n      \"updated_on\": \"1980-08-18T08:58:53.288Z\",\n      \"is_active\": true,\n      \"app_version\": \"string\"\n    },\n    {\n      \"permission\": \"string\",\n      \"enterprise\": \"string\",\n      \"id\": \"d00e731d-133a-0902-ff10-9dd92c7bb229\",\n      \"grant_state\": \"Denied\",\n      \"created_on\": \"1980-12-13T21:40:26.653Z\",\n      \"updated_on\": \"1988-12-20T21:06:50.435Z\",\n      \"is_active\": true,\n      \"app_version\": \"string\"\n    }\n  ],\n  \"version_code\": \"string\",\n  \"enterprise\": \"string\",\n  \"id\": \"0defc538-0c37-71c8-b1c7-80fc5ee0157f\",\n  \"installed_count\": 336,\n  \"app_file\": \"string\",\n  \"app_icon\": \"string\",\n  \"build_number\": \"string\",\n  \"size_in_mb\": 300.28855149209386,\n  \"hash_string\": \"string\",\n  \"release_name\": \"string\",\n  \"release_comments\": \"string\",\n  \"release_track\": \"Beta\",\n  \"created_on\": \"2002-04-03T10:38:59.583Z\",\n  \"updated_on\": \"1995-11-19T09:21:38.042Z\",\n  \"min_sdk_version\": \"string\",\n  \"target_sdk_version\": \"string\",\n  \"is_enabled\": true,\n  \"application\": \"string\",\n  \"approval_status\": \"AVAILABLE\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4093e301-c743-4b70-86f0-00a1d4d7edb9",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enterprise",
+                    ":enterprise_id",
+                    "application",
+                    ":application_id",
+                    "version",
+                    ":version_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "version_id",
+                      "description": "(Required) A UUID string identifying this app version."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "application_id",
+                      "description": "(Required) A UUID string identifying this application."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enterprise_id",
+                      "description": "(Required) A UUID string identifying enterprise."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"release_name\": \"<string>\",\n  \"release_comments\": \"<string>\",\n  \"release_track\": \"<string>\",\n  \"is_enabled\": \"<boolean>\",\n  \"min_sdk_version\": \"<string>\",\n  \"target_sdk_version\": \"<string>\",\n  \"build_number\": \"<string>\",\n  \"version_code\": \"<string>\",\n  \"approval_status\": \"<string>\",\n  \"is_default\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ],\n  \"message\": \"string\",\n  \"status\": 7648\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "55f2fb72-11ce-48d7-8c0e-1402dc549b04",
+              "name": "Authorization information is missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enterprise",
+                    ":enterprise_id",
+                    "application",
+                    ":application_id",
+                    "version",
+                    ":version_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "version_id",
+                      "description": "(Required) A UUID string identifying this app version."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "application_id",
+                      "description": "(Required) A UUID string identifying this application."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enterprise_id",
+                      "description": "(Required) A UUID string identifying enterprise."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"release_name\": \"<string>\",\n  \"release_comments\": \"<string>\",\n  \"release_track\": \"<string>\",\n  \"is_enabled\": \"<boolean>\",\n  \"min_sdk_version\": \"<string>\",\n  \"target_sdk_version\": \"<string>\",\n  \"build_number\": \"<string>\",\n  \"version_code\": \"<string>\",\n  \"approval_status\": \"<string>\",\n  \"is_default\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ],\n  \"message\": \"string\",\n  \"status\": 7648\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c579d97e-b1e0-4336-afb5-8cda9a309eb7",
+              "name": "Forbidden, no permission to perform this action.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enterprise",
+                    ":enterprise_id",
+                    "application",
+                    ":application_id",
+                    "version",
+                    ":version_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "version_id",
+                      "description": "(Required) A UUID string identifying this app version."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "application_id",
+                      "description": "(Required) A UUID string identifying this application."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enterprise_id",
+                      "description": "(Required) A UUID string identifying enterprise."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"release_name\": \"<string>\",\n  \"release_comments\": \"<string>\",\n  \"release_track\": \"<string>\",\n  \"is_enabled\": \"<boolean>\",\n  \"min_sdk_version\": \"<string>\",\n  \"target_sdk_version\": \"<string>\",\n  \"build_number\": \"<string>\",\n  \"version_code\": \"<string>\",\n  \"approval_status\": \"<string>\",\n  \"is_default\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ],\n  \"message\": \"string\",\n  \"status\": 7648\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8ebd0b3a-53e7-46a7-ad83-f685531bb8ec",
+              "name": "Not Found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enterprise",
+                    ":enterprise_id",
+                    "application",
+                    ":application_id",
+                    "version",
+                    ":version_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "version_id",
+                      "description": "(Required) A UUID string identifying this app version."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "application_id",
+                      "description": "(Required) A UUID string identifying this application."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enterprise_id",
+                      "description": "(Required) A UUID string identifying enterprise."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"release_name\": \"<string>\",\n  \"release_comments\": \"<string>\",\n  \"release_track\": \"<string>\",\n  \"is_enabled\": \"<boolean>\",\n  \"min_sdk_version\": \"<string>\",\n  \"target_sdk_version\": \"<string>\",\n  \"build_number\": \"<string>\",\n  \"version_code\": \"<string>\",\n  \"approval_status\": \"<string>\",\n  \"is_default\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ],\n  \"message\": \"string\",\n  \"status\": 7648\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dfca834e-1e25-403c-acae-2315f6e12241",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enterprise",
+                    ":enterprise_id",
+                    "application",
+                    ":application_id",
+                    "version",
+                    ":version_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "version_id",
+                      "description": "(Required) A UUID string identifying this app version."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "application_id",
+                      "description": "(Required) A UUID string identifying this application."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enterprise_id",
+                      "description": "(Required) A UUID string identifying enterprise."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"release_name\": \"<string>\",\n  \"release_comments\": \"<string>\",\n  \"release_track\": \"<string>\",\n  \"is_enabled\": \"<boolean>\",\n  \"min_sdk_version\": \"<string>\",\n  \"target_sdk_version\": \"<string>\",\n  \"build_number\": \"<string>\",\n  \"version_code\": \"<string>\",\n  \"approval_status\": \"<string>\",\n  \"is_default\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ],\n  \"message\": \"string\",\n  \"status\": 7648\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ec197e59-1047-453b-a063-d6768a8ec038",
+          "name": "List install devices",
+          "request": {
+            "name": "List install devices",
+            "description": {
+              "content": "Returns list of devices with the specified app version installed",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "enterprise",
+                ":enterprise_id",
+                "application",
+                ":application_id",
+                "version",
+                ":version_id",
+                "installdevices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "A search term, search based on device name, device alias_name, group name"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Number of results to return per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "The initial index from which to return the results"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "version_id",
+                  "description": "(Required) A UUID string identifying this app version."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "application_id",
+                  "description": "(Required) A UUID string identifying this application."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "enterprise_id",
+                  "description": "(Required) A UUID string identifying enterprise."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f5e384cf-b452-47f6-a7c1-74648d4b2d88",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enterprise",
+                    ":enterprise_id",
+                    "application",
+                    ":application_id",
+                    "version",
+                    ":version_id",
+                    "installdevices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "version_id",
+                      "description": "(Required) A UUID string identifying this app version."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "application_id",
+                      "description": "(Required) A UUID string identifying this application."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enterprise_id",
+                      "description": "(Required) A UUID string identifying enterprise."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 1815,\n  \"results\": [\n    {\n      \"id\": \"1d4a7cf7-eee0-0b43-5376-f12633597985\",\n      \"device_name\": \"string\",\n      \"alias_name\": \"string\",\n      \"group_name\": \"string\"\n    },\n    {\n      \"id\": \"03de40b0-e5f5-6619-9560-b647b4af8830\",\n      \"device_name\": \"string\",\n      \"alias_name\": \"string\",\n      \"group_name\": \"string\"\n    }\n  ],\n  \"next\": \"string\",\n  \"previous\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "90f311e5-a0e4-4f09-997d-eb8b039b1887",
+              "name": "Authorization information is missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enterprise",
+                    ":enterprise_id",
+                    "application",
+                    ":application_id",
+                    "version",
+                    ":version_id",
+                    "installdevices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "version_id",
+                      "description": "(Required) A UUID string identifying this app version."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "application_id",
+                      "description": "(Required) A UUID string identifying this application."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enterprise_id",
+                      "description": "(Required) A UUID string identifying enterprise."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ],\n  \"message\": \"string\",\n  \"status\": 7648\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "00231bbb-aa3e-44b0-91a6-7a5078547299",
+              "name": "Forbidden, no permission to perform this action.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enterprise",
+                    ":enterprise_id",
+                    "application",
+                    ":application_id",
+                    "version",
+                    ":version_id",
+                    "installdevices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "version_id",
+                      "description": "(Required) A UUID string identifying this app version."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "application_id",
+                      "description": "(Required) A UUID string identifying this application."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enterprise_id",
+                      "description": "(Required) A UUID string identifying enterprise."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ],\n  \"message\": \"string\",\n  \"status\": 7648\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0ad8dab0-7965-44ef-8b43-3ba75f6cfe3d",
+              "name": "Not Found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enterprise",
+                    ":enterprise_id",
+                    "application",
+                    ":application_id",
+                    "version",
+                    ":version_id",
+                    "installdevices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "version_id",
+                      "description": "(Required) A UUID string identifying this app version."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "application_id",
+                      "description": "(Required) A UUID string identifying this application."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enterprise_id",
+                      "description": "(Required) A UUID string identifying enterprise."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ],\n  \"message\": \"string\",\n  \"status\": 7648\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b92f9350-c715-4aec-ad4e-32dc3d4b47b5",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enterprise",
+                    ":enterprise_id",
+                    "application",
+                    ":application_id",
+                    "version",
+                    ":version_id",
+                    "installdevices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "version_id",
+                      "description": "(Required) A UUID string identifying this app version."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "application_id",
+                      "description": "(Required) A UUID string identifying this application."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enterprise_id",
+                      "description": "(Required) A UUID string identifying enterprise."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ],\n  \"message\": \"string\",\n  \"status\": 7648\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "79cab322-0383-4001-bed4-f155c951de0c",
+          "name": "List install devices",
+          "request": {
+            "name": "List install devices",
+            "description": {
+              "content": "Returns list of devices with the specified app version installed",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "enterprise",
+                ":enterprise_id",
+                "application",
+                ":application_id",
+                "version",
+                ":version_id",
+                "installdevices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "A search term, search based on device name, device alias_name, group name"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Number of results to return per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "The initial index from which to return the results"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "version_id",
+                  "description": "(Required) A UUID string identifying this app version."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "application_id",
+                  "description": "(Required) A UUID string identifying this application."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "enterprise_id",
+                  "description": "(Required) A UUID string identifying enterprise."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1321d77d-c9f3-4a09-bf27-31c4351b81c9",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "enterprise",
+                    ":enterprise_id",
+                    "application",
+                    ":application_id",
+                    "version",
+                    ":version_id",
+                    "installdevices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "version_id",
+                      "description": "(Required) A UUID string identifying this app version."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "application_id",
+                      "description": "(Required) A UUID string identifying this application."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enterprise_id",
+                      "description": "(Required) A UUID string identifying enterprise."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 1815,\n  \"results\": [\n    {\n      \"id\": \"1d4a7cf7-eee0-0b43-5376-f12633597985\",\n      \"device_name\": \"string\",\n      \"alias_name\": \"string\",\n      \"group_name\": \"string\"\n    },\n    {\n      \"id\": \"03de40b0-e5f5-6619-9560-b647b4af8830\",\n      \"device_name\": \"string\",\n      \"alias_name\": \"string\",\n      \"group_name\": \"string\"\n    }\n  ],\n  \"next\": \"string\",\n  \"previous\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7d74b4ae-ce9b-4405-8877-dec68be757e5",
+              "name": "Authorization information is missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "enterprise",
+                    ":enterprise_id",
+                    "application",
+                    ":application_id",
+                    "version",
+                    ":version_id",
+                    "installdevices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "version_id",
+                      "description": "(Required) A UUID string identifying this app version."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "application_id",
+                      "description": "(Required) A UUID string identifying this application."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enterprise_id",
+                      "description": "(Required) A UUID string identifying enterprise."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ],\n  \"message\": \"string\",\n  \"status\": 7648\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4c34ca1b-0e45-4772-a931-137ac7ffef3e",
+              "name": "Forbidden, no permission to perform this action.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "enterprise",
+                    ":enterprise_id",
+                    "application",
+                    ":application_id",
+                    "version",
+                    ":version_id",
+                    "installdevices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "version_id",
+                      "description": "(Required) A UUID string identifying this app version."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "application_id",
+                      "description": "(Required) A UUID string identifying this application."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enterprise_id",
+                      "description": "(Required) A UUID string identifying enterprise."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ],\n  \"message\": \"string\",\n  \"status\": 7648\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3d7ceab9-7ed7-49eb-933b-f4074fe52fb2",
+              "name": "Not Found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "enterprise",
+                    ":enterprise_id",
+                    "application",
+                    ":application_id",
+                    "version",
+                    ":version_id",
+                    "installdevices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "version_id",
+                      "description": "(Required) A UUID string identifying this app version."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "application_id",
+                      "description": "(Required) A UUID string identifying this application."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enterprise_id",
+                      "description": "(Required) A UUID string identifying enterprise."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ],\n  \"message\": \"string\",\n  \"status\": 7648\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6e53d73b-0d51-4e50-ae04-e18803b81cca",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "enterprise",
+                    ":enterprise_id",
+                    "application",
+                    ":application_id",
+                    "version",
+                    ":version_id",
+                    "installdevices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "version_id",
+                      "description": "(Required) A UUID string identifying this app version."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "application_id",
+                      "description": "(Required) A UUID string identifying this application."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enterprise_id",
+                      "description": "(Required) A UUID string identifying enterprise."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ],\n  \"message\": \"string\",\n  \"status\": 7648\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://foo-api.esper.cloud/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "f2d622ab-2cc1-4e16-b4c7-4d6b811716a0",
+    "name": "ESPER API REFERENCE Application API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "# Introduction\nEsper APIs are a set of REST-based APIs that help you programmatically control and monitor Android-based Dedicated Devices running the Esper agent using Esper Manage. With these APIs, you can orchestrate and manage devices that have been provisioned against your Esper Manage environment. Furthermore, these APIs allows you to manage the Android applications installed on your Dedicated Device fleet. To read more about the various capabilities of Esper APIs and Esper managed devices, please visit [esper.io](https://esper.io). This guide describes all the available APIs in detail, along with code samples for you to quickly ramp up to using them.\\\nTo use these APIs you will need to create a developer account with Esper and get access to the Esper Dev Console and the Esper ManageDashboard. You can find out more about Esper and sign up for free at [esper.io/signup](https://esper.io/signup)\\\nWe've done our best to keep this document up to date, but if you find any issues, please reach out to us at developer@esper.io.\n\n# SDK\n\n  You are welcome to use your favorite HTTP/REST library for your programming language in order to call these APIs, or you can use our SDK (currently supporting [python](https://github.com/esper-io/esper-client-py)) to do so.\n\n\n# Authentication\nThe client needs to send authentication details to access the Esper APIs by generating and applying an API key. Be sure to sign up for your free trial account with Esper Dev to generate your key:\n\n# Errors\nThe APIs use standard HTTP status codes to indicate success or failure. All error responses will have a JSON body in the following format:\n\n```\n{\n  \"errors\": [],\n  \"message\": \"error message\",\n  \"status\": 400\n}\n```\n* `errors` -  List of error details\n* `message` - Error description\n* `status` - HTTP status code\n\n\nContact Support:\n Email: developer@esper.io",
+      "type": "text/plain"
+    }
+  }
+}

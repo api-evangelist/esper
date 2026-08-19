@@ -1,0 +1,337 @@
+{
+  "item": [
+    {
+      "id": "764d9fc2-8ed9-447b-8379-72b27902b88b",
+      "name": "Group Commands",
+      "description": {
+        "content": "APIs to run group commands. Command will be run on all the active devices in a group",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5ae5551b-a0ce-4fee-a10e-30bba6d0a244",
+          "name": "Run commands on group devices",
+          "request": {
+            "name": "Run commands on group devices",
+            "description": {
+              "content": "Fire commands on all the group devices. Deprecated in favour of commands V2.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "enterprise",
+                ":enterprise_id",
+                "devicegroup",
+                ":group_id",
+                "command",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "enterprise_id",
+                  "description": "(Required) ID of the enterprise"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "group_id",
+                  "description": "(Required) ID of the group"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"command\": \"<string>\",\n  \"command_args\": {\n    \"app_version\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ad2a9fb6-a437-47b0-9da1-d9afb758dac1",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enterprise",
+                    ":enterprise_id",
+                    "devicegroup",
+                    ":group_id",
+                    "command",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "enterprise_id",
+                      "description": "(Required) ID of the enterprise"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "group_id",
+                      "description": "(Required) ID of the group"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"command\": \"<string>\",\n  \"command_args\": {\n    \"app_version\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"command\": \"<string>\",\n  \"enterprise\": \"string\",\n  \"group\": \"string\",\n  \"id\": \"93403565-c4d6-0842-9932-7cac9a421866\",\n  \"schedule\": \"string\",\n  \"command_args\": {\n    \"app_version\": \"<string>\"\n  },\n  \"state\": \"Command Failure\",\n  \"details\": \"string\",\n  \"created_on\": \"1992-06-24T13:54:55.898Z\",\n  \"updated_on\": \"2006-02-27T05:17:46.130Z\",\n  \"is_active\": true,\n  \"issued_by\": \"http://tYljvrssoUhEV.wjm5,FDAcrb9G2Lm+NmzdwkQGfhjHBcjvZvcrYP18Fat\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "382ce4cc-ca6d-4eba-b3d3-0ec27d700fd6",
+          "name": "Get group command status",
+          "request": {
+            "name": "Get group command status",
+            "description": {
+              "content": "Returns GroupCommand instance. Deprecated in favour of commands V2.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "enterprise",
+                ":enterprise_id",
+                "devicegroup",
+                ":group_id",
+                "command",
+                ":command_id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "command_id",
+                  "description": "(Required) A UUID string identifying this device command."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "group_id",
+                  "description": "(Required) A UUID string identifying this group."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "enterprise_id",
+                  "description": "(Required) A UUID string identifying enterprise."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7b89486e-356e-4111-ab59-cb26ff7e2b17",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enterprise",
+                    ":enterprise_id",
+                    "devicegroup",
+                    ":group_id",
+                    "command",
+                    ":command_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "command_id",
+                      "description": "(Required) A UUID string identifying this device command."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "group_id",
+                      "description": "(Required) A UUID string identifying this group."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "enterprise_id",
+                      "description": "(Required) A UUID string identifying enterprise."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"command\": \"<string>\",\n  \"enterprise\": \"string\",\n  \"group\": \"string\",\n  \"id\": \"93403565-c4d6-0842-9932-7cac9a421866\",\n  \"schedule\": \"string\",\n  \"command_args\": {\n    \"app_version\": \"<string>\"\n  },\n  \"state\": \"Command Failure\",\n  \"details\": \"string\",\n  \"created_on\": \"1992-06-24T13:54:55.898Z\",\n  \"updated_on\": \"2006-02-27T05:17:46.130Z\",\n  \"is_active\": true,\n  \"issued_by\": \"http://tYljvrssoUhEV.wjm5,FDAcrb9G2Lm+NmzdwkQGfhjHBcjvZvcrYP18Fat\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://foo-api.esper.cloud/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "745f5191-5700-4565-b593-813029b28356",
+    "name": "ESPER API REFERENCE Application Group Commands API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "# Introduction\nEsper APIs are a set of REST-based APIs that help you programmatically control and monitor Android-based Dedicated Devices running the Esper agent using Esper Manage. With these APIs, you can orchestrate and manage devices that have been provisioned against your Esper Manage environment. Furthermore, these APIs allows you to manage the Android applications installed on your Dedicated Device fleet. To read more about the various capabilities of Esper APIs and Esper managed devices, please visit [esper.io](https://esper.io). This guide describes all the available APIs in detail, along with code samples for you to quickly ramp up to using them.\\\nTo use these APIs you will need to create a developer account with Esper and get access to the Esper Dev Console and the Esper ManageDashboard. You can find out more about Esper and sign up for free at [esper.io/signup](https://esper.io/signup)\\\nWe've done our best to keep this document up to date, but if you find any issues, please reach out to us at developer@esper.io.\n\n# SDK\n\n  You are welcome to use your favorite HTTP/REST library for your programming language in order to call these APIs, or you can use our SDK (currently supporting [python](https://github.com/esper-io/esper-client-py)) to do so.\n\n\n# Authentication\nThe client needs to send authentication details to access the Esper APIs by generating and applying an API key. Be sure to sign up for your free trial account with Esper Dev to generate your key:\n\n# Errors\nThe APIs use standard HTTP status codes to indicate success or failure. All error responses will have a JSON body in the following format:\n\n```\n{\n  \"errors\": [],\n  \"message\": \"error message\",\n  \"status\": 400\n}\n```\n* `errors` -  List of error details\n* `message` - Error description\n* `status` - HTTP status code\n\n\nContact Support:\n Email: developer@esper.io",
+      "type": "text/plain"
+    }
+  }
+}

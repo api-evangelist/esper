@@ -1,0 +1,490 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ESPER API REFERENCE Application API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Application",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List apps in enterprise",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/enterprise/:enterprise_id/application/",
+            "params": [
+              {
+                "name": "enterprise_id",
+                "value": "",
+                "type": "path",
+                "description": "A UUID string identifying this enterprise."
+              },
+              {
+                "name": "application_name",
+                "value": "",
+                "type": "query",
+                "description": "filter by application name"
+              },
+              {
+                "name": "package_name",
+                "value": "",
+                "type": "query",
+                "description": "filter by package name"
+              },
+              {
+                "name": "package_name_exact",
+                "value": "",
+                "type": "query",
+                "description": "filter by package name (exact match)"
+              },
+              {
+                "name": "has_uploaded_version",
+                "value": "",
+                "type": "query",
+                "description": "Returns applications having atleast on version uploaded"
+              },
+              {
+                "name": "category",
+                "value": "",
+                "type": "query",
+                "description": "filter by category"
+              },
+              {
+                "name": "supported_sdk",
+                "value": "",
+                "type": "query",
+                "description": "filter by supported sdk versions"
+              },
+              {
+                "name": "is_active",
+                "value": "",
+                "type": "query",
+                "description": "filter by active applications"
+              },
+              {
+                "name": "is_hidden",
+                "value": "",
+                "type": "query",
+                "description": "filter default esper apps"
+              },
+              {
+                "name": "created_on_gt",
+                "value": "",
+                "type": "query",
+                "description": "filter applications created after a given timestamp"
+              },
+              {
+                "name": "created_on_lt",
+                "value": "",
+                "type": "query",
+                "description": "filter applications created before a given timestamp"
+              },
+              {
+                "name": "updated_on_gt",
+                "value": "",
+                "type": "query",
+                "description": "filter applications updated after a given timestamp"
+              },
+              {
+                "name": "updated_on_lt",
+                "value": "",
+                "type": "query",
+                "description": "filter applications updated before a given timestamp"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return per page."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The initial index from which to return the results."
+              }
+            ]
+          },
+          "docs": "Returns Application list"
+        },
+        {
+          "info": {
+            "name": "Upload an application to enterprise",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/enterprise/:enterprise_id/application/upload/",
+            "params": [
+              {
+                "name": "enterprise_id",
+                "value": "",
+                "type": "path",
+                "description": "A UUID string identifying this enterprise."
+              }
+            ]
+          },
+          "docs": "Returns application"
+        },
+        {
+          "info": {
+            "name": "Get application information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/enterprise/:enterprise_id/application/:application_id/",
+            "params": [
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "path",
+                "description": "A UUID string identifying this application."
+              },
+              {
+                "name": "enterprise_id",
+                "value": "",
+                "type": "path",
+                "description": "A UUID string identifying enterprise."
+              }
+            ]
+          },
+          "docs": "Returns Application instance"
+        },
+        {
+          "info": {
+            "name": "Delete an application",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/enterprise/:enterprise_id/application/:application_id/",
+            "params": [
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "path",
+                "description": "A UUID string identifying this application."
+              },
+              {
+                "name": "enterprise_id",
+                "value": "",
+                "type": "path",
+                "description": "A UUID string identifying enterprise."
+              }
+            ]
+          },
+          "docs": "Empty response"
+        },
+        {
+          "info": {
+            "name": "List App versions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/enterprise/:enterprise_id/application/:application_id/version/",
+            "params": [
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "path",
+                "description": "A UUID string identifying this application."
+              },
+              {
+                "name": "enterprise_id",
+                "value": "",
+                "type": "path",
+                "description": "A UUID string identifying enterprise."
+              },
+              {
+                "name": "version_code",
+                "value": "",
+                "type": "query",
+                "description": "filter by version code"
+              },
+              {
+                "name": "build_number",
+                "value": "",
+                "type": "query",
+                "description": "filter by build number"
+              },
+              {
+                "name": "is_g_play",
+                "value": "",
+                "type": "query",
+                "description": "filter google play applications"
+              },
+              {
+                "name": "approval_status",
+                "value": "",
+                "type": "query",
+                "description": "filter by approval status"
+              },
+              {
+                "name": "is_enabled",
+                "value": "",
+                "type": "query",
+                "description": "filter by enabled versions"
+              },
+              {
+                "name": "is_default",
+                "value": "",
+                "type": "query",
+                "description": "filter by default versions"
+              },
+              {
+                "name": "created_on_gt",
+                "value": "",
+                "type": "query",
+                "description": "filter applications created after a given timestamp"
+              },
+              {
+                "name": "created_on_lt",
+                "value": "",
+                "type": "query",
+                "description": "filter applications created before a given timestamp"
+              },
+              {
+                "name": "updated_on_gt",
+                "value": "",
+                "type": "query",
+                "description": "filter applications updated after a given timestamp"
+              },
+              {
+                "name": "updated_on_lt",
+                "value": "",
+                "type": "query",
+                "description": "filter applications updated before a given timestamp"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return per page."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The initial index from which to return the results."
+              },
+              {
+                "name": "ordering",
+                "value": "",
+                "type": "query",
+                "description": "Order result set by field name.\n\n```\n* installed_count: order by asc\n* -installed_count: order by desc\n```\n"
+              }
+            ]
+          },
+          "docs": "Returns AppVersion list"
+        },
+        {
+          "info": {
+            "name": "Get app version information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/enterprise/:enterprise_id/application/:application_id/version/:version_id/",
+            "params": [
+              {
+                "name": "version_id",
+                "value": "",
+                "type": "path",
+                "description": "A UUID string identifying this app version."
+              },
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "path",
+                "description": "A UUID string identifying this application."
+              },
+              {
+                "name": "enterprise_id",
+                "value": "",
+                "type": "path",
+                "description": "A UUID string identifying enterprise."
+              },
+              {
+                "name": "request_id",
+                "value": "",
+                "type": "query",
+                "description": "If this value exists in cache, delete the application and cache entry."
+              }
+            ]
+          },
+          "docs": "Returns AppVersion instance"
+        },
+        {
+          "info": {
+            "name": "Patch an App version instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/enterprise/:enterprise_id/application/:application_id/version/:version_id/",
+            "params": [
+              {
+                "name": "version_id",
+                "value": "",
+                "type": "path",
+                "description": "A UUID string identifying this app version."
+              },
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "path",
+                "description": "A UUID string identifying this application."
+              },
+              {
+                "name": "enterprise_id",
+                "value": "",
+                "type": "path",
+                "description": "A UUID string identifying enterprise."
+              }
+            ]
+          },
+          "docs": "Patch an App version instance"
+        },
+        {
+          "info": {
+            "name": "Delete app version",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/enterprise/:enterprise_id/application/:application_id/version/:version_id/",
+            "params": [
+              {
+                "name": "version_id",
+                "value": "",
+                "type": "path",
+                "description": "A UUID string identifying this app version."
+              },
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "path",
+                "description": "A UUID string identifying this application."
+              },
+              {
+                "name": "enterprise_id",
+                "value": "",
+                "type": "path",
+                "description": "A UUID string identifying enterprise."
+              }
+            ]
+          },
+          "docs": "Empty response"
+        },
+        {
+          "info": {
+            "name": "List install devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/enterprise/:enterprise_id/application/:application_id/version/:version_id/installdevices",
+            "params": [
+              {
+                "name": "version_id",
+                "value": "",
+                "type": "path",
+                "description": "A UUID string identifying this app version."
+              },
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "path",
+                "description": "A UUID string identifying this application."
+              },
+              {
+                "name": "enterprise_id",
+                "value": "",
+                "type": "path",
+                "description": "A UUID string identifying enterprise."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "A search term, search based on device name, device alias_name, group name"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return per page"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The initial index from which to return the results"
+              }
+            ]
+          },
+          "docs": "Returns list of devices with the specified app version installed"
+        },
+        {
+          "info": {
+            "name": "List install devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/enterprise/:enterprise_id/application/:application_id/version/:version_id/installdevices",
+            "params": [
+              {
+                "name": "version_id",
+                "value": "",
+                "type": "path",
+                "description": "A UUID string identifying this app version."
+              },
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "path",
+                "description": "A UUID string identifying this application."
+              },
+              {
+                "name": "enterprise_id",
+                "value": "",
+                "type": "path",
+                "description": "A UUID string identifying enterprise."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "A search term, search based on device name, device alias_name, group name"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return per page"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The initial index from which to return the results"
+              }
+            ]
+          },
+          "docs": "Returns list of devices with the specified app version installed"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -2,7 +2,8 @@ generated: '2026-07-19'
 method: derived
 status: candidate
 source: openapi/esper-manage-openapi-original.yml
-note: No official hosted/remote Esper MCP server was found. This is a candidate tool list derived one-per-operation from the Esper Manage OpenAPI; not a published server.
+note: No official hosted/remote Esper MCP server was found. This is a candidate tool list derived one-per-operation
+  from the Esper Manage OpenAPI; not a published server.
 server:
   name: esper-manage
   transport: stdio
@@ -193,3 +194,9 @@ tools:
 - name: getTokenInfo
   description: Token Information
   source_operation: openapi/esper-manage-openapi-original.yml#getTokenInfo
+deployment:
+  mode: none
+  verified: derived
+  tools: 62
+  checked: '2026-08-12'
+  source: catalog MCP census

@@ -1,0 +1,887 @@
+{
+  "item": [
+    {
+      "id": "ee227cdc-b6e7-432b-a337-8feb7ac9cd2c",
+      "name": "Enterprise Policy",
+      "description": {
+        "content": "APIs to Esper Compliance Policy",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "23ffe98c-3b36-480c-8cf5-97a137ce2c07",
+          "name": "Create a new Enterprise Policy",
+          "request": {
+            "name": "Create a new Enterprise Policy",
+            "description": {
+              "content": "API to create a new Enterprise Policy",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "enterprise",
+                ":enterprise_id",
+                "policy",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "enterprise_id",
+                  "description": "(Required) ID of the enterprise"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"enterprise\": \"<url>\",\n  \"policy\": {\n    \"keyguardDisabled\": \"<boolean>\",\n    \"safeBootDisabled\": \"<boolean>\",\n    \"statusBarDisabled\": \"<boolean>\",\n    \"factoryResetDisabled\": \"<boolean>\",\n    \"screenshotDisabled\": \"<boolean>\",\n    \"usbConnectivityDisabled\": \"<boolean>\",\n    \"smsDisabled\": \"<boolean>\",\n    \"outgoingCallsDisabled\": \"<boolean>\",\n    \"cameraDisabled\": \"<boolean>\",\n    \"nfcBeamDisabled\": \"<boolean>\",\n    \"disablePlayStore\": \"<boolean>\",\n    \"usbFileTransferDisabled\": \"<boolean>\",\n    \"tetheringDisabled\": \"<boolean>\",\n    \"dateTimeConfigDisabled\": \"<boolean>\",\n    \"appUninstallDisabled\": \"<boolean>\",\n    \"googleAssistantDisabled\": \"<boolean>\",\n    \"disableLocalAppInstall\": \"<boolean>\",\n    \"adbDisabled\": \"<boolean>\",\n    \"phonePolicy\": {\n      \"incomingNumbers\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"outgoingNumbers\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"dialer\": \"<string>\"\n    },\n    \"frpGoogles\": [\n      {\n        \"type\": \"<string>\",\n        \"email\": \"<email>\",\n        \"googleId\": \"<string>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"email\": \"<email>\",\n        \"googleId\": \"<string>\"\n      }\n    ],\n    \"googleAccountPermission\": {\n      \"maxAccount\": \"<integer>\",\n      \"emails\": [\n        \"<email>\",\n        \"<email>\"\n      ],\n      \"domains\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"devicePasswordPolicy\": {\n      \"passwordQuality\": \"<string>\"\n    },\n    \"minimumPasswordLength\": \"<integer>\",\n    \"permissionPolicy\": \"<string>\",\n    \"deviceUpdatePolicy\": {\n      \"type\": \"<string>\",\n      \"maintenanceStart\": \"<integer>\",\n      \"maintenanceEnd\": \"<integer>\"\n    },\n    \"settingsAccessLevel\": \"<string>\",\n    \"settingsAppPassword\": \"<password>\"\n  },\n  \"description\": \"<string>\",\n  \"is_active\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c15e762d-1763-4605-b489-c29be05068bf",
+              "name": "command request successfully created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enterprise",
+                    ":enterprise_id",
+                    "policy",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "enterprise_id",
+                      "description": "(Required) ID of the enterprise"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"enterprise\": \"<url>\",\n  \"policy\": {\n    \"keyguardDisabled\": \"<boolean>\",\n    \"safeBootDisabled\": \"<boolean>\",\n    \"statusBarDisabled\": \"<boolean>\",\n    \"factoryResetDisabled\": \"<boolean>\",\n    \"screenshotDisabled\": \"<boolean>\",\n    \"usbConnectivityDisabled\": \"<boolean>\",\n    \"smsDisabled\": \"<boolean>\",\n    \"outgoingCallsDisabled\": \"<boolean>\",\n    \"cameraDisabled\": \"<boolean>\",\n    \"nfcBeamDisabled\": \"<boolean>\",\n    \"disablePlayStore\": \"<boolean>\",\n    \"usbFileTransferDisabled\": \"<boolean>\",\n    \"tetheringDisabled\": \"<boolean>\",\n    \"dateTimeConfigDisabled\": \"<boolean>\",\n    \"appUninstallDisabled\": \"<boolean>\",\n    \"googleAssistantDisabled\": \"<boolean>\",\n    \"disableLocalAppInstall\": \"<boolean>\",\n    \"adbDisabled\": \"<boolean>\",\n    \"phonePolicy\": {\n      \"incomingNumbers\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"outgoingNumbers\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"dialer\": \"<string>\"\n    },\n    \"frpGoogles\": [\n      {\n        \"type\": \"<string>\",\n        \"email\": \"<email>\",\n        \"googleId\": \"<string>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"email\": \"<email>\",\n        \"googleId\": \"<string>\"\n      }\n    ],\n    \"googleAccountPermission\": {\n      \"maxAccount\": \"<integer>\",\n      \"emails\": [\n        \"<email>\",\n        \"<email>\"\n      ],\n      \"domains\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"devicePasswordPolicy\": {\n      \"passwordQuality\": \"<string>\"\n    },\n    \"minimumPasswordLength\": \"<integer>\",\n    \"permissionPolicy\": \"<string>\",\n    \"deviceUpdatePolicy\": {\n      \"type\": \"<string>\",\n      \"maintenanceStart\": \"<integer>\",\n      \"maintenanceEnd\": \"<integer>\"\n    },\n    \"settingsAccessLevel\": \"<string>\",\n    \"settingsAppPassword\": \"<password>\"\n  },\n  \"description\": \"<string>\",\n  \"is_active\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"<string>\",\n  \"enterprise\": \"<url>\",\n  \"policy\": {\n    \"keyguardDisabled\": \"<boolean>\",\n    \"safeBootDisabled\": \"<boolean>\",\n    \"statusBarDisabled\": \"<boolean>\",\n    \"factoryResetDisabled\": \"<boolean>\",\n    \"screenshotDisabled\": \"<boolean>\",\n    \"usbConnectivityDisabled\": \"<boolean>\",\n    \"smsDisabled\": \"<boolean>\",\n    \"outgoingCallsDisabled\": \"<boolean>\",\n    \"cameraDisabled\": \"<boolean>\",\n    \"nfcBeamDisabled\": \"<boolean>\",\n    \"disablePlayStore\": \"<boolean>\",\n    \"usbFileTransferDisabled\": \"<boolean>\",\n    \"tetheringDisabled\": \"<boolean>\",\n    \"dateTimeConfigDisabled\": \"<boolean>\",\n    \"appUninstallDisabled\": \"<boolean>\",\n    \"googleAssistantDisabled\": \"<boolean>\",\n    \"disableLocalAppInstall\": \"<boolean>\",\n    \"adbDisabled\": \"<boolean>\",\n    \"phonePolicy\": {\n      \"incomingNumbers\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"outgoingNumbers\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"dialer\": \"<string>\"\n    },\n    \"frpGoogles\": [\n      {\n        \"type\": \"<string>\",\n        \"email\": \"<email>\",\n        \"googleId\": \"<string>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"email\": \"<email>\",\n        \"googleId\": \"<string>\"\n      }\n    ],\n    \"googleAccountPermission\": {\n      \"maxAccount\": \"<integer>\",\n      \"emails\": [\n        \"<email>\",\n        \"<email>\"\n      ],\n      \"domains\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"devicePasswordPolicy\": {\n      \"passwordQuality\": \"<string>\"\n    },\n    \"minimumPasswordLength\": \"<integer>\",\n    \"permissionPolicy\": \"<string>\",\n    \"deviceUpdatePolicy\": {\n      \"type\": \"<string>\",\n      \"maintenanceStart\": \"<integer>\",\n      \"maintenanceEnd\": \"<integer>\"\n    },\n    \"settingsAccessLevel\": \"<string>\",\n    \"settingsAppPassword\": \"<password>\"\n  },\n  \"uuid\": \"f20d5790-0d51-5dbd-3a67-2c81c56858df\",\n  \"url\": \"string\",\n  \"description\": \"<string>\",\n  \"device_count\": 5669,\n  \"google_policy_id\": \"string\",\n  \"updated_on\": \"2018-05-27T18:36:02.085Z\",\n  \"created_on\": \"1989-12-08T13:06:25.485Z\",\n  \"is_active\": \"<boolean>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "113ec87c-5632-47ff-8bb8-46072cd3ef32",
+          "name": "List all policies in enterprise",
+          "request": {
+            "name": "List all policies in enterprise",
+            "description": {
+              "content": "Returns Policies list",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "enterprise",
+                ":enterprise_id",
+                "policy",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "filter by policy name"
+                },
+                {
+                  "disabled": false,
+                  "key": "is_active",
+                  "value": "<boolean>",
+                  "description": "filter by Active policies"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Number of results to return per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "The initial index from which to return the results."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "enterprise_id",
+                  "description": "(Required) ID of the enterprise"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "495e9154-61c8-48bd-ae11-5d2a225e0bbf",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enterprise",
+                    ":enterprise_id",
+                    "policy",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_active",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "enterprise_id",
+                      "description": "(Required) ID of the enterprise"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 2419,\n  \"results\": [\n    {\n      \"name\": \"<string>\",\n      \"enterprise\": \"<url>\",\n      \"policy\": {\n        \"keyguardDisabled\": \"<boolean>\",\n        \"safeBootDisabled\": \"<boolean>\",\n        \"statusBarDisabled\": \"<boolean>\",\n        \"factoryResetDisabled\": \"<boolean>\",\n        \"screenshotDisabled\": \"<boolean>\",\n        \"usbConnectivityDisabled\": \"<boolean>\",\n        \"smsDisabled\": \"<boolean>\",\n        \"outgoingCallsDisabled\": \"<boolean>\",\n        \"cameraDisabled\": \"<boolean>\",\n        \"nfcBeamDisabled\": \"<boolean>\",\n        \"disablePlayStore\": \"<boolean>\",\n        \"usbFileTransferDisabled\": \"<boolean>\",\n        \"tetheringDisabled\": \"<boolean>\",\n        \"dateTimeConfigDisabled\": \"<boolean>\",\n        \"appUninstallDisabled\": \"<boolean>\",\n        \"googleAssistantDisabled\": \"<boolean>\",\n        \"disableLocalAppInstall\": \"<boolean>\",\n        \"adbDisabled\": \"<boolean>\",\n        \"phonePolicy\": {\n          \"incomingNumbers\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"outgoingNumbers\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"dialer\": \"<string>\"\n        },\n        \"frpGoogles\": [\n          {\n            \"type\": \"<string>\",\n            \"email\": \"<email>\",\n            \"googleId\": \"<string>\"\n          },\n          {\n            \"type\": \"<string>\",\n            \"email\": \"<email>\",\n            \"googleId\": \"<string>\"\n          }\n        ],\n        \"googleAccountPermission\": {\n          \"maxAccount\": \"<integer>\",\n          \"emails\": [\n            \"<email>\",\n            \"<email>\"\n          ],\n          \"domains\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        \"devicePasswordPolicy\": {\n          \"passwordQuality\": \"<string>\"\n        },\n        \"minimumPasswordLength\": \"<integer>\",\n        \"permissionPolicy\": \"<string>\",\n        \"deviceUpdatePolicy\": {\n          \"type\": \"<string>\",\n          \"maintenanceStart\": \"<integer>\",\n          \"maintenanceEnd\": \"<integer>\"\n        },\n        \"settingsAccessLevel\": \"<string>\",\n        \"settingsAppPassword\": \"<password>\"\n      },\n      \"uuid\": \"baba1377-c31e-8d42-86f3-52e09ca80fb7\",\n      \"url\": \"string\",\n      \"description\": \"<string>\",\n      \"device_count\": 723,\n      \"google_policy_id\": \"string\",\n      \"updated_on\": \"1990-03-05T17:54:16.031Z\",\n      \"created_on\": \"1972-07-27T02:38:04.698Z\",\n      \"is_active\": \"<boolean>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"enterprise\": \"<url>\",\n      \"policy\": {\n        \"keyguardDisabled\": \"<boolean>\",\n        \"safeBootDisabled\": \"<boolean>\",\n        \"statusBarDisabled\": \"<boolean>\",\n        \"factoryResetDisabled\": \"<boolean>\",\n        \"screenshotDisabled\": \"<boolean>\",\n        \"usbConnectivityDisabled\": \"<boolean>\",\n        \"smsDisabled\": \"<boolean>\",\n        \"outgoingCallsDisabled\": \"<boolean>\",\n        \"cameraDisabled\": \"<boolean>\",\n        \"nfcBeamDisabled\": \"<boolean>\",\n        \"disablePlayStore\": \"<boolean>\",\n        \"usbFileTransferDisabled\": \"<boolean>\",\n        \"tetheringDisabled\": \"<boolean>\",\n        \"dateTimeConfigDisabled\": \"<boolean>\",\n        \"appUninstallDisabled\": \"<boolean>\",\n        \"googleAssistantDisabled\": \"<boolean>\",\n        \"disableLocalAppInstall\": \"<boolean>\",\n        \"adbDisabled\": \"<boolean>\",\n        \"phonePolicy\": {\n          \"incomingNumbers\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"outgoingNumbers\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"dialer\": \"<string>\"\n        },\n        \"frpGoogles\": [\n          {\n            \"type\": \"<string>\",\n            \"email\": \"<email>\",\n            \"googleId\": \"<string>\"\n          },\n          {\n            \"type\": \"<string>\",\n            \"email\": \"<email>\",\n            \"googleId\": \"<string>\"\n          }\n        ],\n        \"googleAccountPermission\": {\n          \"maxAccount\": \"<integer>\",\n          \"emails\": [\n            \"<email>\",\n            \"<email>\"\n          ],\n          \"domains\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        \"devicePasswordPolicy\": {\n          \"passwordQuality\": \"<string>\"\n        },\n        \"minimumPasswordLength\": \"<integer>\",\n        \"permissionPolicy\": \"<string>\",\n        \"deviceUpdatePolicy\": {\n          \"type\": \"<string>\",\n          \"maintenanceStart\": \"<integer>\",\n          \"maintenanceEnd\": \"<integer>\"\n        },\n        \"settingsAccessLevel\": \"<string>\",\n        \"settingsAppPassword\": \"<password>\"\n      },\n      \"uuid\": \"60b54e57-d82f-3c1f-2f75-c0dc8edce1b2\",\n      \"url\": \"string\",\n      \"description\": \"<string>\",\n      \"device_count\": 6182,\n      \"google_policy_id\": \"string\",\n      \"updated_on\": \"1992-10-09T10:25:59.481Z\",\n      \"created_on\": \"1974-09-22T07:08:23.982Z\",\n      \"is_active\": \"<boolean>\"\n    }\n  ],\n  \"next\": \"string\",\n  \"previous\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a29f61f1-466e-41f4-9c26-898331d1032b",
+          "name": "Get Enterprise Policy",
+          "request": {
+            "name": "Get Enterprise Policy",
+            "description": {
+              "content": "Returns EnterprisePolicy instance",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "enterprise",
+                ":enterprise_id",
+                "policy",
+                ":policy_id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "policy_id",
+                  "description": "(Required) An integer identifying this EnterprisePolicy."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "enterprise_id",
+                  "description": "(Required) A UUID string identifying enterprise."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9849ec7e-a6c3-4fb8-b473-539c403d2b49",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enterprise",
+                    ":enterprise_id",
+                    "policy",
+                    ":policy_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "policy_id",
+                      "description": "(Required) An integer identifying this EnterprisePolicy."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enterprise_id",
+                      "description": "(Required) A UUID string identifying enterprise."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"<string>\",\n  \"enterprise\": \"<url>\",\n  \"policy\": {\n    \"keyguardDisabled\": \"<boolean>\",\n    \"safeBootDisabled\": \"<boolean>\",\n    \"statusBarDisabled\": \"<boolean>\",\n    \"factoryResetDisabled\": \"<boolean>\",\n    \"screenshotDisabled\": \"<boolean>\",\n    \"usbConnectivityDisabled\": \"<boolean>\",\n    \"smsDisabled\": \"<boolean>\",\n    \"outgoingCallsDisabled\": \"<boolean>\",\n    \"cameraDisabled\": \"<boolean>\",\n    \"nfcBeamDisabled\": \"<boolean>\",\n    \"disablePlayStore\": \"<boolean>\",\n    \"usbFileTransferDisabled\": \"<boolean>\",\n    \"tetheringDisabled\": \"<boolean>\",\n    \"dateTimeConfigDisabled\": \"<boolean>\",\n    \"appUninstallDisabled\": \"<boolean>\",\n    \"googleAssistantDisabled\": \"<boolean>\",\n    \"disableLocalAppInstall\": \"<boolean>\",\n    \"adbDisabled\": \"<boolean>\",\n    \"phonePolicy\": {\n      \"incomingNumbers\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"outgoingNumbers\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"dialer\": \"<string>\"\n    },\n    \"frpGoogles\": [\n      {\n        \"type\": \"<string>\",\n        \"email\": \"<email>\",\n        \"googleId\": \"<string>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"email\": \"<email>\",\n        \"googleId\": \"<string>\"\n      }\n    ],\n    \"googleAccountPermission\": {\n      \"maxAccount\": \"<integer>\",\n      \"emails\": [\n        \"<email>\",\n        \"<email>\"\n      ],\n      \"domains\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"devicePasswordPolicy\": {\n      \"passwordQuality\": \"<string>\"\n    },\n    \"minimumPasswordLength\": \"<integer>\",\n    \"permissionPolicy\": \"<string>\",\n    \"deviceUpdatePolicy\": {\n      \"type\": \"<string>\",\n      \"maintenanceStart\": \"<integer>\",\n      \"maintenanceEnd\": \"<integer>\"\n    },\n    \"settingsAccessLevel\": \"<string>\",\n    \"settingsAppPassword\": \"<password>\"\n  },\n  \"uuid\": \"f20d5790-0d51-5dbd-3a67-2c81c56858df\",\n  \"url\": \"string\",\n  \"description\": \"<string>\",\n  \"device_count\": 5669,\n  \"google_policy_id\": \"string\",\n  \"updated_on\": \"2018-05-27T18:36:02.085Z\",\n  \"created_on\": \"1989-12-08T13:06:25.485Z\",\n  \"is_active\": \"<boolean>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d86f1b83-a2d2-474e-9ff6-59df0446ebb1",
+          "name": "Update Enterprise Policy",
+          "request": {
+            "name": "Update Enterprise Policy",
+            "description": {
+              "content": "Returns Enterprise Policy instance",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "enterprise",
+                ":enterprise_id",
+                "policy",
+                ":policy_id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "policy_id",
+                  "description": "(Required) An integer identifying this EnterprisePolicy."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "enterprise_id",
+                  "description": "(Required) A UUID string identifying enterprise."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"enterprise\": \"<url>\",\n  \"policy\": {\n    \"keyguardDisabled\": \"<boolean>\",\n    \"safeBootDisabled\": \"<boolean>\",\n    \"statusBarDisabled\": \"<boolean>\",\n    \"factoryResetDisabled\": \"<boolean>\",\n    \"screenshotDisabled\": \"<boolean>\",\n    \"usbConnectivityDisabled\": \"<boolean>\",\n    \"smsDisabled\": \"<boolean>\",\n    \"outgoingCallsDisabled\": \"<boolean>\",\n    \"cameraDisabled\": \"<boolean>\",\n    \"nfcBeamDisabled\": \"<boolean>\",\n    \"disablePlayStore\": \"<boolean>\",\n    \"usbFileTransferDisabled\": \"<boolean>\",\n    \"tetheringDisabled\": \"<boolean>\",\n    \"dateTimeConfigDisabled\": \"<boolean>\",\n    \"appUninstallDisabled\": \"<boolean>\",\n    \"googleAssistantDisabled\": \"<boolean>\",\n    \"disableLocalAppInstall\": \"<boolean>\",\n    \"adbDisabled\": \"<boolean>\",\n    \"phonePolicy\": {\n      \"incomingNumbers\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"outgoingNumbers\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"dialer\": \"<string>\"\n    },\n    \"frpGoogles\": [\n      {\n        \"type\": \"<string>\",\n        \"email\": \"<email>\",\n        \"googleId\": \"<string>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"email\": \"<email>\",\n        \"googleId\": \"<string>\"\n      }\n    ],\n    \"googleAccountPermission\": {\n      \"maxAccount\": \"<integer>\",\n      \"emails\": [\n        \"<email>\",\n        \"<email>\"\n      ],\n      \"domains\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"devicePasswordPolicy\": {\n      \"passwordQuality\": \"<string>\"\n    },\n    \"minimumPasswordLength\": \"<integer>\",\n    \"permissionPolicy\": \"<string>\",\n    \"deviceUpdatePolicy\": {\n      \"type\": \"<string>\",\n      \"maintenanceStart\": \"<integer>\",\n      \"maintenanceEnd\": \"<integer>\"\n    },\n    \"settingsAccessLevel\": \"<string>\",\n    \"settingsAppPassword\": \"<password>\"\n  },\n  \"description\": \"<string>\",\n  \"is_active\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "463c6c91-c668-4b68-8f6c-02bf789c585f",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enterprise",
+                    ":enterprise_id",
+                    "policy",
+                    ":policy_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "policy_id",
+                      "description": "(Required) An integer identifying this EnterprisePolicy."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enterprise_id",
+                      "description": "(Required) A UUID string identifying enterprise."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"enterprise\": \"<url>\",\n  \"policy\": {\n    \"keyguardDisabled\": \"<boolean>\",\n    \"safeBootDisabled\": \"<boolean>\",\n    \"statusBarDisabled\": \"<boolean>\",\n    \"factoryResetDisabled\": \"<boolean>\",\n    \"screenshotDisabled\": \"<boolean>\",\n    \"usbConnectivityDisabled\": \"<boolean>\",\n    \"smsDisabled\": \"<boolean>\",\n    \"outgoingCallsDisabled\": \"<boolean>\",\n    \"cameraDisabled\": \"<boolean>\",\n    \"nfcBeamDisabled\": \"<boolean>\",\n    \"disablePlayStore\": \"<boolean>\",\n    \"usbFileTransferDisabled\": \"<boolean>\",\n    \"tetheringDisabled\": \"<boolean>\",\n    \"dateTimeConfigDisabled\": \"<boolean>\",\n    \"appUninstallDisabled\": \"<boolean>\",\n    \"googleAssistantDisabled\": \"<boolean>\",\n    \"disableLocalAppInstall\": \"<boolean>\",\n    \"adbDisabled\": \"<boolean>\",\n    \"phonePolicy\": {\n      \"incomingNumbers\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"outgoingNumbers\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"dialer\": \"<string>\"\n    },\n    \"frpGoogles\": [\n      {\n        \"type\": \"<string>\",\n        \"email\": \"<email>\",\n        \"googleId\": \"<string>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"email\": \"<email>\",\n        \"googleId\": \"<string>\"\n      }\n    ],\n    \"googleAccountPermission\": {\n      \"maxAccount\": \"<integer>\",\n      \"emails\": [\n        \"<email>\",\n        \"<email>\"\n      ],\n      \"domains\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"devicePasswordPolicy\": {\n      \"passwordQuality\": \"<string>\"\n    },\n    \"minimumPasswordLength\": \"<integer>\",\n    \"permissionPolicy\": \"<string>\",\n    \"deviceUpdatePolicy\": {\n      \"type\": \"<string>\",\n      \"maintenanceStart\": \"<integer>\",\n      \"maintenanceEnd\": \"<integer>\"\n    },\n    \"settingsAccessLevel\": \"<string>\",\n    \"settingsAppPassword\": \"<password>\"\n  },\n  \"description\": \"<string>\",\n  \"is_active\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"<string>\",\n  \"enterprise\": \"<url>\",\n  \"policy\": {\n    \"keyguardDisabled\": \"<boolean>\",\n    \"safeBootDisabled\": \"<boolean>\",\n    \"statusBarDisabled\": \"<boolean>\",\n    \"factoryResetDisabled\": \"<boolean>\",\n    \"screenshotDisabled\": \"<boolean>\",\n    \"usbConnectivityDisabled\": \"<boolean>\",\n    \"smsDisabled\": \"<boolean>\",\n    \"outgoingCallsDisabled\": \"<boolean>\",\n    \"cameraDisabled\": \"<boolean>\",\n    \"nfcBeamDisabled\": \"<boolean>\",\n    \"disablePlayStore\": \"<boolean>\",\n    \"usbFileTransferDisabled\": \"<boolean>\",\n    \"tetheringDisabled\": \"<boolean>\",\n    \"dateTimeConfigDisabled\": \"<boolean>\",\n    \"appUninstallDisabled\": \"<boolean>\",\n    \"googleAssistantDisabled\": \"<boolean>\",\n    \"disableLocalAppInstall\": \"<boolean>\",\n    \"adbDisabled\": \"<boolean>\",\n    \"phonePolicy\": {\n      \"incomingNumbers\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"outgoingNumbers\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"dialer\": \"<string>\"\n    },\n    \"frpGoogles\": [\n      {\n        \"type\": \"<string>\",\n        \"email\": \"<email>\",\n        \"googleId\": \"<string>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"email\": \"<email>\",\n        \"googleId\": \"<string>\"\n      }\n    ],\n    \"googleAccountPermission\": {\n      \"maxAccount\": \"<integer>\",\n      \"emails\": [\n        \"<email>\",\n        \"<email>\"\n      ],\n      \"domains\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"devicePasswordPolicy\": {\n      \"passwordQuality\": \"<string>\"\n    },\n    \"minimumPasswordLength\": \"<integer>\",\n    \"permissionPolicy\": \"<string>\",\n    \"deviceUpdatePolicy\": {\n      \"type\": \"<string>\",\n      \"maintenanceStart\": \"<integer>\",\n      \"maintenanceEnd\": \"<integer>\"\n    },\n    \"settingsAccessLevel\": \"<string>\",\n    \"settingsAppPassword\": \"<password>\"\n  },\n  \"uuid\": \"f20d5790-0d51-5dbd-3a67-2c81c56858df\",\n  \"url\": \"string\",\n  \"description\": \"<string>\",\n  \"device_count\": 5669,\n  \"google_policy_id\": \"string\",\n  \"updated_on\": \"2018-05-27T18:36:02.085Z\",\n  \"created_on\": \"1989-12-08T13:06:25.485Z\",\n  \"is_active\": \"<boolean>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "afd1ac39-05f1-4120-847e-b586f6ca813a",
+          "name": "Partial update EnterprisePolicy",
+          "request": {
+            "name": "Partial update EnterprisePolicy",
+            "description": {
+              "content": "Returns EnterprisePolicy instance",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "enterprise",
+                ":enterprise_id",
+                "policy",
+                ":policy_id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "policy_id",
+                  "description": "(Required) An integer identifying this EnterprisePolicy."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "enterprise_id",
+                  "description": "(Required) A UUID string identifying enterprise."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"enterprise\": \"<url>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"policy\": {\n    \"keyguardDisabled\": \"<boolean>\",\n    \"safeBootDisabled\": \"<boolean>\",\n    \"statusBarDisabled\": \"<boolean>\",\n    \"factoryResetDisabled\": \"<boolean>\",\n    \"screenshotDisabled\": \"<boolean>\",\n    \"usbConnectivityDisabled\": \"<boolean>\",\n    \"smsDisabled\": \"<boolean>\",\n    \"outgoingCallsDisabled\": \"<boolean>\",\n    \"cameraDisabled\": \"<boolean>\",\n    \"nfcBeamDisabled\": \"<boolean>\",\n    \"disablePlayStore\": \"<boolean>\",\n    \"usbFileTransferDisabled\": \"<boolean>\",\n    \"tetheringDisabled\": \"<boolean>\",\n    \"dateTimeConfigDisabled\": \"<boolean>\",\n    \"appUninstallDisabled\": \"<boolean>\",\n    \"googleAssistantDisabled\": \"<boolean>\",\n    \"disableLocalAppInstall\": \"<boolean>\",\n    \"adbDisabled\": \"<boolean>\",\n    \"phonePolicy\": {\n      \"incomingNumbers\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"outgoingNumbers\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"dialer\": \"<string>\"\n    },\n    \"frpGoogles\": [\n      {\n        \"type\": \"<string>\",\n        \"email\": \"<email>\",\n        \"googleId\": \"<string>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"email\": \"<email>\",\n        \"googleId\": \"<string>\"\n      }\n    ],\n    \"googleAccountPermission\": {\n      \"maxAccount\": \"<integer>\",\n      \"emails\": [\n        \"<email>\",\n        \"<email>\"\n      ],\n      \"domains\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"devicePasswordPolicy\": {\n      \"passwordQuality\": \"<string>\"\n    },\n    \"minimumPasswordLength\": \"<integer>\",\n    \"permissionPolicy\": \"<string>\",\n    \"deviceUpdatePolicy\": {\n      \"type\": \"<string>\",\n      \"maintenanceStart\": \"<integer>\",\n      \"maintenanceEnd\": \"<integer>\"\n    },\n    \"settingsAccessLevel\": \"<string>\",\n    \"settingsAppPassword\": \"<password>\"\n  },\n  \"is_active\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9c2d1549-29be-4b1b-bc6c-43acdbb776a5",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enterprise",
+                    ":enterprise_id",
+                    "policy",
+                    ":policy_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "policy_id",
+                      "description": "(Required) An integer identifying this EnterprisePolicy."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enterprise_id",
+                      "description": "(Required) A UUID string identifying enterprise."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"enterprise\": \"<url>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"policy\": {\n    \"keyguardDisabled\": \"<boolean>\",\n    \"safeBootDisabled\": \"<boolean>\",\n    \"statusBarDisabled\": \"<boolean>\",\n    \"factoryResetDisabled\": \"<boolean>\",\n    \"screenshotDisabled\": \"<boolean>\",\n    \"usbConnectivityDisabled\": \"<boolean>\",\n    \"smsDisabled\": \"<boolean>\",\n    \"outgoingCallsDisabled\": \"<boolean>\",\n    \"cameraDisabled\": \"<boolean>\",\n    \"nfcBeamDisabled\": \"<boolean>\",\n    \"disablePlayStore\": \"<boolean>\",\n    \"usbFileTransferDisabled\": \"<boolean>\",\n    \"tetheringDisabled\": \"<boolean>\",\n    \"dateTimeConfigDisabled\": \"<boolean>\",\n    \"appUninstallDisabled\": \"<boolean>\",\n    \"googleAssistantDisabled\": \"<boolean>\",\n    \"disableLocalAppInstall\": \"<boolean>\",\n    \"adbDisabled\": \"<boolean>\",\n    \"phonePolicy\": {\n      \"incomingNumbers\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"outgoingNumbers\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"dialer\": \"<string>\"\n    },\n    \"frpGoogles\": [\n      {\n        \"type\": \"<string>\",\n        \"email\": \"<email>\",\n        \"googleId\": \"<string>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"email\": \"<email>\",\n        \"googleId\": \"<string>\"\n      }\n    ],\n    \"googleAccountPermission\": {\n      \"maxAccount\": \"<integer>\",\n      \"emails\": [\n        \"<email>\",\n        \"<email>\"\n      ],\n      \"domains\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"devicePasswordPolicy\": {\n      \"passwordQuality\": \"<string>\"\n    },\n    \"minimumPasswordLength\": \"<integer>\",\n    \"permissionPolicy\": \"<string>\",\n    \"deviceUpdatePolicy\": {\n      \"type\": \"<string>\",\n      \"maintenanceStart\": \"<integer>\",\n      \"maintenanceEnd\": \"<integer>\"\n    },\n    \"settingsAccessLevel\": \"<string>\",\n    \"settingsAppPassword\": \"<password>\"\n  },\n  \"is_active\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"<string>\",\n  \"enterprise\": \"<url>\",\n  \"policy\": {\n    \"keyguardDisabled\": \"<boolean>\",\n    \"safeBootDisabled\": \"<boolean>\",\n    \"statusBarDisabled\": \"<boolean>\",\n    \"factoryResetDisabled\": \"<boolean>\",\n    \"screenshotDisabled\": \"<boolean>\",\n    \"usbConnectivityDisabled\": \"<boolean>\",\n    \"smsDisabled\": \"<boolean>\",\n    \"outgoingCallsDisabled\": \"<boolean>\",\n    \"cameraDisabled\": \"<boolean>\",\n    \"nfcBeamDisabled\": \"<boolean>\",\n    \"disablePlayStore\": \"<boolean>\",\n    \"usbFileTransferDisabled\": \"<boolean>\",\n    \"tetheringDisabled\": \"<boolean>\",\n    \"dateTimeConfigDisabled\": \"<boolean>\",\n    \"appUninstallDisabled\": \"<boolean>\",\n    \"googleAssistantDisabled\": \"<boolean>\",\n    \"disableLocalAppInstall\": \"<boolean>\",\n    \"adbDisabled\": \"<boolean>\",\n    \"phonePolicy\": {\n      \"incomingNumbers\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"outgoingNumbers\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"dialer\": \"<string>\"\n    },\n    \"frpGoogles\": [\n      {\n        \"type\": \"<string>\",\n        \"email\": \"<email>\",\n        \"googleId\": \"<string>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"email\": \"<email>\",\n        \"googleId\": \"<string>\"\n      }\n    ],\n    \"googleAccountPermission\": {\n      \"maxAccount\": \"<integer>\",\n      \"emails\": [\n        \"<email>\",\n        \"<email>\"\n      ],\n      \"domains\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"devicePasswordPolicy\": {\n      \"passwordQuality\": \"<string>\"\n    },\n    \"minimumPasswordLength\": \"<integer>\",\n    \"permissionPolicy\": \"<string>\",\n    \"deviceUpdatePolicy\": {\n      \"type\": \"<string>\",\n      \"maintenanceStart\": \"<integer>\",\n      \"maintenanceEnd\": \"<integer>\"\n    },\n    \"settingsAccessLevel\": \"<string>\",\n    \"settingsAppPassword\": \"<password>\"\n  },\n  \"uuid\": \"f20d5790-0d51-5dbd-3a67-2c81c56858df\",\n  \"url\": \"string\",\n  \"description\": \"<string>\",\n  \"device_count\": 5669,\n  \"google_policy_id\": \"string\",\n  \"updated_on\": \"2018-05-27T18:36:02.085Z\",\n  \"created_on\": \"1989-12-08T13:06:25.485Z\",\n  \"is_active\": \"<boolean>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "33f29a30-a78e-459d-9543-574f1a722222",
+          "name": "Delete a Enterprise Policy",
+          "request": {
+            "name": "Delete a Enterprise Policy",
+            "description": {
+              "content": "Emtpy response",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "enterprise",
+                ":enterprise_id",
+                "policy",
+                ":policy_id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "policy_id",
+                  "description": "(Required) An integer identifying this EnterprisePolicy."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "enterprise_id",
+                  "description": "(Required) A UUID string identifying enterprise."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "12fcf55b-976b-4796-aaee-a872cd5d10f0",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enterprise",
+                    ":enterprise_id",
+                    "policy",
+                    ":policy_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "policy_id",
+                      "description": "(Required) An integer identifying this EnterprisePolicy."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enterprise_id",
+                      "description": "(Required) A UUID string identifying enterprise."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://foo-api.esper.cloud/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "81248491-075f-49b9-a619-c9ed5f6c09ac",
+    "name": "ESPER API REFERENCE Application Enterprise Policy API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "# Introduction\nEsper APIs are a set of REST-based APIs that help you programmatically control and monitor Android-based Dedicated Devices running the Esper agent using Esper Manage. With these APIs, you can orchestrate and manage devices that have been provisioned against your Esper Manage environment. Furthermore, these APIs allows you to manage the Android applications installed on your Dedicated Device fleet. To read more about the various capabilities of Esper APIs and Esper managed devices, please visit [esper.io](https://esper.io). This guide describes all the available APIs in detail, along with code samples for you to quickly ramp up to using them.\\\nTo use these APIs you will need to create a developer account with Esper and get access to the Esper Dev Console and the Esper ManageDashboard. You can find out more about Esper and sign up for free at [esper.io/signup](https://esper.io/signup)\\\nWe've done our best to keep this document up to date, but if you find any issues, please reach out to us at developer@esper.io.\n\n# SDK\n\n  You are welcome to use your favorite HTTP/REST library for your programming language in order to call these APIs, or you can use our SDK (currently supporting [python](https://github.com/esper-io/esper-client-py)) to do so.\n\n\n# Authentication\nThe client needs to send authentication details to access the Esper APIs by generating and applying an API key. Be sure to sign up for your free trial account with Esper Dev to generate your key:\n\n# Errors\nThe APIs use standard HTTP status codes to indicate success or failure. All error responses will have a JSON body in the following format:\n\n```\n{\n  \"errors\": [],\n  \"message\": \"error message\",\n  \"status\": 400\n}\n```\n* `errors` -  List of error details\n* `message` - Error description\n* `status` - HTTP status code\n\n\nContact Support:\n Email: developer@esper.io",
+      "type": "text/plain"
+    }
+  }
+}

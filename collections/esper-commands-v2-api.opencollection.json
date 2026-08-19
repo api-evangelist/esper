@@ -1,0 +1,154 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ESPER API REFERENCE Application Commands V2 API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Commands V2",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List command requests",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v0/enterprise/:enterprise_id/command/",
+            "params": [
+              {
+                "name": "enterprise_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the enterprise"
+              },
+              {
+                "name": "command_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by type of command request i.e device, group etc"
+              },
+              {
+                "name": "devices",
+                "value": "",
+                "type": "query",
+                "description": "Filter by device IDs. Accepts comma separated values."
+              },
+              {
+                "name": "device_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by device type i.e active, inactive etc"
+              },
+              {
+                "name": "command",
+                "value": "",
+                "type": "query",
+                "description": "Filter by command name"
+              },
+              {
+                "name": "issued_by",
+                "value": "",
+                "type": "query",
+                "description": "Filter by user. Accepts user id."
+              }
+            ]
+          },
+          "docs": "API to get and filter command requests"
+        },
+        {
+          "info": {
+            "name": "Create a command request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v0/enterprise/:enterprise_id/command/",
+            "params": [
+              {
+                "name": "enterprise_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the enterprise"
+              }
+            ]
+          },
+          "docs": "API to create a command request for the device."
+        },
+        {
+          "info": {
+            "name": "get status list for command request",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v0/enterprise/:enterprise_id/command/:request_id/status/",
+            "params": [
+              {
+                "name": "enterprise_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the enterprise"
+              },
+              {
+                "name": "request_id",
+                "value": "",
+                "type": "path",
+                "description": "ID for the command request"
+              },
+              {
+                "name": "device",
+                "value": "",
+                "type": "query",
+                "description": "Filter status result by device id."
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "Filter by command state"
+              }
+            ]
+          },
+          "docs": "API to get and filter command request status"
+        },
+        {
+          "info": {
+            "name": "get command history for device",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v0/enterprise/:enterprise_id/device/:device_id/command-history/",
+            "params": [
+              {
+                "name": "enterprise_id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the enterprise"
+              },
+              {
+                "name": "device_id",
+                "value": "",
+                "type": "path",
+                "description": "Id for the command request"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "Filter by command state"
+              }
+            ]
+          },
+          "docs": "API to get and filter deivce command history"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

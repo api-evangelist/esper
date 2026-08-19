@@ -1,0 +1,647 @@
+{
+  "item": [
+    {
+      "id": "dd7b1c6a-5bb9-48d2-bb95-856240d7317e",
+      "name": "Commands V2",
+      "description": {
+        "content": "Commands V2.0 is to provide advanced device commands capabilities like queuing, support for offline devices, dynamic device set for commands and command history. Commands 2.0 is in active development and support for all the commands will be added soon.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "be924bba-d06d-473f-8383-d5ee74660cd5",
+          "name": "Create a command request",
+          "request": {
+            "name": "Create a command request",
+            "description": {
+              "content": "API to create a command request for the device.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v0",
+                "enterprise",
+                ":enterprise_id",
+                "command",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "enterprise_id",
+                  "description": "(Required) ID of the enterprise"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"command_type\": \"<string>\",\n  \"devices\": [\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"groups\": [\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"device_type\": \"active\",\n  \"command\": \"<string>\",\n  \"command_args\": {\n    \"device_alias_name\": \"<string>\",\n    \"custom_settings_config\": \"<object>\",\n    \"app_version\": \"<string>\",\n    \"package_name\": \"<string>\",\n    \"policy_url\": \"<string>\",\n    \"wifi_access_points\": \"<object>\",\n    \"state\": \"<string>\",\n    \"message\": \"<string>\",\n    \"app_state\": \"<string>\",\n    \"bluetooth_state\": \"<boolean>\",\n    \"brightness_value\": \"<integer>\",\n    \"gps_state\": \"<integer>\",\n    \"rotate_state\": \"<integer>\",\n    \"screen_off_timeout\": \"<integer>\",\n    \"stream\": \"<integer>\",\n    \"volume_level\": \"<integer>\",\n    \"timezone_string\": \"<integer>\",\n    \"wifi_state\": \"<boolean>\",\n    \"wifi_revert_timeout\": \"<integer>\"\n  },\n  \"schedule\": \"<string>\",\n  \"schedule_args\": {\n    \"name\": \"<string>\",\n    \"start_datetime\": \"<dateTime>\",\n    \"end_datetime\": \"<dateTime>\",\n    \"time_type\": \"<string>\",\n    \"window_start_time\": \"<string>\",\n    \"window_end_time\": \"<string>\",\n    \"days\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3b9779eb-7e05-4d31-b209-87d880c1fd16",
+              "name": "command request successfully created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "enterprise",
+                    ":enterprise_id",
+                    "command",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "enterprise_id",
+                      "description": "(Required) ID of the enterprise"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"command_type\": \"<string>\",\n  \"devices\": [\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"groups\": [\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"device_type\": \"active\",\n  \"command\": \"<string>\",\n  \"command_args\": {\n    \"device_alias_name\": \"<string>\",\n    \"custom_settings_config\": \"<object>\",\n    \"app_version\": \"<string>\",\n    \"package_name\": \"<string>\",\n    \"policy_url\": \"<string>\",\n    \"wifi_access_points\": \"<object>\",\n    \"state\": \"<string>\",\n    \"message\": \"<string>\",\n    \"app_state\": \"<string>\",\n    \"bluetooth_state\": \"<boolean>\",\n    \"brightness_value\": \"<integer>\",\n    \"gps_state\": \"<integer>\",\n    \"rotate_state\": \"<integer>\",\n    \"screen_off_timeout\": \"<integer>\",\n    \"stream\": \"<integer>\",\n    \"volume_level\": \"<integer>\",\n    \"timezone_string\": \"<integer>\",\n    \"wifi_state\": \"<boolean>\",\n    \"wifi_revert_timeout\": \"<integer>\"\n  },\n  \"schedule\": \"<string>\",\n  \"schedule_args\": {\n    \"name\": \"<string>\",\n    \"start_datetime\": \"<dateTime>\",\n    \"end_datetime\": \"<dateTime>\",\n    \"time_type\": \"<string>\",\n    \"window_start_time\": \"<string>\",\n    \"window_end_time\": \"<string>\",\n    \"days\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"7ffa6f8c-cb16-d5c9-86fe-0150dc8425fe\",\n  \"enterprise\": \"fea47c55-1e3e-4db1-c1b3-3eff3612e3b4\",\n  \"command_type\": \"<string>\",\n  \"devices\": [\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"groups\": [\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"device_type\": \"active\",\n  \"command\": \"<string>\",\n  \"command_args\": {\n    \"device_alias_name\": \"<string>\",\n    \"custom_settings_config\": \"<object>\",\n    \"app_version\": \"<string>\",\n    \"package_name\": \"<string>\",\n    \"policy_url\": \"<string>\",\n    \"wifi_access_points\": \"<object>\",\n    \"state\": \"<string>\",\n    \"message\": \"<string>\",\n    \"app_state\": \"<string>\",\n    \"bluetooth_state\": \"<boolean>\",\n    \"brightness_value\": \"<integer>\",\n    \"gps_state\": \"<integer>\",\n    \"rotate_state\": \"<integer>\",\n    \"screen_off_timeout\": \"<integer>\",\n    \"stream\": \"<integer>\",\n    \"volume_level\": \"<integer>\",\n    \"timezone_string\": \"<integer>\",\n    \"wifi_state\": \"<boolean>\",\n    \"wifi_revert_timeout\": \"<integer>\"\n  },\n  \"schedule\": \"<string>\",\n  \"schedule_args\": {\n    \"name\": \"<string>\",\n    \"start_datetime\": \"<dateTime>\",\n    \"end_datetime\": \"<dateTime>\",\n    \"time_type\": \"<string>\",\n    \"window_start_time\": \"<string>\",\n    \"window_end_time\": \"<string>\",\n    \"days\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"issued_by\": \"string\",\n  \"created_on\": \"2013-09-06T23:11:16.565Z\",\n  \"status\": [\n    {\n      \"state\": \"aaa4acf6-3a00-bcc2-d209-85c4ae1368c7\",\n      \"total\": 5560\n    },\n    {\n      \"state\": \"3b23583c-cbbb-190e-f54c-bd963bcc242a\",\n      \"total\": 1591\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cebb26d2-bb0a-4fa8-baf4-c0347790ce74",
+          "name": "List command requests",
+          "request": {
+            "name": "List command requests",
+            "description": {
+              "content": "API to get and filter command requests",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v0",
+                "enterprise",
+                ":enterprise_id",
+                "command",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "command_type",
+                  "value": "<string>",
+                  "description": "Filter by type of command request i.e device, group etc"
+                },
+                {
+                  "disabled": false,
+                  "key": "devices",
+                  "value": "<string>",
+                  "description": "Filter by device IDs. Accepts comma separated values."
+                },
+                {
+                  "disabled": false,
+                  "key": "device_type",
+                  "value": "<string>",
+                  "description": "Filter by device type i.e active, inactive etc"
+                },
+                {
+                  "disabled": false,
+                  "key": "command",
+                  "value": "<string>",
+                  "description": "Filter by command name"
+                },
+                {
+                  "disabled": false,
+                  "key": "issued_by",
+                  "value": "<string>",
+                  "description": "Filter by user. Accepts user id."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "enterprise_id",
+                  "description": "(Required) ID of the enterprise"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "903a12cd-fc85-459f-94e3-fbb9543d337f",
+              "name": "on successful request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "enterprise",
+                    ":enterprise_id",
+                    "command",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "command_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "devices",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "device_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "command",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "issued_by",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "enterprise_id",
+                      "description": "(Required) ID of the enterprise"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 9906,\n  \"next\": \"string\",\n  \"previous\": \"string\",\n  \"results\": [\n    {\n      \"id\": \"6a2bc424-50f7-e8ee-57ec-53c05b26bed8\",\n      \"enterprise\": \"85eff9fc-514a-1ffb-e6f9-d2eac11bb0cf\",\n      \"command_type\": \"<string>\",\n      \"devices\": [\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"groups\": [\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"device_type\": \"active\",\n      \"command\": \"<string>\",\n      \"command_args\": {\n        \"device_alias_name\": \"<string>\",\n        \"custom_settings_config\": \"<object>\",\n        \"app_version\": \"<string>\",\n        \"package_name\": \"<string>\",\n        \"policy_url\": \"<string>\",\n        \"wifi_access_points\": \"<object>\",\n        \"state\": \"<string>\",\n        \"message\": \"<string>\",\n        \"app_state\": \"<string>\",\n        \"bluetooth_state\": \"<boolean>\",\n        \"brightness_value\": \"<integer>\",\n        \"gps_state\": \"<integer>\",\n        \"rotate_state\": \"<integer>\",\n        \"screen_off_timeout\": \"<integer>\",\n        \"stream\": \"<integer>\",\n        \"volume_level\": \"<integer>\",\n        \"timezone_string\": \"<integer>\",\n        \"wifi_state\": \"<boolean>\",\n        \"wifi_revert_timeout\": \"<integer>\"\n      },\n      \"schedule\": \"<string>\",\n      \"schedule_args\": {\n        \"name\": \"<string>\",\n        \"start_datetime\": \"<dateTime>\",\n        \"end_datetime\": \"<dateTime>\",\n        \"time_type\": \"<string>\",\n        \"window_start_time\": \"<string>\",\n        \"window_end_time\": \"<string>\",\n        \"days\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"issued_by\": \"string\",\n      \"created_on\": \"2004-12-11T00:53:55.321Z\",\n      \"status\": [\n        {\n          \"state\": \"2404f414-ee28-427a-d057-37780bdbf72c\",\n          \"total\": 1413\n        },\n        {\n          \"state\": \"539f63d0-f522-4133-0293-efd7214f1752\",\n          \"total\": 1527\n        }\n      ]\n    },\n    {\n      \"id\": \"60ea7720-3453-28bc-7442-4c0587cba12e\",\n      \"enterprise\": \"efeb9bec-eb7f-af0c-ce9a-257d0a1d7d43\",\n      \"command_type\": \"<string>\",\n      \"devices\": [\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"groups\": [\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"device_type\": \"active\",\n      \"command\": \"<string>\",\n      \"command_args\": {\n        \"device_alias_name\": \"<string>\",\n        \"custom_settings_config\": \"<object>\",\n        \"app_version\": \"<string>\",\n        \"package_name\": \"<string>\",\n        \"policy_url\": \"<string>\",\n        \"wifi_access_points\": \"<object>\",\n        \"state\": \"<string>\",\n        \"message\": \"<string>\",\n        \"app_state\": \"<string>\",\n        \"bluetooth_state\": \"<boolean>\",\n        \"brightness_value\": \"<integer>\",\n        \"gps_state\": \"<integer>\",\n        \"rotate_state\": \"<integer>\",\n        \"screen_off_timeout\": \"<integer>\",\n        \"stream\": \"<integer>\",\n        \"volume_level\": \"<integer>\",\n        \"timezone_string\": \"<integer>\",\n        \"wifi_state\": \"<boolean>\",\n        \"wifi_revert_timeout\": \"<integer>\"\n      },\n      \"schedule\": \"<string>\",\n      \"schedule_args\": {\n        \"name\": \"<string>\",\n        \"start_datetime\": \"<dateTime>\",\n        \"end_datetime\": \"<dateTime>\",\n        \"time_type\": \"<string>\",\n        \"window_start_time\": \"<string>\",\n        \"window_end_time\": \"<string>\",\n        \"days\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"issued_by\": \"string\",\n      \"created_on\": \"2004-11-16T17:54:25.171Z\",\n      \"status\": [\n        {\n          \"state\": \"f641138f-b2a2-2498-49c0-add84d4bbc26\",\n          \"total\": 9520\n        },\n        {\n          \"state\": \"cebbc79b-0dbf-2603-c2db-15a5a86e2b0b\",\n          \"total\": 318\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4054177a-6ca8-41a1-ba9d-a999f6547db2",
+          "name": "get status list for command request",
+          "request": {
+            "name": "get status list for command request",
+            "description": {
+              "content": "API to get and filter command request status",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v0",
+                "enterprise",
+                ":enterprise_id",
+                "command",
+                ":request_id",
+                "status",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "device",
+                  "value": "<string>",
+                  "description": "Filter status result by device id."
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>",
+                  "description": "Filter by command state"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "enterprise_id",
+                  "description": "(Required) ID of the enterprise"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "request_id",
+                  "description": "(Required) ID for the command request"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c476325b-2309-405a-b0bd-c054efdd9396",
+              "name": "on successful request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "enterprise",
+                    ":enterprise_id",
+                    "command",
+                    ":request_id",
+                    "status",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "device",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "enterprise_id",
+                      "description": "(Required) ID of the enterprise"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "request_id",
+                      "description": "(Required) ID for the command request"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 1684,\n  \"next\": \"string\",\n  \"previous\": \"string\",\n  \"results\": [\n    {\n      \"id\": \"aba37cd5-a025-b514-88f0-38c228568b6d\",\n      \"request\": \"d483c994-3af8-b4aa-ece6-536d9dd6d9d9\",\n      \"device\": \"string\",\n      \"state\": \"Command TimeOut\",\n      \"reason\": \"string\",\n      \"created_on\": \"1950-03-25T04:57:45.475Z\",\n      \"updated_on\": \"1975-03-10T01:50:05.638Z\"\n    },\n    {\n      \"id\": \"8d1543bd-a46b-481a-eefe-c2ccd6299be4\",\n      \"request\": \"271ccf74-f3ac-422e-fc97-f27fec221070\",\n      \"device\": \"string\",\n      \"state\": \"Command Failure\",\n      \"reason\": \"string\",\n      \"created_on\": \"2020-08-21T22:55:44.444Z\",\n      \"updated_on\": \"2021-09-18T07:50:28.330Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3be578fb-68d2-4b7c-91ec-adb14ff43fd0",
+          "name": "get command history for device",
+          "request": {
+            "name": "get command history for device",
+            "description": {
+              "content": "API to get and filter deivce command history",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v0",
+                "enterprise",
+                ":enterprise_id",
+                "device",
+                ":device_id",
+                "command-history",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>",
+                  "description": "Filter by command state"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "enterprise_id",
+                  "description": "(Required) Id of the enterprise"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "device_id",
+                  "description": "(Required) Id for the command request"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d23d00d3-5ca3-447f-9d14-a0bb314ecb67",
+              "name": "on successful request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "enterprise",
+                    ":enterprise_id",
+                    "device",
+                    ":device_id",
+                    "command-history",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "enterprise_id",
+                      "description": "(Required) Id of the enterprise"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "device_id",
+                      "description": "(Required) Id for the command request"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 1684,\n  \"next\": \"string\",\n  \"previous\": \"string\",\n  \"results\": [\n    {\n      \"id\": \"aba37cd5-a025-b514-88f0-38c228568b6d\",\n      \"request\": \"d483c994-3af8-b4aa-ece6-536d9dd6d9d9\",\n      \"device\": \"string\",\n      \"state\": \"Command TimeOut\",\n      \"reason\": \"string\",\n      \"created_on\": \"1950-03-25T04:57:45.475Z\",\n      \"updated_on\": \"1975-03-10T01:50:05.638Z\"\n    },\n    {\n      \"id\": \"8d1543bd-a46b-481a-eefe-c2ccd6299be4\",\n      \"request\": \"271ccf74-f3ac-422e-fc97-f27fec221070\",\n      \"device\": \"string\",\n      \"state\": \"Command Failure\",\n      \"reason\": \"string\",\n      \"created_on\": \"2020-08-21T22:55:44.444Z\",\n      \"updated_on\": \"2021-09-18T07:50:28.330Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://foo-api.esper.cloud/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "a165a8c9-5769-4ca8-a22c-e675cc41c156",
+    "name": "ESPER API REFERENCE Application Commands V2 API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "# Introduction\nEsper APIs are a set of REST-based APIs that help you programmatically control and monitor Android-based Dedicated Devices running the Esper agent using Esper Manage. With these APIs, you can orchestrate and manage devices that have been provisioned against your Esper Manage environment. Furthermore, these APIs allows you to manage the Android applications installed on your Dedicated Device fleet. To read more about the various capabilities of Esper APIs and Esper managed devices, please visit [esper.io](https://esper.io). This guide describes all the available APIs in detail, along with code samples for you to quickly ramp up to using them.\\\nTo use these APIs you will need to create a developer account with Esper and get access to the Esper Dev Console and the Esper ManageDashboard. You can find out more about Esper and sign up for free at [esper.io/signup](https://esper.io/signup)\\\nWe've done our best to keep this document up to date, but if you find any issues, please reach out to us at developer@esper.io.\n\n# SDK\n\n  You are welcome to use your favorite HTTP/REST library for your programming language in order to call these APIs, or you can use our SDK (currently supporting [python](https://github.com/esper-io/esper-client-py)) to do so.\n\n\n# Authentication\nThe client needs to send authentication details to access the Esper APIs by generating and applying an API key. Be sure to sign up for your free trial account with Esper Dev to generate your key:\n\n# Errors\nThe APIs use standard HTTP status codes to indicate success or failure. All error responses will have a JSON body in the following format:\n\n```\n{\n  \"errors\": [],\n  \"message\": \"error message\",\n  \"status\": 400\n}\n```\n* `errors` -  List of error details\n* `message` - Error description\n* `status` - HTTP status code\n\n\nContact Support:\n Email: developer@esper.io",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,174 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ESPER API REFERENCE Application Geofence API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Geofence",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Geofences in Enterprise",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v0/enterprise/:enterprise_id/geofence/",
+            "params": [
+              {
+                "name": "enterprise_id",
+                "value": "",
+                "type": "path",
+                "description": "A UUID string identifying the enterprise."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "A search term."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return per page."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The initial index from which to return the results."
+              }
+            ]
+          },
+          "docs": "API to view all the geofences in an enterprise"
+        },
+        {
+          "info": {
+            "name": "Create a geofence",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v0/enterprise/:enterprise_id/geofence/",
+            "params": [
+              {
+                "name": "enterprise_id",
+                "value": "",
+                "type": "path",
+                "description": "A UUID string identifying the enterprise."
+              }
+            ]
+          },
+          "docs": "Returns Geofence instance"
+        },
+        {
+          "info": {
+            "name": "Get geofence information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v0/enterprise/:enterprise_id/geofence/:geofence_id/",
+            "params": [
+              {
+                "name": "geofence_id",
+                "value": "",
+                "type": "path",
+                "description": "A UUID string identifying the geofence."
+              },
+              {
+                "name": "enterprise_id",
+                "value": "",
+                "type": "path",
+                "description": "A UUID string identifying the enterprise."
+              }
+            ]
+          },
+          "docs": "Returns geofence instance"
+        },
+        {
+          "info": {
+            "name": "Update geofence information",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/v0/enterprise/:enterprise_id/geofence/:geofence_id/",
+            "params": [
+              {
+                "name": "geofence_id",
+                "value": "",
+                "type": "path",
+                "description": "A UUID string identifying the geofence."
+              },
+              {
+                "name": "enterprise_id",
+                "value": "",
+                "type": "path",
+                "description": "A UUID string identifying the enterprise."
+              }
+            ]
+          },
+          "docs": "Returns geofence instance"
+        },
+        {
+          "info": {
+            "name": "Partially updates geofence information",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/v0/enterprise/:enterprise_id/geofence/:geofence_id/",
+            "params": [
+              {
+                "name": "geofence_id",
+                "value": "",
+                "type": "path",
+                "description": "A UUID string identifying the geofence."
+              },
+              {
+                "name": "enterprise_id",
+                "value": "",
+                "type": "path",
+                "description": "A UUID string identifying the enterprise."
+              }
+            ]
+          },
+          "docs": "Returns geofence instance"
+        },
+        {
+          "info": {
+            "name": "Delete a geofence",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v0/enterprise/:enterprise_id/geofence/:geofence_id/",
+            "params": [
+              {
+                "name": "geofence_id",
+                "value": "",
+                "type": "path",
+                "description": "A UUID string identifying the geofence."
+              },
+              {
+                "name": "enterprise_id",
+                "value": "",
+                "type": "path",
+                "description": "A UUID string identifying the enterprise."
+              }
+            ]
+          },
+          "docs": "Empty response"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

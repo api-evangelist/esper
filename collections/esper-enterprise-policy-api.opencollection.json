@@ -1,0 +1,180 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ESPER API REFERENCE Application Enterprise Policy API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Enterprise Policy",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all policies in enterprise",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/enterprise/:enterprise_id/policy/",
+            "params": [
+              {
+                "name": "enterprise_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the enterprise"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "filter by policy name"
+              },
+              {
+                "name": "is_active",
+                "value": "",
+                "type": "query",
+                "description": "filter by Active policies"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return per page."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The initial index from which to return the results."
+              }
+            ]
+          },
+          "docs": "Returns Policies list"
+        },
+        {
+          "info": {
+            "name": "Create a new Enterprise Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/enterprise/:enterprise_id/policy/",
+            "params": [
+              {
+                "name": "enterprise_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the enterprise"
+              }
+            ]
+          },
+          "docs": "API to create a new Enterprise Policy"
+        },
+        {
+          "info": {
+            "name": "Get Enterprise Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/enterprise/:enterprise_id/policy/:policy_id/",
+            "params": [
+              {
+                "name": "policy_id",
+                "value": "",
+                "type": "path",
+                "description": "An integer identifying this EnterprisePolicy."
+              },
+              {
+                "name": "enterprise_id",
+                "value": "",
+                "type": "path",
+                "description": "A UUID string identifying enterprise."
+              }
+            ]
+          },
+          "docs": "Returns EnterprisePolicy instance"
+        },
+        {
+          "info": {
+            "name": "Update Enterprise Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/enterprise/:enterprise_id/policy/:policy_id/",
+            "params": [
+              {
+                "name": "policy_id",
+                "value": "",
+                "type": "path",
+                "description": "An integer identifying this EnterprisePolicy."
+              },
+              {
+                "name": "enterprise_id",
+                "value": "",
+                "type": "path",
+                "description": "A UUID string identifying enterprise."
+              }
+            ]
+          },
+          "docs": "Returns Enterprise Policy instance"
+        },
+        {
+          "info": {
+            "name": "Partial update EnterprisePolicy",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/enterprise/:enterprise_id/policy/:policy_id/",
+            "params": [
+              {
+                "name": "policy_id",
+                "value": "",
+                "type": "path",
+                "description": "An integer identifying this EnterprisePolicy."
+              },
+              {
+                "name": "enterprise_id",
+                "value": "",
+                "type": "path",
+                "description": "A UUID string identifying enterprise."
+              }
+            ]
+          },
+          "docs": "Returns EnterprisePolicy instance"
+        },
+        {
+          "info": {
+            "name": "Delete a Enterprise Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/enterprise/:enterprise_id/policy/:policy_id/",
+            "params": [
+              {
+                "name": "policy_id",
+                "value": "",
+                "type": "path",
+                "description": "An integer identifying this EnterprisePolicy."
+              },
+              {
+                "name": "enterprise_id",
+                "value": "",
+                "type": "path",
+                "description": "A UUID string identifying enterprise."
+              }
+            ]
+          },
+          "docs": "Emtpy response"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

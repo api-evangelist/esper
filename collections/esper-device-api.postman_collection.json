@@ -1,0 +1,1128 @@
+{
+  "item": [
+    {
+      "id": "bb86294d-bcc5-4385-94cb-4fd3beb14084",
+      "name": "Device",
+      "description": {
+        "content": "APIs for device management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7cf194fc-252e-4a2e-8b34-75549b1f463e",
+          "name": "Fetch all devices in an enterprise",
+          "request": {
+            "name": "Fetch all devices in an enterprise",
+            "description": {
+              "content": "Returns a list of devices",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "enterprise",
+                ":enterprise_id",
+                "device",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "Filter by device name"
+                },
+                {
+                  "disabled": false,
+                  "key": "group",
+                  "value": "<uuid>",
+                  "description": "Filter by group id"
+                },
+                {
+                  "disabled": false,
+                  "key": "imei",
+                  "value": "<string>",
+                  "description": "filter by imei"
+                },
+                {
+                  "disabled": false,
+                  "key": "serial",
+                  "value": "<string>",
+                  "description": "filter by serial number"
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<integer>",
+                  "description": "filter by device state"
+                },
+                {
+                  "disabled": false,
+                  "key": "brand",
+                  "value": "<string>",
+                  "description": "filter by brand"
+                },
+                {
+                  "disabled": false,
+                  "key": "is_gms",
+                  "value": "<boolean>",
+                  "description": "filter for gms devices"
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "A search term. Search by device name, imei or mac address"
+                },
+                {
+                  "disabled": false,
+                  "key": "tags",
+                  "value": "<string>",
+                  "description": "A partial text search for device tags"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Number of results to return per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "The initial index from which to return the results."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "enterprise_id",
+                  "description": "(Required) ID of the enterprise"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d6c91a84-bfec-4cf7-85dc-12ab402eed21",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enterprise",
+                    ":enterprise_id",
+                    "device",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "group",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "imei",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "serial",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "brand",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_gms",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tags",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "enterprise_id",
+                      "description": "(Required) ID of the enterprise"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 8640,\n  \"next\": \"string\",\n  \"previous\": \"string\",\n  \"results\": [\n    {\n      \"id\": \"443b9229-d962-0874-8b4a-ce063110a125\",\n      \"url\": \"string\",\n      \"device_name\": \"string\",\n      \"alias_name\": \"string\",\n      \"policy_name\": \"string\",\n      \"status\": 497,\n      \"state\": 8395,\n      \"current_command\": \"7bf0c715-2786-4c2e-3de2-c2b89e86d24a\",\n      \"suid\": \"string\",\n      \"fcm_id\": \"string\",\n      \"enterprise\": \"string\",\n      \"policy\": \"string\",\n      \"user\": \"string\",\n      \"groups\": [\n        \"string\",\n        \"string\"\n      ],\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"api_level\": 5322,\n      \"template_name\": \"string\",\n      \"mqtt_id\": \"string\",\n      \"softwareInfo\": {},\n      \"hardwareInfo\": {},\n      \"displays\": {},\n      \"networkInfo\": {},\n      \"memoryInfo\": {},\n      \"audioConstraints\": {},\n      \"provisioned_on\": \"2018-01-19T15:58:56.511Z\",\n      \"created_on\": \"2006-07-15T08:11:23.646Z\",\n      \"updated_on\": \"1965-09-24T14:03:07.222Z\",\n      \"emm_device\": {\n        \"id\": 7265,\n        \"google_device_id\": \"string\",\n        \"managementType\": \"string\",\n        \"device\": \"100239c3-9546-ed41-b83f-d8a450eca62c\",\n        \"google_user\": 5483,\n        \"policy\": 4779,\n        \"created_on\": \"1949-09-05T05:56:03.120Z\",\n        \"updated_on\": \"1969-10-05T22:35:02.236Z\",\n        \"is_active\": true\n      },\n      \"is_gms\": true,\n      \"is_active\": true\n    },\n    {\n      \"id\": \"e3e09677-b090-a330-c09a-be9515df82c2\",\n      \"url\": \"string\",\n      \"device_name\": \"string\",\n      \"alias_name\": \"string\",\n      \"policy_name\": \"string\",\n      \"status\": 4689,\n      \"state\": 8898,\n      \"current_command\": \"2b05c860-bc39-c34c-9266-4210fc704e54\",\n      \"suid\": \"string\",\n      \"fcm_id\": \"string\",\n      \"enterprise\": \"string\",\n      \"policy\": \"string\",\n      \"user\": \"string\",\n      \"groups\": [\n        \"string\",\n        \"string\"\n      ],\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"api_level\": 385,\n      \"template_name\": \"string\",\n      \"mqtt_id\": \"string\",\n      \"softwareInfo\": {},\n      \"hardwareInfo\": {},\n      \"displays\": {},\n      \"networkInfo\": {},\n      \"memoryInfo\": {},\n      \"audioConstraints\": {},\n      \"provisioned_on\": \"2007-12-03T20:03:37.711Z\",\n      \"created_on\": \"1957-07-15T09:38:12.962Z\",\n      \"updated_on\": \"2023-11-25T05:01:00.082Z\",\n      \"emm_device\": {\n        \"id\": 4551,\n        \"google_device_id\": \"string\",\n        \"managementType\": \"string\",\n        \"device\": \"b06a866d-fa6a-89cd-7a4e-9c663375db0c\",\n        \"google_user\": 631,\n        \"policy\": 1896,\n        \"created_on\": \"2011-12-06T09:45:05.383Z\",\n        \"updated_on\": \"1974-05-20T23:30:58.804Z\",\n        \"is_active\": true\n      },\n      \"is_gms\": true,\n      \"is_active\": true\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4ef6bf5f-d8ad-4af8-a438-109eb925a06a",
+          "name": "Fetch device details by ID",
+          "request": {
+            "name": "Fetch device details by ID",
+            "description": {
+              "content": "Returns details of a device",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "enterprise",
+                ":enterprise_id",
+                "device",
+                ":device_id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "enterprise_id",
+                  "description": "(Required) ID of the enterprise"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "device_id",
+                  "description": "(Required) ID of the device"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8b7a15a2-82a9-4da2-bcea-a72a9bf3890d",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enterprise",
+                    ":enterprise_id",
+                    "device",
+                    ":device_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "enterprise_id",
+                      "description": "(Required) ID of the enterprise"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "device_id",
+                      "description": "(Required) ID of the device"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"c12dc5ea-205e-0c41-efdf-3834732cd3ef\",\n  \"url\": \"string\",\n  \"device_name\": \"string\",\n  \"alias_name\": \"string\",\n  \"policy_name\": \"string\",\n  \"status\": 5403,\n  \"state\": 7897,\n  \"current_command\": \"fc2f5ba5-3611-40c3-34de-7ce0ad4e27a7\",\n  \"suid\": \"string\",\n  \"fcm_id\": \"string\",\n  \"enterprise\": \"string\",\n  \"policy\": \"string\",\n  \"user\": \"string\",\n  \"groups\": [\n    \"string\",\n    \"string\"\n  ],\n  \"tags\": [\n    \"string\",\n    \"string\"\n  ],\n  \"api_level\": 8752,\n  \"template_name\": \"string\",\n  \"mqtt_id\": \"string\",\n  \"softwareInfo\": {},\n  \"hardwareInfo\": {},\n  \"displays\": {},\n  \"networkInfo\": {},\n  \"memoryInfo\": {},\n  \"audioConstraints\": {},\n  \"provisioned_on\": \"2010-02-14T10:53:26.614Z\",\n  \"created_on\": \"1956-12-07T03:14:18.658Z\",\n  \"updated_on\": \"1999-09-03T17:32:04.082Z\",\n  \"emm_device\": {\n    \"id\": 4687,\n    \"google_device_id\": \"string\",\n    \"managementType\": \"string\",\n    \"device\": \"e52466f2-2dc8-76c7-ad69-7ecbbbb0adbb\",\n    \"google_user\": 4232,\n    \"policy\": 2229,\n    \"created_on\": \"1998-03-19T10:28:29.114Z\",\n    \"updated_on\": \"2003-02-04T16:56:47.146Z\",\n    \"is_active\": true\n  },\n  \"is_gms\": true,\n  \"is_active\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "533822bd-5e73-4f28-beb9-3e82a06feabb",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enterprise",
+                    ":enterprise_id",
+                    "device",
+                    ":device_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "enterprise_id",
+                      "description": "(Required) ID of the enterprise"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "device_id",
+                      "description": "(Required) ID of the device"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "87262bba-bab1-4593-9794-ac5ae7a87ec6",
+          "name": "List all device apps",
+          "request": {
+            "name": "List all device apps",
+            "description": {
+              "content": "Returns DeviceApp list",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "enterprise",
+                ":enterprise_id",
+                "device",
+                ":device_id",
+                "app",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "package_name",
+                  "value": "<string>",
+                  "description": "Filter by Package name"
+                },
+                {
+                  "disabled": false,
+                  "key": "whitelisted",
+                  "value": "<string>",
+                  "description": "Whitelist filter"
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "A search term. Search by app_name."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Number of results to return per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "The initial index from which to return the results."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "enterprise_id",
+                  "description": "(Required) A UUID string identifying this enterprise."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "device_id",
+                  "description": "(Required) A UUID string identifying device."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "37c8160a-b10e-401b-a7b1-98567cd9622f",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enterprise",
+                    ":enterprise_id",
+                    "device",
+                    ":device_id",
+                    "app",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "package_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "whitelisted",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enterprise_id",
+                      "description": "(Required) A UUID string identifying this enterprise."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "device_id",
+                      "description": "(Required) A UUID string identifying device."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 3356,\n  \"results\": [\n    {\n      \"app_name\": \"string\",\n      \"package_name\": \"string\",\n      \"device\": \"1b5882ba-3c5d-2914-cc68-b28ac78df3e4\",\n      \"id\": \"20b6c243-cbda-4e2f-b3e0-fc98c029d4f0\",\n      \"permissions\": [\n        {\n          \"permission\": \"string\",\n          \"id\": \"8b87620e-feb6-3a49-f6ac-1cc072ed3b18\",\n          \"grant_state\": \"PERMISSION_GRANT_STATE_DEFAULT\",\n          \"created_on\": \"2025-08-20T09:32:57.654Z\",\n          \"updated_on\": \"1977-01-19T15:53:33.191Z\",\n          \"is_active\": true,\n          \"app\": \"c560b910-ff55-0241-3d98-097ff25b45ce\"\n        },\n        {\n          \"permission\": \"string\",\n          \"id\": \"9aab1ea5-98a3-09a1-78d8-70a063a79c75\",\n          \"grant_state\": \"PERMISSION_GRANT_STATE_GRANTED\",\n          \"created_on\": \"1977-01-05T02:43:00.174Z\",\n          \"updated_on\": \"1965-12-04T15:54:46.722Z\",\n          \"is_active\": true,\n          \"app\": \"8de89adb-fc3a-852e-a3fa-8f39f598f99b\"\n        }\n      ],\n      \"whitelisted\": true,\n      \"is_data_clearable\": false,\n      \"is_uninstallable\": true,\n      \"product_id\": \"string\",\n      \"version_code\": \"string\",\n      \"version_name\": \"string\",\n      \"created_on\": \"1975-06-24T08:05:32.297Z\",\n      \"updated_on\": \"1954-06-18T03:51:55.042Z\",\n      \"is_active\": true\n    },\n    {\n      \"app_name\": \"string\",\n      \"package_name\": \"string\",\n      \"device\": \"00fd14b4-f6ce-80b3-28ae-895ec5ce4a1e\",\n      \"id\": \"8cb92565-b61a-28ce-a7cd-11433775a105\",\n      \"permissions\": [\n        {\n          \"permission\": \"string\",\n          \"id\": \"fae4be57-0f98-bac8-fb8e-2e3e987e1b09\",\n          \"grant_state\": \"PERMISSION_GRANT_STATE_GRANTED\",\n          \"created_on\": \"1970-08-17T15:59:52.005Z\",\n          \"updated_on\": \"1969-07-08T00:46:07.539Z\",\n          \"is_active\": false,\n          \"app\": \"085b8491-4a63-a391-9def-c0813ab02b10\"\n        },\n        {\n          \"permission\": \"string\",\n          \"id\": \"ce2c4f5a-7f3d-efec-01e3-46dc24328a13\",\n          \"grant_state\": \"PERMISSION_GRANT_STATE_DENIED\",\n          \"created_on\": \"1972-01-05T21:26:42.552Z\",\n          \"updated_on\": \"1986-11-01T14:34:58.427Z\",\n          \"is_active\": true,\n          \"app\": \"2bba3703-3199-a4ee-448d-6e637ebdd06d\"\n        }\n      ],\n      \"whitelisted\": false,\n      \"is_data_clearable\": true,\n      \"is_uninstallable\": false,\n      \"product_id\": \"string\",\n      \"version_code\": \"string\",\n      \"version_name\": \"string\",\n      \"created_on\": \"1977-03-24T08:59:44.260Z\",\n      \"updated_on\": \"2024-03-06T17:12:31.030Z\",\n      \"is_active\": false\n    }\n  ],\n  \"next\": \"string\",\n  \"previous\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f8f32360-4d89-482d-b3d7-4899346239d1",
+          "name": "Get device app details",
+          "request": {
+            "name": "Get device app details",
+            "description": {
+              "content": "Returns DeviceApp instance",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "enterprise",
+                ":enterprise_id",
+                "device",
+                ":device_id",
+                "app",
+                ":app_id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "app_id",
+                  "description": "(Required) A UUID string identifying this device app."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "enterprise_id",
+                  "description": "(Required) A UUID string identifying this device."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "device_id",
+                  "description": "(Required) A UUID string identifying this enteprise."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2af702d4-422b-49aa-ba30-f51e89611092",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enterprise",
+                    ":enterprise_id",
+                    "device",
+                    ":device_id",
+                    "app",
+                    ":app_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "app_id",
+                      "description": "(Required) A UUID string identifying this device app."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enterprise_id",
+                      "description": "(Required) A UUID string identifying this device."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "device_id",
+                      "description": "(Required) A UUID string identifying this enteprise."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"app_name\": \"str\",\n  \"package_name\": \"string\",\n  \"device\": \"b211f44d-d4ff-d73b-6d17-9be30d4fb7c4\",\n  \"id\": \"992bdcd9-0692-0329-d7a1-feb4e7af205b\",\n  \"permissions\": [\n    {\n      \"permission\": \"string\",\n      \"id\": \"518d42cb-d50a-93f1-70cc-b6c3736fe390\",\n      \"grant_state\": \"PERMISSION_GRANT_STATE_GRANTED\",\n      \"created_on\": \"2017-11-05T04:47:11.715Z\",\n      \"updated_on\": \"1958-01-13T03:46:22.524Z\",\n      \"is_active\": true,\n      \"app\": \"005c9819-c190-48b6-e3ec-38781d43c1b1\"\n    },\n    {\n      \"permission\": \"string\",\n      \"id\": \"d203998b-a082-b0f5-775b-5e1858b848f8\",\n      \"grant_state\": \"PERMISSION_GRANT_STATE_DENIED\",\n      \"created_on\": \"1952-01-02T23:03:30.838Z\",\n      \"updated_on\": \"1971-03-28T03:45:44.720Z\",\n      \"is_active\": true,\n      \"app\": \"1adbb5ca-2718-8503-af78-f0bd43b1475b\"\n    }\n  ],\n  \"whitelisted\": false,\n  \"is_data_clearable\": true,\n  \"is_uninstallable\": false,\n  \"product_id\": \"string\",\n  \"version_code\": \"string\",\n  \"version_name\": \"string\",\n  \"created_on\": \"1980-01-02T09:34:37.316Z\",\n  \"updated_on\": \"2024-10-06T11:09:42.638Z\",\n  \"is_active\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a4360805-bdc9-48d6-94be-9987c264215a",
+          "name": "List installed apps",
+          "request": {
+            "name": "List installed apps",
+            "description": {
+              "content": "Returns AppInstall list",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "enterprise",
+                ":enterprise_id",
+                "device",
+                ":device_id",
+                "install",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "device",
+                  "value": "<string>",
+                  "description": "filter by device id"
+                },
+                {
+                  "disabled": false,
+                  "key": "package_name",
+                  "value": "<string>",
+                  "description": "filter by package name"
+                },
+                {
+                  "disabled": false,
+                  "key": "application_name",
+                  "value": "<string>",
+                  "description": "filter by application name"
+                },
+                {
+                  "disabled": false,
+                  "key": "install_state",
+                  "value": "<string>",
+                  "description": "filter by install state"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Number of results to return per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "The initial index from which to return the results."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "enterprise_id",
+                  "description": "(Required) A UUID string identifying this enterprise."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "device_id",
+                  "description": "(Required) A UUID string identifying device."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f386d9bc-c13f-4b5c-8b24-a9e5d3500347",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enterprise",
+                    ":enterprise_id",
+                    "device",
+                    ":device_id",
+                    "install",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "device",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "package_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "application_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "install_state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enterprise_id",
+                      "description": "(Required) A UUID string identifying this enterprise."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "device_id",
+                      "description": "(Required) A UUID string identifying device."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 7694,\n  \"results\": [\n    {\n      \"application\": {\n        \"application_name\": \"string\",\n        \"package_name\": \"string\",\n        \"version\": {\n          \"app_version_id\": \"56e6e133-af27-81aa-71f7-1d6630cb44cf\",\n          \"version_code\": \"string\",\n          \"build_number\": \"string\",\n          \"hash_string\": \"string\"\n        },\n        \"is_enabled\": true\n      },\n      \"install_state\": \"INSTALL_FAILED\",\n      \"enterprise\": \"string\",\n      \"device\": \"string\",\n      \"id\": \"55055509-0caa-2326-2304-f00747774daf\",\n      \"reason_details\": \"string\",\n      \"created_on\": \"1989-05-12T05:05:01.969Z\",\n      \"updated_on\": \"2005-03-02T13:08:05.729Z\",\n      \"is_active\": true\n    },\n    {\n      \"application\": {\n        \"application_name\": \"string\",\n        \"package_name\": \"string\",\n        \"version\": {\n          \"app_version_id\": \"de2053c7-5781-3281-e90f-0bbd80d38946\",\n          \"version_code\": \"string\",\n          \"build_number\": \"string\",\n          \"hash_string\": \"string\"\n        },\n        \"is_enabled\": true\n      },\n      \"install_state\": \"UNINSTALL_IN_PROGRESS\",\n      \"enterprise\": \"string\",\n      \"device\": \"string\",\n      \"id\": \"1ab428a1-4111-ce22-d69e-467e70e6d9a9\",\n      \"reason_details\": \"string\",\n      \"created_on\": \"1950-08-22T10:31:53.628Z\",\n      \"updated_on\": \"2000-09-09T00:05:02.713Z\",\n      \"is_active\": true\n    }\n  ],\n  \"next\": \"string\",\n  \"previous\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4eaa8881-23c2-41d1-881b-c7a72e9f84a8",
+          "name": "Get latest device event",
+          "request": {
+            "name": "Get latest device event",
+            "description": {
+              "content": "Returns DeviceStatus instance",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "enterprise",
+                ":enterprise_id",
+                "device",
+                ":device_id",
+                "status",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "latest_event",
+                  "value": "<integer>",
+                  "description": "(Required) Flag to get latest event"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "enterprise_id",
+                  "description": "(Required) A UUID string identifying this enterprise."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "device_id",
+                  "description": "(Required) A UUID string identifying device."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ef2693e9-0830-43e6-9f91-6dd47484bb6d",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enterprise",
+                    ":enterprise_id",
+                    "device",
+                    ":device_id",
+                    "status",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "latest_event",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enterprise_id",
+                      "description": "(Required) A UUID string identifying this enterprise."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "device_id",
+                      "description": "(Required) A UUID string identifying device."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 3768,\n  \"results\": [\n    {\n      \"data\": \"string\",\n      \"device\": \"string\",\n      \"enterprise\": \"string\",\n      \"id\": 8599,\n      \"created_on\": \"2003-12-11T17:35:38.603Z\"\n    },\n    {\n      \"data\": \"string\",\n      \"device\": \"string\",\n      \"enterprise\": \"string\",\n      \"id\": 4194,\n      \"created_on\": \"2020-10-19T13:57:05.685Z\"\n    }\n  ],\n  \"next\": \"string\",\n  \"previous\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://foo-api.esper.cloud/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "f41981eb-2872-4d44-aeb0-19f7858c3bc7",
+    "name": "ESPER API REFERENCE Application Device API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "# Introduction\nEsper APIs are a set of REST-based APIs that help you programmatically control and monitor Android-based Dedicated Devices running the Esper agent using Esper Manage. With these APIs, you can orchestrate and manage devices that have been provisioned against your Esper Manage environment. Furthermore, these APIs allows you to manage the Android applications installed on your Dedicated Device fleet. To read more about the various capabilities of Esper APIs and Esper managed devices, please visit [esper.io](https://esper.io). This guide describes all the available APIs in detail, along with code samples for you to quickly ramp up to using them.\\\nTo use these APIs you will need to create a developer account with Esper and get access to the Esper Dev Console and the Esper ManageDashboard. You can find out more about Esper and sign up for free at [esper.io/signup](https://esper.io/signup)\\\nWe've done our best to keep this document up to date, but if you find any issues, please reach out to us at developer@esper.io.\n\n# SDK\n\n  You are welcome to use your favorite HTTP/REST library for your programming language in order to call these APIs, or you can use our SDK (currently supporting [python](https://github.com/esper-io/esper-client-py)) to do so.\n\n\n# Authentication\nThe client needs to send authentication details to access the Esper APIs by generating and applying an API key. Be sure to sign up for your free trial account with Esper Dev to generate your key:\n\n# Errors\nThe APIs use standard HTTP status codes to indicate success or failure. All error responses will have a JSON body in the following format:\n\n```\n{\n  \"errors\": [],\n  \"message\": \"error message\",\n  \"status\": 400\n}\n```\n* `errors` -  List of error details\n* `message` - Error description\n* `status` - HTTP status code\n\n\nContact Support:\n Email: developer@esper.io",
+      "type": "text/plain"
+    }
+  }
+}

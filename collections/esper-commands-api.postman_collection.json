@@ -1,0 +1,337 @@
+{
+  "item": [
+    {
+      "id": "fce49b7b-afec-49a0-b7eb-a9f8bde0f9ca",
+      "name": "Commands",
+      "description": {
+        "content": "APIs to run device commands.\n`This version of commands is being deprecated and documentation will be archived soon. Please use Commands V2.`\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b9a09603-14f7-43b5-9ddb-e4aa336fc148",
+          "name": "Run commands on device",
+          "request": {
+            "name": "Run commands on device",
+            "description": {
+              "content": "Fire commands on device like reboot, ping etc. Deprecated in favour of commands V2.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "enterprise",
+                ":enterprise_id",
+                "device",
+                ":device_id",
+                "command",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "enterprise_id",
+                  "description": "(Required) ID of the enterprise"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "device_id",
+                  "description": "(Required) ID of the device"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"command\": \"<string>\",\n  \"command_args\": {\n    \"wipe_external_storage\": false,\n    \"wipe_FRP\": true,\n    \"brightness_value\": \"<integer>\",\n    \"stream\": \"<integer>\",\n    \"volume_level\": \"<integer>\",\n    \"wifi_state\": \"<boolean>\",\n    \"bluetooth_state\": \"<boolean>\",\n    \"rotate_state\": \"<integer>\",\n    \"gps_state\": \"<integer>\",\n    \"screen_off_timeout\": \"<integer>\",\n    \"app_version\": \"<string>\",\n    \"package_name\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2006e5f2-8db8-4afb-ae2d-56ea4f0d3fb6",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enterprise",
+                    ":enterprise_id",
+                    "device",
+                    ":device_id",
+                    "command",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "enterprise_id",
+                      "description": "(Required) ID of the enterprise"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "device_id",
+                      "description": "(Required) ID of the device"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"command\": \"<string>\",\n  \"command_args\": {\n    \"wipe_external_storage\": false,\n    \"wipe_FRP\": true,\n    \"brightness_value\": \"<integer>\",\n    \"stream\": \"<integer>\",\n    \"volume_level\": \"<integer>\",\n    \"wifi_state\": \"<boolean>\",\n    \"bluetooth_state\": \"<boolean>\",\n    \"rotate_state\": \"<integer>\",\n    \"gps_state\": \"<integer>\",\n    \"screen_off_timeout\": \"<integer>\",\n    \"app_version\": \"<string>\",\n    \"package_name\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"command\": \"<string>\",\n  \"enterprise\": \"string\",\n  \"device\": \"string\",\n  \"id\": \"93ab3fe4-faff-7ef3-855c-d564dc83635b\",\n  \"current_base_uri\": \"string\",\n  \"command_args\": {\n    \"wipe_external_storage\": false,\n    \"wipe_FRP\": true,\n    \"brightness_value\": \"<integer>\",\n    \"stream\": \"<integer>\",\n    \"volume_level\": \"<integer>\",\n    \"wifi_state\": \"<boolean>\",\n    \"bluetooth_state\": \"<boolean>\",\n    \"rotate_state\": \"<integer>\",\n    \"gps_state\": \"<integer>\",\n    \"screen_off_timeout\": \"<integer>\",\n    \"app_version\": \"<string>\",\n    \"package_name\": \"<string>\"\n  },\n  \"action\": \"failed\",\n  \"schedule\": \"string\",\n  \"group_schedule_id\": \"1dd72a04-4bb1-dbcc-e4a2-720ec3042545\",\n  \"state\": \"Command Acknowledged\",\n  \"details\": \"string\",\n  \"created_on\": \"1983-11-03T07:00:52.537Z\",\n  \"updated_on\": \"1991-12-16T20:45:05.920Z\",\n  \"group_command\": \"string\",\n  \"issued_by\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d70f18fd-0256-4684-8b95-3bb22dc18a9c",
+          "name": "Get command status",
+          "request": {
+            "name": "Get command status",
+            "description": {
+              "content": "Return DeviceCommand instance. Deprecated in favour of commands V2.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "enterprise",
+                ":enterprise_id",
+                "device",
+                ":device_id",
+                "command",
+                ":command_id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "command_id",
+                  "description": "(Required) A UUID string identifying this device command."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "device_id",
+                  "description": "(Required) A UUID string identifying this device."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "enterprise_id",
+                  "description": "(Required) A UUID string identifying enterprise."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0b7ac60e-1915-4a1d-8e4f-d02812a854fc",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enterprise",
+                    ":enterprise_id",
+                    "device",
+                    ":device_id",
+                    "command",
+                    ":command_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "command_id",
+                      "description": "(Required) A UUID string identifying this device command."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "device_id",
+                      "description": "(Required) A UUID string identifying this device."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "enterprise_id",
+                      "description": "(Required) A UUID string identifying enterprise."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"command\": \"<string>\",\n  \"enterprise\": \"string\",\n  \"device\": \"string\",\n  \"id\": \"93ab3fe4-faff-7ef3-855c-d564dc83635b\",\n  \"current_base_uri\": \"string\",\n  \"command_args\": {\n    \"wipe_external_storage\": false,\n    \"wipe_FRP\": true,\n    \"brightness_value\": \"<integer>\",\n    \"stream\": \"<integer>\",\n    \"volume_level\": \"<integer>\",\n    \"wifi_state\": \"<boolean>\",\n    \"bluetooth_state\": \"<boolean>\",\n    \"rotate_state\": \"<integer>\",\n    \"gps_state\": \"<integer>\",\n    \"screen_off_timeout\": \"<integer>\",\n    \"app_version\": \"<string>\",\n    \"package_name\": \"<string>\"\n  },\n  \"action\": \"failed\",\n  \"schedule\": \"string\",\n  \"group_schedule_id\": \"1dd72a04-4bb1-dbcc-e4a2-720ec3042545\",\n  \"state\": \"Command Acknowledged\",\n  \"details\": \"string\",\n  \"created_on\": \"1983-11-03T07:00:52.537Z\",\n  \"updated_on\": \"1991-12-16T20:45:05.920Z\",\n  \"group_command\": \"string\",\n  \"issued_by\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://foo-api.esper.cloud/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "1e8d5dec-e321-4d2a-9f86-269fe900d385",
+    "name": "ESPER API REFERENCE Application Commands API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "# Introduction\nEsper APIs are a set of REST-based APIs that help you programmatically control and monitor Android-based Dedicated Devices running the Esper agent using Esper Manage. With these APIs, you can orchestrate and manage devices that have been provisioned against your Esper Manage environment. Furthermore, these APIs allows you to manage the Android applications installed on your Dedicated Device fleet. To read more about the various capabilities of Esper APIs and Esper managed devices, please visit [esper.io](https://esper.io). This guide describes all the available APIs in detail, along with code samples for you to quickly ramp up to using them.\\\nTo use these APIs you will need to create a developer account with Esper and get access to the Esper Dev Console and the Esper ManageDashboard. You can find out more about Esper and sign up for free at [esper.io/signup](https://esper.io/signup)\\\nWe've done our best to keep this document up to date, but if you find any issues, please reach out to us at developer@esper.io.\n\n# SDK\n\n  You are welcome to use your favorite HTTP/REST library for your programming language in order to call these APIs, or you can use our SDK (currently supporting [python](https://github.com/esper-io/esper-client-py)) to do so.\n\n\n# Authentication\nThe client needs to send authentication details to access the Esper APIs by generating and applying an API key. Be sure to sign up for your free trial account with Esper Dev to generate your key:\n\n# Errors\nThe APIs use standard HTTP status codes to indicate success or failure. All error responses will have a JSON body in the following format:\n\n```\n{\n  \"errors\": [],\n  \"message\": \"error message\",\n  \"status\": 400\n}\n```\n* `errors` -  List of error details\n* `message` - Error description\n* `status` - HTTP status code\n\n\nContact Support:\n Email: developer@esper.io",
+      "type": "text/plain"
+    }
+  }
+}
