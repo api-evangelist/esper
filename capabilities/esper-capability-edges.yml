@@ -1,0 +1,55 @@
+slug: esper
+provider: Esper
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Automotive & Mobility
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 4
+edges:
+- tag: Application
+  spec_file: esper-application-api-openapi.yml
+  capability_id: BC-600.60
+  capability_id_l1: BC-600
+  capability_name: IT Application Management
+  confidence: 0.8
+  evidence: POST /enterprise/{enterprise_id}/application/upload/ — 'Upload an application to enterprise';
+    'List App versions'; 'List install devices'
+  reason: Managing the catalogue, versions and installed footprint of Android applications across an enterprise
+    device fleet is IT application lifecycle management (BC-600.60); it is an IT devtool, not an automotive
+    capability.
+- tag: Application V1
+  spec_file: esper-application-v1-api-openapi.yml
+  capability_id: BC-600.60
+  capability_id_l1: BC-600
+  capability_name: IT Application Management
+  confidence: 0.8
+  evidence: GET /v1/enterprise/{enterprise_id}/application/ — 'List apps in enterprise'; 'Delete app version'
+  reason: Same application/version catalogue surface at v1 — enterprise application lifecycle management
+    within IT.
+- tag: Commands
+  spec_file: esper-commands-api-openapi.yml
+  capability_id: BC-600.40
+  capability_id_l1: BC-600
+  capability_name: IT Operations Management
+  confidence: 0.75
+  evidence: POST /enterprise/{enterprise_id}/device/{device_id}/command/ — 'Run commands on device'; schema
+    DeviceCommandEnum, SettingsVolumeStreamEnum
+  reason: Remote command execution and status polling against managed endpoint devices is day-to-day IT
+    operations/endpoint automation, not a vertical business capability.
+- tag: Commands V2
+  spec_file: esper-commands-v2-api-openapi.yml
+  capability_id: BC-600.40
+  capability_id_l1: BC-600
+  capability_name: IT Operations Management
+  confidence: 0.7
+  evidence: POST /v0/enterprise/{enterprise_id}/command/ createCommand Create a command request; getDeviceCommandHistory
+    get command history for device
+  reason: Remote command execution against managed Android device fleets is IT operations / device management,
+    not an industry business capability.

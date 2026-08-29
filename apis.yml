@@ -469,6 +469,9 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: CapabilityMap
+  url: capabilities/esper-capability-edges.yml
+  name: Esper Business Capability Map
 - type: AgentSkill
   url: skills/esper-deploy-app-to-group.md
 - type: MCPServer
