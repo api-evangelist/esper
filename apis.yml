@@ -25,6 +25,18 @@ x-disambiguation: >-
   govtech policy/regulatory company at esper.com (backed by 8VC), which the
   original VC-portfolio stub conflated into the x-backed-by list.
 x-tier: enriched
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
