@@ -59,6 +59,16 @@ tags:
 - Mobile Device Management
 - Android
 - DevOps
+- IoT
+- Fleet Management
+- Enterprise Mobility
+- Edge Computing
+- Kiosk
+tags_raw:
+- Device Management
+- Mobile Device Management
+- Android
+- DevOps
 - Internet of Things
 - Fleet Management
 - Enterprise Mobility
@@ -440,6 +450,8 @@ apis:
   humanURL: https://api.esper.io/openapi
   baseURL: https://foo-api.esper.cloud/api
   tags:
+  - Tokens
+  tags_raw:
   - Token
   properties:
   - type: OpenAPI
