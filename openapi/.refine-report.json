@@ -1,19 +1,7 @@
 {
   "provider": "esper",
   "sources": [
-    "esper-application-api-openapi.yml",
-    "esper-application-v1-api-openapi.yml",
-    "esper-commands-api-openapi.yml",
-    "esper-commands-v2-api-openapi.yml",
-    "esper-content-api-openapi.yml",
-    "esper-device-api-openapi.yml",
-    "esper-device-group-api-openapi.yml",
-    "esper-enterprise-api-openapi.yml",
-    "esper-enterprise-policy-api-openapi.yml",
-    "esper-geofence-api-openapi.yml",
-    "esper-group-commands-api-openapi.yml",
-    "esper-subscription-api-openapi.yml",
-    "esper-token-api-openapi.yml"
+    "_original/esper-manage-openapi-original.yml"
   ],
   "outputs": [
     "esper-application-api-openapi.yml",
@@ -33,6 +21,24 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "esper-manage-openapi-original.yml: upgraded swagger 2.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "esper-application-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "esper-application-v1-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "esper-commands-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "esper-commands-v2-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "esper-content-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "esper-device-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "esper-device-group-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "esper-enterprise-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "esper-enterprise-policy-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "esper-geofence-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "esper-group-commands-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "esper-subscription-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "esper-token-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
