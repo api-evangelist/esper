@@ -901,6 +901,41 @@ paths:
       - Application
 components:
   schemas:
+    AppVersionDelete:
+      type: object
+      properties:
+        request_id:
+          title: Request id
+          type: string
+          format: uuid
+        templates:
+          description: List of linked templates to an app version
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                title: Id
+                description: Id of the linked template
+                type: integer
+              name:
+                title: Name
+                description: Name of the linked template
+                type: string
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          title: Messages describing the error
+          type: array
+          items:
+            type: string
+        message:
+          title: Message describing the error
+          type: string
+        status:
+          title: alias name
+          type: integer
     InstallDevices:
       required:
       - id
@@ -1039,85 +1074,6 @@ components:
           - ACCEPTED
           - APPROVED
           - REJECTED
-    ErrorResponse:
-      type: object
-      properties:
-        errors:
-          title: Messages describing the error
-          type: array
-          items:
-            type: string
-        message:
-          title: Message describing the error
-          type: string
-        status:
-          title: alias name
-          type: integer
-    AppPermission:
-      required:
-      - permission
-      - enterprise
-      type: object
-      properties:
-        id:
-          title: Id
-          type: string
-          format: uuid
-          readOnly: true
-        permission:
-          title: Permission
-          type: string
-          maxLength: 255
-          minLength: 1
-        grant_state:
-          title: Grant state
-          type: string
-          enum:
-          - Default
-          - Denied
-          - Granted
-        created_on:
-          title: Created on
-          type: string
-          format: date-time
-          readOnly: true
-        updated_on:
-          title: Updated on
-          type: string
-          format: date-time
-          readOnly: true
-        is_active:
-          title: Is active
-          type: boolean
-        enterprise:
-          title: Enterprise
-          type: string
-          format: url
-        app_version:
-          title: App version
-          type: string
-          format: url
-    AppVersionDelete:
-      type: object
-      properties:
-        request_id:
-          title: Request id
-          type: string
-          format: uuid
-        templates:
-          description: List of linked templates to an app version
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                title: Id
-                description: Id of the linked template
-                type: integer
-              name:
-                title: Name
-                description: Name of the linked template
-                type: string
     ApplicationVersion:
       title: Version
       type: object
@@ -1167,6 +1123,50 @@ components:
         release_name:
           title: Name of the release
           type: string
+    AppPermission:
+      required:
+      - permission
+      - enterprise
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+          readOnly: true
+        permission:
+          title: Permission
+          type: string
+          maxLength: 255
+          minLength: 1
+        grant_state:
+          title: Grant state
+          type: string
+          enum:
+          - Default
+          - Denied
+          - Granted
+        created_on:
+          title: Created on
+          type: string
+          format: date-time
+          readOnly: true
+        updated_on:
+          title: Updated on
+          type: string
+          format: date-time
+          readOnly: true
+        is_active:
+          title: Is active
+          type: boolean
+        enterprise:
+          title: Enterprise
+          type: string
+          format: url
+        app_version:
+          title: App version
+          type: string
+          format: url
     Application:
       required:
       - application_name

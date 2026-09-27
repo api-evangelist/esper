@@ -423,125 +423,6 @@ paths:
       - Device
 components:
   schemas:
-    Device:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        url:
-          type: string
-          format: url
-        device_name:
-          type: string
-        alias_name:
-          type: string
-          description: Device friendly name
-        policy_name:
-          type: string
-        status:
-          type: integer
-          format: int32
-          description: Current status of device
-        state:
-          type: integer
-          format: int32
-          description: Current state of device
-        current_command:
-          type: string
-          format: uuid
-          description: Current command associated with device
-        suid:
-          type: string
-          description: Device generated unique id
-        fcm_id:
-          type: string
-        enterprise:
-          type: string
-          format: url
-        policy:
-          type: string
-          format: url
-        user:
-          type: string
-          format: url
-        groups:
-          type: array
-          items:
-            type: string
-            format: url
-        tags:
-          type: array
-          items:
-            type: string
-        api_level:
-          type: integer
-          format: int32
-        template_name:
-          type: string
-        mqtt_id:
-          type: string
-        softwareInfo:
-          type: object
-        hardwareInfo:
-          type: object
-        displays:
-          type: object
-        networkInfo:
-          type: object
-        memoryInfo:
-          type: object
-        audioConstraints:
-          type: object
-        provisioned_on:
-          type: string
-          format: date-time
-        created_on:
-          type: string
-          format: date-time
-        updated_on:
-          type: string
-          format: date-time
-        emm_device:
-          $ref: '#/components/schemas/EmmDevice'
-        is_gms:
-          type: boolean
-          default: true
-        is_active:
-          type: boolean
-          default: true
-    AppInstallVersion:
-      title: Version
-      type: object
-      properties:
-        app_version_id:
-          title: App version id
-          type: string
-          format: uuid
-        version_code:
-          title: Version code
-          type: string
-        build_number:
-          title: Build number
-          type: string
-        hash_string:
-          title: Hash string
-          type: string
-    AppInstallApplication:
-      title: Application
-      type: object
-      properties:
-        application_name:
-          title: Application name
-          type: string
-        package_name:
-          title: Package name
-          type: string
-        version:
-          $ref: '#/components/schemas/AppInstallVersion'
-        is_enabled:
-          title: Is enabled
-          type: boolean
     DeviceApp:
       required:
       - app_name
@@ -658,33 +539,138 @@ components:
           title: Device
           type: string
           format: url
-    DeviceStatus:
-      required:
-      - data
-      - device
-      - enterprise
+    EmmDevice:
       type: object
       properties:
         id:
-          title: ID
           type: integer
-          readOnly: true
-        data:
-          title: Data
+          format: int64
+        google_device_id:
           type: string
+        managementType:
+          type: string
+        device:
+          type: string
+          format: uuid
+        google_user:
+          type: integer
+          format: int64
+        policy:
+          type: integer
+          format: int64
         created_on:
-          title: Created on
           type: string
           format: date-time
-          readOnly: true
-        device:
-          title: Device
+        updated_on:
+          type: string
+          format: date-time
+        is_active:
+          type: boolean
+          default: true
+    AppInstallVersion:
+      title: Version
+      type: object
+      properties:
+        app_version_id:
+          title: App version id
+          type: string
+          format: uuid
+        version_code:
+          title: Version code
+          type: string
+        build_number:
+          title: Build number
+          type: string
+        hash_string:
+          title: Hash string
+          type: string
+    Device:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        url:
           type: string
           format: url
+        device_name:
+          type: string
+        alias_name:
+          type: string
+          description: Device friendly name
+        policy_name:
+          type: string
+        status:
+          type: integer
+          format: int32
+          description: Current status of device
+        state:
+          type: integer
+          format: int32
+          description: Current state of device
+        current_command:
+          type: string
+          format: uuid
+          description: Current command associated with device
+        suid:
+          type: string
+          description: Device generated unique id
+        fcm_id:
+          type: string
         enterprise:
-          title: Enterprise
           type: string
           format: url
+        policy:
+          type: string
+          format: url
+        user:
+          type: string
+          format: url
+        groups:
+          type: array
+          items:
+            type: string
+            format: url
+        tags:
+          type: array
+          items:
+            type: string
+        api_level:
+          type: integer
+          format: int32
+        template_name:
+          type: string
+        mqtt_id:
+          type: string
+        softwareInfo:
+          type: object
+        hardwareInfo:
+          type: object
+        displays:
+          type: object
+        networkInfo:
+          type: object
+        memoryInfo:
+          type: object
+        audioConstraints:
+          type: object
+        provisioned_on:
+          type: string
+          format: date-time
+        created_on:
+          type: string
+          format: date-time
+        updated_on:
+          type: string
+          format: date-time
+        emm_device:
+          $ref: '#/components/schemas/EmmDevice'
+        is_gms:
+          type: boolean
+          default: true
+        is_active:
+          type: boolean
+          default: true
     AppInstallStateEnum:
       title: Install state
       type: string
@@ -716,6 +702,48 @@ components:
       - INSTALL_FAILED
       - UNINSTALL_SUCCESS
       - UNINSTALL_FAILED
+    AppInstallApplication:
+      title: Application
+      type: object
+      properties:
+        application_name:
+          title: Application name
+          type: string
+        package_name:
+          title: Package name
+          type: string
+        version:
+          $ref: '#/components/schemas/AppInstallVersion'
+        is_enabled:
+          title: Is enabled
+          type: boolean
+    DeviceStatus:
+      required:
+      - data
+      - device
+      - enterprise
+      type: object
+      properties:
+        id:
+          title: ID
+          type: integer
+          readOnly: true
+        data:
+          title: Data
+          type: string
+        created_on:
+          title: Created on
+          type: string
+          format: date-time
+          readOnly: true
+        device:
+          title: Device
+          type: string
+          format: url
+        enterprise:
+          title: Enterprise
+          type: string
+          format: url
     DeviceAppPermission:
       required:
       - permission
@@ -765,34 +793,6 @@ components:
           title: App
           type: string
           format: uuid
-    EmmDevice:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        google_device_id:
-          type: string
-        managementType:
-          type: string
-        device:
-          type: string
-          format: uuid
-        google_user:
-          type: integer
-          format: int64
-        policy:
-          type: integer
-          format: int64
-        created_on:
-          type: string
-          format: date-time
-        updated_on:
-          type: string
-          format: date-time
-        is_active:
-          type: boolean
-          default: true
   securitySchemes:
     apiKey:
       description: "#### API KEY - Access Token\nAccess token for APIs passed as authorization header in calls. You need to generate this from your Esper Dev Console at `<domain>-api.esper.cloud` where foo is the sub-domain name you gave for your Esper Dev environment when you signed up for your Esper Dev account. Please follow the instructions [here](https://docs.esper.io/home/module/genapikey.html) to generate an access token.\nOnce you have the access token, you need to send an authorization header as below\n\n```bash\n\n    curl -X GET \\\n      https://<domain>-api.esper.cloud/api/enterprise/<enterprise_id>/device/ \\\n      -H 'Authorization: Bearer <ACCESS_TOKEN>' \\\n      -H 'Content-Type: application/json' \\\n```\n\n> Please note the use of keyword **Bearer** before the token value.\n\n\nYou can read more about api key authentication scheme [here](https://console-docs.esper.io/API/generate.html).\n"

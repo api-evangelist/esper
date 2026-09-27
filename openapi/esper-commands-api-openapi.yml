@@ -102,49 +102,72 @@ paths:
       - Commands
 components:
   schemas:
-    SettingsRotateStateEnum:
-      type: integer
-      description: 'Device settings rotate state enum
-
-
-        ```
-
-        * AUTO = 0
-
-        * PORTRAIT_ONLY = 1
-
-        * LANDSCAPE_ONLY = 2
-
-        ```
-
-        '
+    CommandRequest:
+      required:
+      - command
+      type: object
+      properties:
+        command_args:
+          $ref: '#/components/schemas/CommandArgs'
+        command:
+          $ref: '#/components/schemas/DeviceCommandEnum'
+    DeviceCommandEnum:
+      type: string
+      description: "Command Options\n\n```\n* REBOOT: Reboot device\n* LOCK:  Lock device screen\n* INSTALL:  Install an app on device\n* UNINSTALL: Uninstall an app from device\n* WIPE: Wipe device\n* UPDATE_HEARTBEAT: Ping Device\n* SET_WIFI_STATE: wifi on/off\n* SET_BLUETOOTH_STATE: Bluetooth on/off\n* SET_ROTATION_STATE: Auto rotate setting\n* SET_GPS_STATE: GPS options\n* SET_BRIGHTNESS_SCALE: Brightness control\n* SET_STREAM_VOLUME: Volume control\n* SET_SCREEN_OFF_TIMEOUT: Screen timeout setting\n* ADD_TO_WHITELIST: Whitelist an installed sytem app\n* CLEAR_APP_DATA: Clear app data\n* CAPTURE_SCREENSHOT: Allows you to take a screenshot of the device's current screen. The \"tag\" is an optional param that can be set to corresponding screenshot. \n```\n"
       enum:
-      - 0
-      - 1
-      - 2
-    SettingsGPSStateEnum:
-      type: integer
-      description: 'Device settings GPS state enum
-
-
-        ```
-
-        * LOCATION_MODE_HIGH_ACCURACY = 0
-
-        * LOCATION_MODE_SENSORS_ONLY = 1
-
-        * LOCATION_MODE_BATTERY_SAVING = 2
-
-        * LOCATION_MODE_OFF = 3
-
-        ```
-
-        '
-      enum:
-      - 0
-      - 1
-      - 2
-      - 3
+      - REBOOT
+      - LOCK
+      - INSTALL
+      - UPDATE_HEARTBEAT
+      - WIPE
+      - SET_WIFI_STATE
+      - SET_BLUETOOTH_STATE
+      - SET_ROTATION_STATE
+      - SET_GPS_STATE
+      - SET_BRIGHTNESS_SCALE
+      - SET_STREAM_VOLUME
+      - SET_SCREEN_OFF_TIMEOUT
+      - UNINSTALL
+      - ADD_TO_WHITELIST
+      - CLEAR_APP_DATA
+      - CAPTURE_SCREENSHOT
+    CommandArgs:
+      title: Command args
+      type: object
+      properties:
+        wipe_external_storage:
+          type: boolean
+          default: false
+        wipe_FRP:
+          type: boolean
+          default: true
+        brightness_value:
+          type: integer
+          minimum: 1
+          maximum: 100
+        stream:
+          $ref: '#/components/schemas/SettingsVolumeStreamEnum'
+        volume_level:
+          type: integer
+          minimum: 0
+          maximum: 100
+        wifi_state:
+          type: boolean
+        bluetooth_state:
+          type: boolean
+        rotate_state:
+          $ref: '#/components/schemas/SettingsRotateStateEnum'
+        gps_state:
+          $ref: '#/components/schemas/SettingsGPSStateEnum'
+        screen_off_timeout:
+          description: Value in seconds
+          type: integer
+          minimum: 5000
+          maximum: 1800000
+        app_version:
+          type: string
+        package_name:
+          type: string
     DeviceCommand:
       required:
       - command
@@ -226,72 +249,49 @@ components:
           - string
           - 'null'
           format: url
-    CommandArgs:
-      title: Command args
-      type: object
-      properties:
-        wipe_external_storage:
-          type: boolean
-          default: false
-        wipe_FRP:
-          type: boolean
-          default: true
-        brightness_value:
-          type: integer
-          minimum: 1
-          maximum: 100
-        stream:
-          $ref: '#/components/schemas/SettingsVolumeStreamEnum'
-        volume_level:
-          type: integer
-          minimum: 0
-          maximum: 100
-        wifi_state:
-          type: boolean
-        bluetooth_state:
-          type: boolean
-        rotate_state:
-          $ref: '#/components/schemas/SettingsRotateStateEnum'
-        gps_state:
-          $ref: '#/components/schemas/SettingsGPSStateEnum'
-        screen_off_timeout:
-          description: Value in seconds
-          type: integer
-          minimum: 5000
-          maximum: 1800000
-        app_version:
-          type: string
-        package_name:
-          type: string
-    DeviceCommandEnum:
-      type: string
-      description: "Command Options\n\n```\n* REBOOT: Reboot device\n* LOCK:  Lock device screen\n* INSTALL:  Install an app on device\n* UNINSTALL: Uninstall an app from device\n* WIPE: Wipe device\n* UPDATE_HEARTBEAT: Ping Device\n* SET_WIFI_STATE: wifi on/off\n* SET_BLUETOOTH_STATE: Bluetooth on/off\n* SET_ROTATION_STATE: Auto rotate setting\n* SET_GPS_STATE: GPS options\n* SET_BRIGHTNESS_SCALE: Brightness control\n* SET_STREAM_VOLUME: Volume control\n* SET_SCREEN_OFF_TIMEOUT: Screen timeout setting\n* ADD_TO_WHITELIST: Whitelist an installed sytem app\n* CLEAR_APP_DATA: Clear app data\n* CAPTURE_SCREENSHOT: Allows you to take a screenshot of the device's current screen. The \"tag\" is an optional param that can be set to corresponding screenshot. \n```\n"
+    SettingsRotateStateEnum:
+      type: integer
+      description: 'Device settings rotate state enum
+
+
+        ```
+
+        * AUTO = 0
+
+        * PORTRAIT_ONLY = 1
+
+        * LANDSCAPE_ONLY = 2
+
+        ```
+
+        '
       enum:
-      - REBOOT
-      - LOCK
-      - INSTALL
-      - UPDATE_HEARTBEAT
-      - WIPE
-      - SET_WIFI_STATE
-      - SET_BLUETOOTH_STATE
-      - SET_ROTATION_STATE
-      - SET_GPS_STATE
-      - SET_BRIGHTNESS_SCALE
-      - SET_STREAM_VOLUME
-      - SET_SCREEN_OFF_TIMEOUT
-      - UNINSTALL
-      - ADD_TO_WHITELIST
-      - CLEAR_APP_DATA
-      - CAPTURE_SCREENSHOT
-    CommandRequest:
-      required:
-      - command
-      type: object
-      properties:
-        command_args:
-          $ref: '#/components/schemas/CommandArgs'
-        command:
-          $ref: '#/components/schemas/DeviceCommandEnum'
+      - 0
+      - 1
+      - 2
+    SettingsGPSStateEnum:
+      type: integer
+      description: 'Device settings GPS state enum
+
+
+        ```
+
+        * LOCATION_MODE_HIGH_ACCURACY = 0
+
+        * LOCATION_MODE_SENSORS_ONLY = 1
+
+        * LOCATION_MODE_BATTERY_SAVING = 2
+
+        * LOCATION_MODE_OFF = 3
+
+        ```
+
+        '
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
     SettingsVolumeStreamEnum:
       type: integer
       description: 'Device settings volume stream enum

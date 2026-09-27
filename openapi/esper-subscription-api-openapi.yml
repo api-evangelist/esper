@@ -149,15 +149,6 @@ paths:
       - Subscription
 components:
   schemas:
-    EventSubscriptionArgs:
-      required:
-      - aws_account_id
-      type: object
-      properties:
-        aws_account_id:
-          title: AWS account Id
-          type: string
-          minLength: 1
     EventSubscription:
       required:
       - enterprise
@@ -194,6 +185,15 @@ components:
           title: Enterprise
           type: string
           format: url
+    EventSubscriptionArgs:
+      required:
+      - aws_account_id
+      type: object
+      properties:
+        aws_account_id:
+          title: AWS account Id
+          type: string
+          minLength: 1
   securitySchemes:
     apiKey:
       description: "#### API KEY - Access Token\nAccess token for APIs passed as authorization header in calls. You need to generate this from your Esper Dev Console at `<domain>-api.esper.cloud` where foo is the sub-domain name you gave for your Esper Dev environment when you signed up for your Esper Dev account. Please follow the instructions [here](https://docs.esper.io/home/module/genapikey.html) to generate an access token.\nOnce you have the access token, you need to send an authorization header as below\n\n```bash\n\n    curl -X GET \\\n      https://<domain>-api.esper.cloud/api/enterprise/<enterprise_id>/device/ \\\n      -H 'Authorization: Bearer <ACCESS_TOKEN>' \\\n      -H 'Content-Type: application/json' \\\n```\n\n> Please note the use of keyword **Bearer** before the token value.\n\n\nYou can read more about api key authentication scheme [here](https://console-docs.esper.io/API/generate.html).\n"

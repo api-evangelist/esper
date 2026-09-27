@@ -204,66 +204,6 @@ paths:
       - Enterprise Policy
 components:
   schemas:
-    EnterprisePolicy:
-      required:
-      - name
-      - enterprise
-      - policy
-      type: object
-      properties:
-        uuid:
-          title: UUID
-          description: Unique Policy identifier
-          type: string
-          format: uuid
-          readOnly: true
-        enterprise:
-          title: Enterprise url
-          description: Url of the enterprise resource
-          type: string
-          format: url
-        url:
-          title: Policy URL
-          description: URL link to policy
-          type: string
-          format: url
-          readOnly: true
-        name:
-          title: Policy Name
-          description: Name of the Policy
-          type: string
-        description:
-          title: Policy Description
-          description: Details regarding the Policy
-          type: string
-        device_count:
-          title: Number of Devices with this policy applied
-          description: Count of Devices with this policy applied
-          type: integer
-          readOnly: true
-        google_policy_id:
-          title: Google policy id
-          description: Id of the Google policy
-          type: string
-          readOnly: true
-        policy:
-          $ref: '#/components/schemas/EnterprisePolicyData'
-        updated_on:
-          title: Updated On
-          type: string
-          format: date-time
-          description: Last-Updated Timestamp of Policy
-          readOnly: true
-        created_on:
-          title: Created on
-          description: Creation Timestamp of Policy
-          type: string
-          format: date-time
-          readOnly: true
-        is_active:
-          title: Policy Active status
-          description: Is this policy currently active
-          type: boolean
     EnterprisePolicyData:
       title: Policy Data
       type: object
@@ -493,6 +433,66 @@ components:
           description: Id of the Google policy
           type: string
           readOnly: true
+    EnterprisePolicy:
+      required:
+      - name
+      - enterprise
+      - policy
+      type: object
+      properties:
+        uuid:
+          title: UUID
+          description: Unique Policy identifier
+          type: string
+          format: uuid
+          readOnly: true
+        enterprise:
+          title: Enterprise url
+          description: Url of the enterprise resource
+          type: string
+          format: url
+        url:
+          title: Policy URL
+          description: URL link to policy
+          type: string
+          format: url
+          readOnly: true
+        name:
+          title: Policy Name
+          description: Name of the Policy
+          type: string
+        description:
+          title: Policy Description
+          description: Details regarding the Policy
+          type: string
+        device_count:
+          title: Number of Devices with this policy applied
+          description: Count of Devices with this policy applied
+          type: integer
+          readOnly: true
+        google_policy_id:
+          title: Google policy id
+          description: Id of the Google policy
+          type: string
+          readOnly: true
+        policy:
+          $ref: '#/components/schemas/EnterprisePolicyData'
+        updated_on:
+          title: Updated On
+          type: string
+          format: date-time
+          description: Last-Updated Timestamp of Policy
+          readOnly: true
+        created_on:
+          title: Created on
+          description: Creation Timestamp of Policy
+          type: string
+          format: date-time
+          readOnly: true
+        is_active:
+          title: Policy Active status
+          description: Is this policy currently active
+          type: boolean
   securitySchemes:
     apiKey:
       description: "#### API KEY - Access Token\nAccess token for APIs passed as authorization header in calls. You need to generate this from your Esper Dev Console at `<domain>-api.esper.cloud` where foo is the sub-domain name you gave for your Esper Dev environment when you signed up for your Esper Dev account. Please follow the instructions [here](https://docs.esper.io/home/module/genapikey.html) to generate an access token.\nOnce you have the access token, you need to send an authorization header as below\n\n```bash\n\n    curl -X GET \\\n      https://<domain>-api.esper.cloud/api/enterprise/<enterprise_id>/device/ \\\n      -H 'Authorization: Bearer <ACCESS_TOKEN>' \\\n      -H 'Content-Type: application/json' \\\n```\n\n> Please note the use of keyword **Bearer** before the token value.\n\n\nYou can read more about api key authentication scheme [here](https://console-docs.esper.io/API/generate.html).\n"
