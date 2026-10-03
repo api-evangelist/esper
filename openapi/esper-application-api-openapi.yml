@@ -901,41 +901,6 @@ paths:
       - Application
 components:
   schemas:
-    AppVersionDelete:
-      type: object
-      properties:
-        request_id:
-          title: Request id
-          type: string
-          format: uuid
-        templates:
-          description: List of linked templates to an app version
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                title: Id
-                description: Id of the linked template
-                type: integer
-              name:
-                title: Name
-                description: Name of the linked template
-                type: string
-    ErrorResponse:
-      type: object
-      properties:
-        errors:
-          title: Messages describing the error
-          type: array
-          items:
-            type: string
-        message:
-          title: Message describing the error
-          type: string
-        status:
-          title: alias name
-          type: integer
     InstallDevices:
       required:
       - id
@@ -958,6 +923,55 @@ components:
           type: string
           maxLength: 255
           minLength: 1
+    ApplicationVersion:
+      title: Version
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+          readOnly: true
+        version_code:
+          title: Version code
+          type: string
+          maxLength: 50
+          minLength: 1
+        build_number:
+          title: Build number
+          type:
+          - string
+          - 'null'
+          maxLength: 100
+          minLength: 1
+        hash_string:
+          title: Hash string
+          type: string
+        min_sdk_version:
+          title: Min sdk version
+          type:
+          - string
+          - 'null'
+          maxLength: 10
+          minLength: 1
+        target_sdk_version:
+          title: Target sdk version
+          type:
+          - string
+          - 'null'
+          maxLength: 10
+          minLength: 1
+        download_url:
+          title: Url
+          type: string
+          format: url
+        icon_url:
+          title: Url for the icon
+          type: string
+          format: url
+        release_name:
+          title: Name of the release
+          type: string
     AppVersion:
       title: Application Version
       required:
@@ -1074,55 +1088,41 @@ components:
           - ACCEPTED
           - APPROVED
           - REJECTED
-    ApplicationVersion:
-      title: Version
+    AppVersionDelete:
       type: object
       properties:
-        id:
-          title: Id
+        request_id:
+          title: Request id
           type: string
           format: uuid
-          readOnly: true
-        version_code:
-          title: Version code
+        templates:
+          description: List of linked templates to an app version
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                title: Id
+                description: Id of the linked template
+                type: integer
+              name:
+                title: Name
+                description: Name of the linked template
+                type: string
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          title: Messages describing the error
+          type: array
+          items:
+            type: string
+        message:
+          title: Message describing the error
           type: string
-          maxLength: 50
-          minLength: 1
-        build_number:
-          title: Build number
-          type:
-          - string
-          - 'null'
-          maxLength: 100
-          minLength: 1
-        hash_string:
-          title: Hash string
-          type: string
-        min_sdk_version:
-          title: Min sdk version
-          type:
-          - string
-          - 'null'
-          maxLength: 10
-          minLength: 1
-        target_sdk_version:
-          title: Target sdk version
-          type:
-          - string
-          - 'null'
-          maxLength: 10
-          minLength: 1
-        download_url:
-          title: Url
-          type: string
-          format: url
-        icon_url:
-          title: Url for the icon
-          type: string
-          format: url
-        release_name:
-          title: Name of the release
-          type: string
+        status:
+          title: alias name
+          type: integer
     AppPermission:
       required:
       - permission

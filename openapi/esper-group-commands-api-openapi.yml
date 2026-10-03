@@ -100,38 +100,6 @@ paths:
       - Group Commands
 components:
   schemas:
-    GroupCommandRequest:
-      required:
-      - command
-      type: object
-      properties:
-        command_args:
-          $ref: '#/components/schemas/GroupCommandArgs'
-        command:
-          $ref: '#/components/schemas/GroupCommandEnum'
-    GroupCommandEnum:
-      type: string
-      description: 'Group Command Options
-
-
-        ```
-
-        * REBOOT: Reboot device
-
-        * LOCK:  Lock device screen
-
-        * INSTALL:  Install an app on device
-
-        * UPDATE_HEARTBEAT: Ping Device
-
-        ```
-
-        '
-      enum:
-      - REBOOT
-      - LOCK
-      - INSTALL
-      - UPDATE_HEARTBEAT
     GroupCommand:
       required:
       - command
@@ -191,6 +159,38 @@ components:
           - string
           - 'null'
           format: uri
+    GroupCommandEnum:
+      type: string
+      description: 'Group Command Options
+
+
+        ```
+
+        * REBOOT: Reboot device
+
+        * LOCK:  Lock device screen
+
+        * INSTALL:  Install an app on device
+
+        * UPDATE_HEARTBEAT: Ping Device
+
+        ```
+
+        '
+      enum:
+      - REBOOT
+      - LOCK
+      - INSTALL
+      - UPDATE_HEARTBEAT
+    GroupCommandRequest:
+      required:
+      - command
+      type: object
+      properties:
+        command_args:
+          $ref: '#/components/schemas/GroupCommandArgs'
+        command:
+          $ref: '#/components/schemas/GroupCommandEnum'
     GroupCommandArgs:
       title: Command args
       type: object

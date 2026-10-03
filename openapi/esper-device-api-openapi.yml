@@ -495,95 +495,6 @@ components:
           title: Device
           type: string
           format: uuid
-    AppInstall:
-      required:
-      - application
-      - install_state
-      - enterprise
-      - device
-      type: object
-      properties:
-        id:
-          title: Id
-          type: string
-          format: uuid
-          readOnly: true
-        application:
-          $ref: '#/components/schemas/AppInstallApplication'
-        install_state:
-          $ref: '#/components/schemas/AppInstallStateEnum'
-        reason_details:
-          title: Reason details
-          type:
-          - string
-          - 'null'
-          minLength: 1
-        created_on:
-          title: Created on
-          type: string
-          format: date-time
-          readOnly: true
-        updated_on:
-          title: Updated on
-          type: string
-          format: date-time
-          readOnly: true
-        is_active:
-          title: Is active
-          type: boolean
-        enterprise:
-          title: Enterprise
-          type: string
-          format: url
-        device:
-          title: Device
-          type: string
-          format: url
-    EmmDevice:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        google_device_id:
-          type: string
-        managementType:
-          type: string
-        device:
-          type: string
-          format: uuid
-        google_user:
-          type: integer
-          format: int64
-        policy:
-          type: integer
-          format: int64
-        created_on:
-          type: string
-          format: date-time
-        updated_on:
-          type: string
-          format: date-time
-        is_active:
-          type: boolean
-          default: true
-    AppInstallVersion:
-      title: Version
-      type: object
-      properties:
-        app_version_id:
-          title: App version id
-          type: string
-          format: uuid
-        version_code:
-          title: Version code
-          type: string
-        build_number:
-          title: Build number
-          type: string
-        hash_string:
-          title: Hash string
-          type: string
     Device:
       type: object
       properties:
@@ -671,6 +582,116 @@ components:
         is_active:
           type: boolean
           default: true
+    AppInstall:
+      required:
+      - application
+      - install_state
+      - enterprise
+      - device
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+          readOnly: true
+        application:
+          $ref: '#/components/schemas/AppInstallApplication'
+        install_state:
+          $ref: '#/components/schemas/AppInstallStateEnum'
+        reason_details:
+          title: Reason details
+          type:
+          - string
+          - 'null'
+          minLength: 1
+        created_on:
+          title: Created on
+          type: string
+          format: date-time
+          readOnly: true
+        updated_on:
+          title: Updated on
+          type: string
+          format: date-time
+          readOnly: true
+        is_active:
+          title: Is active
+          type: boolean
+        enterprise:
+          title: Enterprise
+          type: string
+          format: url
+        device:
+          title: Device
+          type: string
+          format: url
+    AppInstallVersion:
+      title: Version
+      type: object
+      properties:
+        app_version_id:
+          title: App version id
+          type: string
+          format: uuid
+        version_code:
+          title: Version code
+          type: string
+        build_number:
+          title: Build number
+          type: string
+        hash_string:
+          title: Hash string
+          type: string
+    DeviceAppPermission:
+      required:
+      - permission
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+          readOnly: true
+        permission:
+          title: Permission
+          type: string
+          maxLength: 255
+          minLength: 1
+        grant_state:
+          title: Grant state
+          type: string
+          description: '* PERMISSION_GRANT_STATE_DEFAULT = 0
+
+            * PERMISSION_GRANT_STATE_DENIED = 1
+
+            * PERMISSION_GRANT_STATE_GRANTED = 2
+
+
+            For state details check [Android docs](https://developer.android.com/reference/android/app/admin/DevicePolicyManager#PERMISSION_GRANT_STATE_DEFAULT)
+
+            '
+          enum:
+          - PERMISSION_GRANT_STATE_DEFAULT
+          - PERMISSION_GRANT_STATE_DENIED
+          - PERMISSION_GRANT_STATE_GRANTED
+        created_on:
+          title: Created on
+          type: string
+          format: date-time
+          readOnly: true
+        updated_on:
+          title: Updated on
+          type: string
+          format: date-time
+          readOnly: true
+        is_active:
+          title: Is active
+          type: boolean
+        app:
+          title: App
+          type: string
+          format: uuid
     AppInstallStateEnum:
       title: Install state
       type: string
@@ -744,55 +765,34 @@ components:
           title: Enterprise
           type: string
           format: url
-    DeviceAppPermission:
-      required:
-      - permission
+    EmmDevice:
       type: object
       properties:
         id:
-          title: Id
+          type: integer
+          format: int64
+        google_device_id:
+          type: string
+        managementType:
+          type: string
+        device:
           type: string
           format: uuid
-          readOnly: true
-        permission:
-          title: Permission
-          type: string
-          maxLength: 255
-          minLength: 1
-        grant_state:
-          title: Grant state
-          type: string
-          description: '* PERMISSION_GRANT_STATE_DEFAULT = 0
-
-            * PERMISSION_GRANT_STATE_DENIED = 1
-
-            * PERMISSION_GRANT_STATE_GRANTED = 2
-
-
-            For state details check [Android docs](https://developer.android.com/reference/android/app/admin/DevicePolicyManager#PERMISSION_GRANT_STATE_DEFAULT)
-
-            '
-          enum:
-          - PERMISSION_GRANT_STATE_DEFAULT
-          - PERMISSION_GRANT_STATE_DENIED
-          - PERMISSION_GRANT_STATE_GRANTED
+        google_user:
+          type: integer
+          format: int64
+        policy:
+          type: integer
+          format: int64
         created_on:
-          title: Created on
           type: string
           format: date-time
-          readOnly: true
         updated_on:
-          title: Updated on
           type: string
           format: date-time
-          readOnly: true
         is_active:
-          title: Is active
           type: boolean
-        app:
-          title: App
-          type: string
-          format: uuid
+          default: true
   securitySchemes:
     apiKey:
       description: "#### API KEY - Access Token\nAccess token for APIs passed as authorization header in calls. You need to generate this from your Esper Dev Console at `<domain>-api.esper.cloud` where foo is the sub-domain name you gave for your Esper Dev environment when you signed up for your Esper Dev account. Please follow the instructions [here](https://docs.esper.io/home/module/genapikey.html) to generate an access token.\nOnce you have the access token, you need to send an authorization header as below\n\n```bash\n\n    curl -X GET \\\n      https://<domain>-api.esper.cloud/api/enterprise/<enterprise_id>/device/ \\\n      -H 'Authorization: Bearer <ACCESS_TOKEN>' \\\n      -H 'Content-Type: application/json' \\\n```\n\n> Please note the use of keyword **Bearer** before the token value.\n\n\nYou can read more about api key authentication scheme [here](https://console-docs.esper.io/API/generate.html).\n"

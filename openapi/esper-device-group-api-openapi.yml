@@ -204,9 +204,7 @@ paths:
       - Device Group
 components:
   schemas:
-    DeviceGroupUpdate:
-      required:
-      - name
+    DeviceGroupPartialUpdate:
       type: object
       properties:
         id:
@@ -239,19 +237,20 @@ components:
         device_ids:
           title: Device ids
           type: array
-          description: Devices ids
+          description: Device ids
           items:
             type: string
             format: uuid
           uniqueItems: true
         device_count:
           title: Device count
+          description: Count of devices in the group
           type: integer
           readOnly: true
         path:
           title: Path
-          type: string
           description: Path of the group
+          type: string
           readOnly: true
         children_count:
           title: Children Count
@@ -305,7 +304,9 @@ components:
           description: Count of child groups
           type: integer
           readOnly: true
-    DeviceGroupPartialUpdate:
+    DeviceGroupUpdate:
+      required:
+      - name
       type: object
       properties:
         id:
@@ -338,20 +339,19 @@ components:
         device_ids:
           title: Device ids
           type: array
-          description: Device ids
+          description: Devices ids
           items:
             type: string
             format: uuid
           uniqueItems: true
         device_count:
           title: Device count
-          description: Count of devices in the group
           type: integer
           readOnly: true
         path:
           title: Path
-          description: Path of the group
           type: string
+          description: Path of the group
           readOnly: true
         children_count:
           title: Children Count
