@@ -599,6 +599,97 @@ paths:
                   - REJECTED
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          title: Messages describing the error
+          type: array
+          items:
+            type: string
+        message:
+          title: Message describing the error
+          type: string
+        status:
+          title: alias name
+          type: integer
+    ApplicationVersionV1:
+      title: Application Version V1
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+          readOnly: true
+        version_code:
+          title: Version code
+          type: string
+          maxLength: 50
+          minLength: 1
+        build_number:
+          title: Build number
+          type:
+          - string
+          - 'null'
+          maxLength: 100
+          minLength: 1
+        hash_string:
+          title: Hash string
+          type: string
+        min_sdk_version:
+          title: Min sdk version
+          type:
+          - string
+          - 'null'
+          maxLength: 10
+          minLength: 1
+        target_sdk_version:
+          title: Target sdk version
+          type:
+          - string
+          - 'null'
+          maxLength: 10
+          minLength: 1
+        icon_url:
+          title: Url for the icon
+          type: string
+          format: url
+        release_name:
+          title: Name of the release
+          type: string
+    ApplicationV1:
+      required:
+      - application_name
+      - package_name
+      - enterprise
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+          readOnly: true
+        latest_version:
+          $ref: '#/components/schemas/ApplicationVersionV1'
+        application_name:
+          title: Application name
+          type: string
+          maxLength: 255
+          minLength: 1
+        package_name:
+          title: Package name
+          type: string
+          maxLength: 255
+          minLength: 1
+          readOnly: true
+        is_hidden:
+          title: Is hidden
+          type: boolean
+        enterprise:
+          title: Enterprise
+          type: string
+          format: url
     AppVersionDelete:
       type: object
       properties:
@@ -620,20 +711,6 @@ components:
                 title: Name
                 description: Name of the linked template
                 type: string
-    ErrorResponse:
-      type: object
-      properties:
-        errors:
-          title: Messages describing the error
-          type: array
-          items:
-            type: string
-        message:
-          title: Message describing the error
-          type: string
-        status:
-          title: alias name
-          type: integer
     AppVersionV1:
       title: Application Version V1
       required:
@@ -732,83 +809,6 @@ components:
           type: string
           format: date-time
           readOnly: true
-    ApplicationVersionV1:
-      title: Application Version V1
-      type: object
-      properties:
-        id:
-          title: Id
-          type: string
-          format: uuid
-          readOnly: true
-        version_code:
-          title: Version code
-          type: string
-          maxLength: 50
-          minLength: 1
-        build_number:
-          title: Build number
-          type:
-          - string
-          - 'null'
-          maxLength: 100
-          minLength: 1
-        hash_string:
-          title: Hash string
-          type: string
-        min_sdk_version:
-          title: Min sdk version
-          type:
-          - string
-          - 'null'
-          maxLength: 10
-          minLength: 1
-        target_sdk_version:
-          title: Target sdk version
-          type:
-          - string
-          - 'null'
-          maxLength: 10
-          minLength: 1
-        icon_url:
-          title: Url for the icon
-          type: string
-          format: url
-        release_name:
-          title: Name of the release
-          type: string
-    ApplicationV1:
-      required:
-      - application_name
-      - package_name
-      - enterprise
-      type: object
-      properties:
-        id:
-          title: Id
-          type: string
-          format: uuid
-          readOnly: true
-        latest_version:
-          $ref: '#/components/schemas/ApplicationVersionV1'
-        application_name:
-          title: Application name
-          type: string
-          maxLength: 255
-          minLength: 1
-        package_name:
-          title: Package name
-          type: string
-          maxLength: 255
-          minLength: 1
-          readOnly: true
-        is_hidden:
-          title: Is hidden
-          type: boolean
-        enterprise:
-          title: Enterprise
-          type: string
-          format: url
   securitySchemes:
     apiKey:
       description: "#### API KEY - Access Token\nAccess token for APIs passed as authorization header in calls. You need to generate this from your Esper Dev Console at `<domain>-api.esper.cloud` where foo is the sub-domain name you gave for your Esper Dev environment when you signed up for your Esper Dev account. Please follow the instructions [here](https://docs.esper.io/home/module/genapikey.html) to generate an access token.\nOnce you have the access token, you need to send an authorization header as below\n\n```bash\n\n    curl -X GET \\\n      https://<domain>-api.esper.cloud/api/enterprise/<enterprise_id>/device/ \\\n      -H 'Authorization: Bearer <ACCESS_TOKEN>' \\\n      -H 'Content-Type: application/json' \\\n```\n\n> Please note the use of keyword **Bearer** before the token value.\n\n\nYou can read more about api key authentication scheme [here](https://console-docs.esper.io/API/generate.html).\n"

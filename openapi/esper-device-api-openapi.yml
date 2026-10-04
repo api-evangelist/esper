@@ -423,6 +423,124 @@ paths:
       - Device
 components:
   schemas:
+    EmmDevice:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        google_device_id:
+          type: string
+        managementType:
+          type: string
+        device:
+          type: string
+          format: uuid
+        google_user:
+          type: integer
+          format: int64
+        policy:
+          type: integer
+          format: int64
+        created_on:
+          type: string
+          format: date-time
+        updated_on:
+          type: string
+          format: date-time
+        is_active:
+          type: boolean
+          default: true
+    AppInstallStateEnum:
+      title: Install state
+      type: string
+      description: 'Device App Install State
+
+
+        ``` * NOT_INSTALLED = "Not Installed"
+
+        * INSTALL_IN_PROGRESS = "Installation In-Progress"
+
+        * UNINSTALL_IN_PROGRESS = "Uninstallation In-Progress"
+
+        * INSTALL_SUCCESS = "Install Success"
+
+        * INSTALL_FAILED = "Install Failed"
+
+        * UNINSTALL_SUCCESS = "Uninstall Success"
+
+        * UNINSTALL_FAILED = "Uninstall Failed"
+
+        ```
+
+        '
+      enum:
+      - NOT_INSTALLED
+      - INSTALL_IN_PROGRESS
+      - UNINSTALL_IN_PROGRESS
+      - INSTALL_SUCCESS
+      - INSTALL_FAILED
+      - UNINSTALL_SUCCESS
+      - UNINSTALL_FAILED
+    AppInstallVersion:
+      title: Version
+      type: object
+      properties:
+        app_version_id:
+          title: App version id
+          type: string
+          format: uuid
+        version_code:
+          title: Version code
+          type: string
+        build_number:
+          title: Build number
+          type: string
+        hash_string:
+          title: Hash string
+          type: string
+    AppInstallApplication:
+      title: Application
+      type: object
+      properties:
+        application_name:
+          title: Application name
+          type: string
+        package_name:
+          title: Package name
+          type: string
+        version:
+          $ref: '#/components/schemas/AppInstallVersion'
+        is_enabled:
+          title: Is enabled
+          type: boolean
+    DeviceStatus:
+      required:
+      - data
+      - device
+      - enterprise
+      type: object
+      properties:
+        id:
+          title: ID
+          type: integer
+          readOnly: true
+        data:
+          title: Data
+          type: string
+        created_on:
+          title: Created on
+          type: string
+          format: date-time
+          readOnly: true
+        device:
+          title: Device
+          type: string
+          format: url
+        enterprise:
+          title: Enterprise
+          type: string
+          format: url
     DeviceApp:
       required:
       - app_name
@@ -495,6 +613,50 @@ components:
           title: Device
           type: string
           format: uuid
+    AppInstall:
+      required:
+      - application
+      - install_state
+      - enterprise
+      - device
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+          readOnly: true
+        application:
+          $ref: '#/components/schemas/AppInstallApplication'
+        install_state:
+          $ref: '#/components/schemas/AppInstallStateEnum'
+        reason_details:
+          title: Reason details
+          type:
+          - string
+          - 'null'
+          minLength: 1
+        created_on:
+          title: Created on
+          type: string
+          format: date-time
+          readOnly: true
+        updated_on:
+          title: Updated on
+          type: string
+          format: date-time
+          readOnly: true
+        is_active:
+          title: Is active
+          type: boolean
+        enterprise:
+          title: Enterprise
+          type: string
+          format: url
+        device:
+          title: Device
+          type: string
+          format: url
     Device:
       type: object
       properties:
@@ -582,67 +744,6 @@ components:
         is_active:
           type: boolean
           default: true
-    AppInstall:
-      required:
-      - application
-      - install_state
-      - enterprise
-      - device
-      type: object
-      properties:
-        id:
-          title: Id
-          type: string
-          format: uuid
-          readOnly: true
-        application:
-          $ref: '#/components/schemas/AppInstallApplication'
-        install_state:
-          $ref: '#/components/schemas/AppInstallStateEnum'
-        reason_details:
-          title: Reason details
-          type:
-          - string
-          - 'null'
-          minLength: 1
-        created_on:
-          title: Created on
-          type: string
-          format: date-time
-          readOnly: true
-        updated_on:
-          title: Updated on
-          type: string
-          format: date-time
-          readOnly: true
-        is_active:
-          title: Is active
-          type: boolean
-        enterprise:
-          title: Enterprise
-          type: string
-          format: url
-        device:
-          title: Device
-          type: string
-          format: url
-    AppInstallVersion:
-      title: Version
-      type: object
-      properties:
-        app_version_id:
-          title: App version id
-          type: string
-          format: uuid
-        version_code:
-          title: Version code
-          type: string
-        build_number:
-          title: Build number
-          type: string
-        hash_string:
-          title: Hash string
-          type: string
     DeviceAppPermission:
       required:
       - permission
@@ -692,107 +793,6 @@ components:
           title: App
           type: string
           format: uuid
-    AppInstallStateEnum:
-      title: Install state
-      type: string
-      description: 'Device App Install State
-
-
-        ``` * NOT_INSTALLED = "Not Installed"
-
-        * INSTALL_IN_PROGRESS = "Installation In-Progress"
-
-        * UNINSTALL_IN_PROGRESS = "Uninstallation In-Progress"
-
-        * INSTALL_SUCCESS = "Install Success"
-
-        * INSTALL_FAILED = "Install Failed"
-
-        * UNINSTALL_SUCCESS = "Uninstall Success"
-
-        * UNINSTALL_FAILED = "Uninstall Failed"
-
-        ```
-
-        '
-      enum:
-      - NOT_INSTALLED
-      - INSTALL_IN_PROGRESS
-      - UNINSTALL_IN_PROGRESS
-      - INSTALL_SUCCESS
-      - INSTALL_FAILED
-      - UNINSTALL_SUCCESS
-      - UNINSTALL_FAILED
-    AppInstallApplication:
-      title: Application
-      type: object
-      properties:
-        application_name:
-          title: Application name
-          type: string
-        package_name:
-          title: Package name
-          type: string
-        version:
-          $ref: '#/components/schemas/AppInstallVersion'
-        is_enabled:
-          title: Is enabled
-          type: boolean
-    DeviceStatus:
-      required:
-      - data
-      - device
-      - enterprise
-      type: object
-      properties:
-        id:
-          title: ID
-          type: integer
-          readOnly: true
-        data:
-          title: Data
-          type: string
-        created_on:
-          title: Created on
-          type: string
-          format: date-time
-          readOnly: true
-        device:
-          title: Device
-          type: string
-          format: url
-        enterprise:
-          title: Enterprise
-          type: string
-          format: url
-    EmmDevice:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        google_device_id:
-          type: string
-        managementType:
-          type: string
-        device:
-          type: string
-          format: uuid
-        google_user:
-          type: integer
-          format: int64
-        policy:
-          type: integer
-          format: int64
-        created_on:
-          type: string
-          format: date-time
-        updated_on:
-          type: string
-          format: date-time
-        is_active:
-          type: boolean
-          default: true
   securitySchemes:
     apiKey:
       description: "#### API KEY - Access Token\nAccess token for APIs passed as authorization header in calls. You need to generate this from your Esper Dev Console at `<domain>-api.esper.cloud` where foo is the sub-domain name you gave for your Esper Dev environment when you signed up for your Esper Dev account. Please follow the instructions [here](https://docs.esper.io/home/module/genapikey.html) to generate an access token.\nOnce you have the access token, you need to send an authorization header as below\n\n```bash\n\n    curl -X GET \\\n      https://<domain>-api.esper.cloud/api/enterprise/<enterprise_id>/device/ \\\n      -H 'Authorization: Bearer <ACCESS_TOKEN>' \\\n      -H 'Content-Type: application/json' \\\n```\n\n> Please note the use of keyword **Bearer** before the token value.\n\n\nYou can read more about api key authentication scheme [here](https://console-docs.esper.io/API/generate.html).\n"

@@ -901,6 +901,120 @@ paths:
       - Application
 components:
   schemas:
+    Application:
+      required:
+      - application_name
+      - package_name
+      - enterprise
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+          readOnly: true
+        versions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApplicationVersion'
+        application_name:
+          title: Application name
+          type: string
+          maxLength: 255
+          minLength: 1
+        package_name:
+          title: Package name
+          type: string
+          maxLength: 255
+          minLength: 1
+        developer:
+          title: Developer
+          type:
+          - string
+          - 'null'
+          maxLength: 255
+          minLength: 1
+        category:
+          title: Category
+          type:
+          - string
+          - 'null'
+          maxLength: 255
+          minLength: 1
+        content_rating:
+          title: Content rating
+          type: string
+          format: decimal
+        compatibility:
+          title: Compatibility
+          type:
+          - string
+          - 'null'
+          minLength: 1
+        created_on:
+          title: Created on
+          type: string
+          format: date-time
+          readOnly: true
+        updated_on:
+          title: Updated on
+          type: string
+          format: date-time
+          readOnly: true
+        is_active:
+          title: Is active
+          type: boolean
+        is_hidden:
+          title: Is hidden
+          type: boolean
+        enterprise:
+          title: Enterprise
+          type: string
+          format: url
+    AppPermission:
+      required:
+      - permission
+      - enterprise
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+          readOnly: true
+        permission:
+          title: Permission
+          type: string
+          maxLength: 255
+          minLength: 1
+        grant_state:
+          title: Grant state
+          type: string
+          enum:
+          - Default
+          - Denied
+          - Granted
+        created_on:
+          title: Created on
+          type: string
+          format: date-time
+          readOnly: true
+        updated_on:
+          title: Updated on
+          type: string
+          format: date-time
+          readOnly: true
+        is_active:
+          title: Is active
+          type: boolean
+        enterprise:
+          title: Enterprise
+          type: string
+          format: url
+        app_version:
+          title: App version
+          type: string
+          format: url
     InstallDevices:
       required:
       - id
@@ -923,6 +1037,41 @@ components:
           type: string
           maxLength: 255
           minLength: 1
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          title: Messages describing the error
+          type: array
+          items:
+            type: string
+        message:
+          title: Message describing the error
+          type: string
+        status:
+          title: alias name
+          type: integer
+    AppVersionDelete:
+      type: object
+      properties:
+        request_id:
+          title: Request id
+          type: string
+          format: uuid
+        templates:
+          description: List of linked templates to an app version
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                title: Id
+                description: Id of the linked template
+                type: integer
+              name:
+                title: Name
+                description: Name of the linked template
+                type: string
     ApplicationVersion:
       title: Version
       type: object
@@ -1088,155 +1237,6 @@ components:
           - ACCEPTED
           - APPROVED
           - REJECTED
-    AppVersionDelete:
-      type: object
-      properties:
-        request_id:
-          title: Request id
-          type: string
-          format: uuid
-        templates:
-          description: List of linked templates to an app version
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                title: Id
-                description: Id of the linked template
-                type: integer
-              name:
-                title: Name
-                description: Name of the linked template
-                type: string
-    ErrorResponse:
-      type: object
-      properties:
-        errors:
-          title: Messages describing the error
-          type: array
-          items:
-            type: string
-        message:
-          title: Message describing the error
-          type: string
-        status:
-          title: alias name
-          type: integer
-    AppPermission:
-      required:
-      - permission
-      - enterprise
-      type: object
-      properties:
-        id:
-          title: Id
-          type: string
-          format: uuid
-          readOnly: true
-        permission:
-          title: Permission
-          type: string
-          maxLength: 255
-          minLength: 1
-        grant_state:
-          title: Grant state
-          type: string
-          enum:
-          - Default
-          - Denied
-          - Granted
-        created_on:
-          title: Created on
-          type: string
-          format: date-time
-          readOnly: true
-        updated_on:
-          title: Updated on
-          type: string
-          format: date-time
-          readOnly: true
-        is_active:
-          title: Is active
-          type: boolean
-        enterprise:
-          title: Enterprise
-          type: string
-          format: url
-        app_version:
-          title: App version
-          type: string
-          format: url
-    Application:
-      required:
-      - application_name
-      - package_name
-      - enterprise
-      type: object
-      properties:
-        id:
-          title: Id
-          type: string
-          format: uuid
-          readOnly: true
-        versions:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApplicationVersion'
-        application_name:
-          title: Application name
-          type: string
-          maxLength: 255
-          minLength: 1
-        package_name:
-          title: Package name
-          type: string
-          maxLength: 255
-          minLength: 1
-        developer:
-          title: Developer
-          type:
-          - string
-          - 'null'
-          maxLength: 255
-          minLength: 1
-        category:
-          title: Category
-          type:
-          - string
-          - 'null'
-          maxLength: 255
-          minLength: 1
-        content_rating:
-          title: Content rating
-          type: string
-          format: decimal
-        compatibility:
-          title: Compatibility
-          type:
-          - string
-          - 'null'
-          minLength: 1
-        created_on:
-          title: Created on
-          type: string
-          format: date-time
-          readOnly: true
-        updated_on:
-          title: Updated on
-          type: string
-          format: date-time
-          readOnly: true
-        is_active:
-          title: Is active
-          type: boolean
-        is_hidden:
-          title: Is hidden
-          type: boolean
-        enterprise:
-          title: Enterprise
-          type: string
-          format: url
   securitySchemes:
     apiKey:
       description: "#### API KEY - Access Token\nAccess token for APIs passed as authorization header in calls. You need to generate this from your Esper Dev Console at `<domain>-api.esper.cloud` where foo is the sub-domain name you gave for your Esper Dev environment when you signed up for your Esper Dev account. Please follow the instructions [here](https://docs.esper.io/home/module/genapikey.html) to generate an access token.\nOnce you have the access token, you need to send an authorization header as below\n\n```bash\n\n    curl -X GET \\\n      https://<domain>-api.esper.cloud/api/enterprise/<enterprise_id>/device/ \\\n      -H 'Authorization: Bearer <ACCESS_TOKEN>' \\\n      -H 'Content-Type: application/json' \\\n```\n\n> Please note the use of keyword **Bearer** before the token value.\n\n\nYou can read more about api key authentication scheme [here](https://console-docs.esper.io/API/generate.html).\n"
