@@ -53,7 +53,7 @@ accessModel:
 image: https://avatars.githubusercontent.com/u/49017159?v=4
 specificationVersion: '0.23'
 created: '2026-07-17'
-modified: '2026-07-19'
+modified: '2026-10-06'
 tags:
 - Device Management
 - Mobile Device Management
@@ -482,6 +482,8 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- url: https://www.esper.io/blog/rss.xml
+  type: BlogRSS
 - type: CapabilityMap
   url: capabilities/esper-capability-edges.yml
   name: Esper Business Capability Map
