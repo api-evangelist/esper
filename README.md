@@ -64,11 +64,146 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Esper is the DevOps platform for connected devices — cloud-based Android (and edge) device management, app deployment, and remote orchestration for dedicated-device fleets. The Esper Manage REST API programmatically provisions, monitors, and controls Android devices running the Esper agent (devices, groups, apps, commands, policies, geofences, content, and device event subscriptions), with an official Python SDK (`esperclient`) and CLI (`espercli`).
+Esper is the DevOps platform for connected devices, providing cloud-based Android (and edge) device management, application deployment, and remote orchestration for dedicated-device fleets. The Esper Manage REST API lets developers programmatically provision, monitor, and control Android-based dedicated devices running the Esper agent: manage devices and device groups, upload and roll out applications and versions, run device and group commands, configure compliance and enterprise policies, set up geofences, manage content, and subscribe to device events via webhooks. APIs are authenticated with a Bearer API key and served per-tenant on a dedicated Esper Cloud environment, with an official Python SDK (esperclient) and CLI.
 
-- Website: https://esper.io
-- API reference: https://api.esper.io/openapi
-- GitHub: https://github.com/esper-io
-- Backed by: Insight Partners, Scale Venture Partners, Madrona Ventures, Root Ventures
+**Areas:** Device Management · Mobile Device Management · Android · DevOps · IoT · Fleet Management · Enterprise Mobility · Edge Computing · Kiosk
 
-> Disambiguation: this profile is Esper the DevOps-for-devices company (esper.io). It is NOT the similarly named govtech policy/regulatory company at esper.com (backed by 8VC), which the original VC-portfolio stub conflated into this repo.
+## Esper on APIs.io
+
+Everything profiled for Esper is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/esper/](https://apis.io/providers/esper/)** — or go straight to one of the APIs or properties below.
+
+### APIs (13)
+
+- [Esper Application API](https://apis.io/apis/esper/esper-application-api/) — APIs for application management
+- [Esper Application V1 API](https://apis.io/apis/esper/esper-application-v1-api/) — APIs for application management
+- [Esper Commands API](https://apis.io/apis/esper/esper-commands-api/) — APIs to run device commands. `This version of commands is being deprecated and documentation will be archived soon. Please use Commands V2.`
+- [Esper Commands V2 API](https://apis.io/apis/esper/esper-commands-v2-api/) — Commands V2.0 is to provide advanced device commands capabilities like queuing, support for offline devices, dynamic device set for commands and command…
+- [Esper Content API](https://apis.io/apis/esper/esper-content-api/) — APIs for Content management
+- [Esper Device API](https://apis.io/apis/esper/esper-device-api/) — APIs for device management
+- [Esper Device Group API](https://apis.io/apis/esper/esper-device-group-api/) — APIs for device group management
+- [Esper Enterprise API](https://apis.io/apis/esper/esper-enterprise-api/) — The Esper Enterprise APIs to manage the account information set up for your company’s account. Read our Esper Manage documentation or use the Esper Manage…
+- [Esper Enterprise Policy API](https://apis.io/apis/esper/esper-enterprise-policy-api/) — APIs to Esper Compliance Policy
+- [Esper Geofence API](https://apis.io/apis/esper/esper-geofence-api/) — APIs for geofence management
+- [Esper Group Commands API](https://apis.io/apis/esper/esper-group-commands-api/) — APIs to run group commands. Command will be run on all the active devices in a group
+- [Esper Subscription API](https://apis.io/apis/esper/esper-subscription-api/) — APIs for Subscription management
+- [Esper Token API](https://apis.io/apis/esper/esper-token-api/) — Fetch API token information
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### AsyncAPI (1)
+
+Event-driven and webhook contracts.
+
+- [Esper Events Webhooks](https://apis.io/asyncapis/esper/esper-events-webhooks/)
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [esper-manage](https://apis.io/servers/esper/esper-manage/)
+
+#### Collections (13)
+
+Postman and Open Collection request collections.
+
+- [ESPER API REFERENCE Application API](https://apis.io/collections/esper/open-esper-application-api/)
+- [ESPER API REFERENCE Application Application V1 API](https://apis.io/collections/esper/open-esper-application-v1-api/)
+- [ESPER API REFERENCE Application Commands API](https://apis.io/collections/esper/open-esper-commands-api/)
+- [ESPER API REFERENCE Application Commands V2 API](https://apis.io/collections/esper/open-esper-commands-v2-api/)
+- [ESPER API REFERENCE Application Content API](https://apis.io/collections/esper/open-esper-content-api/)
+- [ESPER API REFERENCE Application Device API](https://apis.io/collections/esper/open-esper-device-api/)
+- [ESPER API REFERENCE Application Device Group API](https://apis.io/collections/esper/open-esper-device-group-api/)
+- [ESPER API REFERENCE Application Enterprise API](https://apis.io/collections/esper/open-esper-enterprise-api/)
+- [ESPER API REFERENCE Application Enterprise Policy API](https://apis.io/collections/esper/open-esper-enterprise-policy-api/)
+- [ESPER API REFERENCE Application Geofence API](https://apis.io/collections/esper/open-esper-geofence-api/)
+- [ESPER API REFERENCE Application Group Commands API](https://apis.io/collections/esper/open-esper-group-commands-api/)
+- [ESPER API REFERENCE Application Subscription API](https://apis.io/collections/esper/open-esper-subscription-api/)
+- [ESPER API REFERENCE Application Token API](https://apis.io/collections/esper/open-esper-token-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Esper Manage Overlay](https://apis.io/overlays/esper/esper-manage-overlay/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Esper Authentication](https://apis.io/security/esper/esper-authentication/)
+- [Esper Domain Security](https://apis.io/security/esper/esper-domain-security/)
+- [Esper Trust Center](https://apis.io/security/esper/esper-trust-center/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://esper.io)
+- [Documentation](https://help.esper.io/hc/en-us/categories/11385054747153-Developer-Documentation)
+- [Getting started](https://help.esper.io/hc/en-us/articles/14199291792145-Getting-Started-with-APIs)
+- [API reference](https://api.esper.io/openapi)
+- [Pricing](https://www.esper.io/pricing)
+- [Sign up](https://esper.io/signup)
+- [Support](https://help.esper.io/)
+- [Blog](https://www.esper.io/blog)
+- [Compliance](https://trust.esper.io/)
+- [Terms of service](https://esper.io/terms-of-service)
+- [Privacy policy](https://www.esper.io/privacy-policy)
+- [GitHub](https://github.com/esper-io)
+
+## API Evangelist rating
+
+**Kin Score 49.3** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 58.1 |
+| Contract governance | 4.5 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 63.7 |
+| Access clarity | 60.5 |
+
+**Agent readiness 28.7** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | — |
+| Event Surface Described | derived (partial credit) |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | paginated |
+| Operation Distinctiveness | mostly |
+
+**Regulatory alignment 29.4** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/esper/](https://apis.io/providers/esper/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Esper: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/esper/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
